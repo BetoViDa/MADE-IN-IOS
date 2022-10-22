@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2446D0A72900CF1100F2D3BB /* icono1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2446D0A62900CF1100F2D3BB /* icono1.png */; };
-		2446D0A92900CF5B00F2D3BB /* icono2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2446D0A82900CF5B00F2D3BB /* icono2.png */; };
 		2472B4FD28F1FF4B00ECAC06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2472B4FC28F1FF4B00ECAC06 /* AppDelegate.swift */; };
 		2472B4FF28F1FF4B00ECAC06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2472B4FE28F1FF4B00ECAC06 /* SceneDelegate.swift */; };
 		2472B50128F1FF4B00ECAC06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2472B50028F1FF4B00ECAC06 /* ViewController.swift */; };
@@ -39,8 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2446D0A62900CF1100F2D3BB /* icono1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icono1.png; path = Img/icono1.png; sourceTree = "<group>"; };
-		2446D0A82900CF5B00F2D3BB /* icono2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icono2.png; sourceTree = "<group>"; };
 		2472B4F928F1FF4B00ECAC06 /* Signa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2472B4FC28F1FF4B00ECAC06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2472B4FE28F1FF4B00ECAC06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,8 +81,6 @@
 		2472B4F028F1FF4B00ECAC06 = {
 			isa = PBXGroup;
 			children = (
-				2446D0A82900CF5B00F2D3BB /* icono2.png */,
-				2446D0A62900CF1100F2D3BB /* icono1.png */,
 				2472B4FB28F1FF4B00ECAC06 /* Signa */,
 				2472B51528F1FF4D00ECAC06 /* SignaTests */,
 				2472B51F28F1FF4D00ECAC06 /* SignaUITests */,
@@ -240,8 +234,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2446D0A92900CF5B00F2D3BB /* icono2.png in Resources */,
-				2446D0A72900CF1100F2D3BB /* icono1.png in Resources */,
 				2472B50C28F1FF4C00ECAC06 /* LaunchScreen.storyboard in Resources */,
 				2472B50928F1FF4C00ECAC06 /* Assets.xcassets in Resources */,
 				2472B50428F1FF4B00ECAC06 /* Main.storyboard in Resources */,
