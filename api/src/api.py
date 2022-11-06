@@ -1,12 +1,12 @@
 # API Para la aplicación signa de lenguaje de señas
 '''
 pasos:
-    python -m venv venv            creamos entorno virtual
-    venv\Scripts\activate          
-    pip install <lo que se deba instalar>
-    python src/api.py              corremos la api estando en la carpeta API
+    python3 -m venv venv                         creamos entorno virtual llamado "venv"
+    venv\Scripts\activate    en MacOS ejecutar:  source venv/bin/activate
+    pip install <lo que se deba instalar> 
+    python3 src/api.py                           corremos la api estando en la carpeta API
 '''
-
+# <lo que se debe instalar>
 # pip install flask          Componente basico 
 # pip install pymongo        
 # pip install flask-pymongo 
