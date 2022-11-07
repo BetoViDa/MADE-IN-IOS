@@ -115,8 +115,8 @@ borras todo lo que tiene y escribes lo siguiente
 use('signaDB');
 
 db.word.insertMany([
-  {'name':'palabra1', 'video':'link al video', 'img': 'link a la imagen'},
-  {'name':'palabra2', 'video':'link al video', 'img': 'link a la imagen'}
+  {'name':'palabra1', 'video':'link al video', 'img': 'link a la imagen', 'categories':'palabrasBasicas', 'level': 1},
+  {'name':'palabra2', 'video':'link al video', 'img': 'link a la imagen', 'categories':'palabrasBasicas', 'level': 1}
 ])
 
 el use es para decire que base de datos usar, y el insertMany es una
