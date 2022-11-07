@@ -76,9 +76,9 @@ def login():
     json = request.json
     #reviso si el usuario puso su username o su correo
     if "@" in json['username']: #es un correo
-        data = mongo.db.users.find_one({'email':json['username'], 'password': json['password']})
+        data = mongo.db.users.find_one({'email':json['username'], 'password': json['password']},{'_id':1,'username':1,'email':1,'group':1,'type':1})
     else:
-        data = mongo.db.users.find_one({'username':json['username'], 'password': json['password']})
+        data = mongo.db.users.find_one({'username':json['username'], 'password': json['password']},{'_id':1,'username':1,'email':1,'group':1,'type':1})
 
     if data == None:
         if "@" in json['username']:
@@ -89,7 +89,9 @@ def login():
         return{
             '_id': str(data['_id']),
             'username': data['username'],
-            'email': data['email']
+            'email': data['email'],
+            'group': data['group'],
+            'type': data['type']
         }
 #=========================================================================    
 
