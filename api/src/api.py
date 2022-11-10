@@ -53,7 +53,7 @@ def create_user():
     if mongo.db.users.find_one({'username':json['username']}) != None:
         return {'ERROR': 'ya existe este username'}
     # si encuentro un usuario con este email mando error
-    if mongo.db.users.find_one({'email':json['email']}) != None:
+    if mongo.db.users.find_one({'email':json['email'].lower()}) != None:
         return {'ERROR': 'ya esta en uso este correo'}
     
     
