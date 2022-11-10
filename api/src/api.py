@@ -28,10 +28,10 @@ load_dotenv() # cargamos las variables de entorno
 DBpassword = os.getenv("PASSWORD")
 DBuser = os.getenv("USER")
 DataBase = os.getenv("DATABASE")
-
+Cluster = os.getenv("CLUSTER")
 
 #=====Conexión a la base de datos=======
-app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':'+DBpassword+'@cluster0.sismnd1.mongodb.net/'+DataBase
+app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':'+DBpassword+'@cluster0.'+Cluster+'.mongodb.net/'+DataBase
 mongo = PyMongo(app) #mongo es nuestra base de datos (mongo.db)
 #=======================================
 
