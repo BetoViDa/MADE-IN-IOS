@@ -25,10 +25,10 @@ CORS(app) # se ocupa por ahora
 load_dotenv() # cargamos las variables de entorno
 
 
-DBpassword = os.getenv("PASSWORD")
-DBuser = os.getenv("USER")
-DataBase = os.getenv("DATABASE")
-Cluster = os.getenv("CLUSTER")
+DBpassword = os.getenv("PASSWORD_MONDOGO")
+DBuser = os.getenv("USER_MONDOGO")
+DataBase = os.getenv("DATABASE_MONDOGO")
+Cluster = os.getenv("CLUSTER_MONDOGO")
 
 #=====Conexión a la base de datos=======
 app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':'+DBpassword+'@cluster0.'+Cluster+'.mongodb.net/'+DataBase
