@@ -44,8 +44,7 @@ def create_user():
     {
     "username":"Leopoldo",
     "password": "123",
-    "email": "Leopoldo@mail.com",
-    "type": 0
+    "email": "Leopoldo@mail.com"
     }
     '''
     #{"username":nombre,"password":pass,"email":mail,"type":0,}
@@ -56,14 +55,7 @@ def create_user():
     # si encuentro un usuario con este email mando error
     if mongo.db.users.find_one({'email':json['email']}) != None:
         return {'ERROR': 'ya esta en uso este correo'}
-    # si encuentra que ya hay un admin en ese grupo
-    if ("group" in json) and mongo.db.users.find_one({
-                                '$and': [
-                                    {'type': 1},
-                                    {'group': json['group']}
-                                ]
-                            }): # consulta BD para ver si existe o no
-        return {'ERROR': 'este grupo ya tiene un administrador'} # regresamos el error
+    
     
     if json['username'] and json['password'] and json['email'] and (json['type'] != None):
         json["grades"] = {
@@ -89,6 +81,7 @@ def create_user():
             "preposiciones11":  0
         }
         json["level"] = 0
+        json["type"] = 0 # es usuario normal
         id = mongo.db.users.insert_one(json)
         json['_id'] = str(id.inserted_id)
         return json # regresamos el json que se inserto 
