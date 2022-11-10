@@ -31,20 +31,24 @@ DataBase = os.getenv("DATABASE")
 
 
 #=====Conexión a la base de datos=======
-app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':'+DBpassword+'@cluster0.fabcj3i.mongodb.net/'+DataBase
+app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':'+DBpassword+'@cluster0.sismnd1.mongodb.net/'+DataBase
 mongo = PyMongo(app) #mongo es nuestra base de datos (mongo.db)
 #=======================================
 
-#-----------CHEQUEO API--------------
-@app.route('/', methods=["GET"])
-def chequeo():
-    return "<p>Hola mundo</p>"
-#====================================
 
 #------------------------------SIGN UP USER----------------------------------
 #falta cifrar datos sensibles como password y correo
 @app.route('/user/signup', methods=['POST'])
 def create_user():
+    '''
+    {
+    "username":"Leopoldo",
+    "password": "123",
+    "email": "Leopoldo@mail.com",
+    "type": 0
+    }
+    '''
+    #{"username":nombre,"password":pass,"email":mail,"type":0,}
     json = request.json
     # si encuentra un usuario con ese username manda error
     if mongo.db.users.find_one({'username':json['username']}) != None:
@@ -62,6 +66,29 @@ def create_user():
         return {'ERROR': 'este grupo ya tiene un administrador'} # regresamos el error
     
     if json['username'] and json['password'] and json['email'] and (json['type'] != None):
+        json["grades"] = {
+            "verboscomunes1":   0,
+            "verboscomunes2":   0,
+            "verboscomunes3":   0,
+            "verboscomunes4":   0,
+            "letras1":          0,
+            "letras2":          0,
+            "letras3":          0,
+            "verbosnarrativos1":0,
+            "verbosnarrativos2":0,
+            "preposiciones1":   0,
+            "preposiciones2":   0,
+            "preposiciones3":   0,
+            "preposiciones4":   0,
+            "preposiciones5":   0,
+            "preposiciones6":   0,
+            "preposiciones7":   0,
+            "preposiciones8":   0,
+            "preposiciones9":   0,
+            "preposiciones10":  0,
+            "preposiciones11":  0
+        }
+        json["level"] = 0
         id = mongo.db.users.insert_one(json)
         json['_id'] = str(id.inserted_id)
         return json # regresamos el json que se inserto 
@@ -86,16 +113,111 @@ def login():
         else:
             return {'ERROR': "nombre de usuario o contraseña incorrecta"}
     else:
-        return{
+        r = {
             '_id': str(data['_id']),
             'username': data['username'],
             'email': data['email'],
-            'group': data['group'],
-            'type': data['type']
+            'type': data['type'],
+            'loged': 1
         }
+        if "group" in data:
+            r["group"] = data["group"]
+        
+        return r
 #=========================================================================    
 
 
+#-------------------------------Join Group---------------------------------
+@app.route('/user/joinGroup', methods=['POST'])
+def joinGroup():
+    #{_id:"636c330384831804d80d0283, groupCode: "vVlkLalskcjhlk12csda81"}
+    json = request.json
+    grupo = mongo.db.groups.find_one({'code': json['groupCode']})
+    if grupo == None:
+        return {"ERROR": "Codigo invalido"}
+    
+    id = json['_id']
+    objId = ObjectId(id)
+    
+    user = mongo.db.users.find_one({"_id":objId},{"group":1})
+    
+    if "group" in user: # si ya estas en un grupo no te dejara unirte a otro
+        return {"msj": "ya estas en un grupo"}
+
+    # si no estas en un grupo, te mete a el
+    mongo.db.users.update_one(
+        {"_id":objId},
+        {"$set":{"group":grupo["name"]}}, 
+        upsert = False)
+    
+    return {"msj":"te uniste al grupo"}
+#=========================================================================    
+
+#----------------------------leave group----------------------------------
+@app.route('/user/leaveGroup', methods=['POST'])
+def leaveGroup():
+    #{"_id":636c330384831804d80d0283}
+    id = request.json["_id"]
+    objInstance = ObjectId(id)
+    mongo.db.users.update_one(
+        {"_id":objInstance},
+        {"$unset":{"group":1}}
+        )
+    return {"msj":"te saliste del grupo"}
+#=========================================================================    
+
+#---------------------------Mostrar niveles para niveles-----------------
+@app.route('/user/grades', methods=['POST'])
+def checkGrades():
+    #{username:leo, _id: 12312412414}
+    json = request.json
+    
+    objInstance = ObjectId(json['_id'])
+
+    data = mongo.db.users.find_one({'_id':objInstance},{'grades':1})
+    return data["grades"]
+#========================================================================
+
+#--------------------------Actualizar calificacion----------------------
+@app.route('/user/setGrade', methods=['POST'])
+def setGrade():
+    #{_id:13325fdsf, categorie:letras1, grade:90}
+    json = request.json
+    id = json["_id"]
+    objId = ObjectId(id)
+    
+    mongo.db.users.update_one({"_id":objId},
+                              {"$set":
+                                  {f'grades.{json["categorie"]}':json["grade"]}
+                                })
+    return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
+#=======================================================================
+
+
+#=========================================================================
+#===================          CATEGORIES          ========================
+#=========================================================================
+#=========================================================================
+#----------------mostrar todas las categorias (solo nombre)--------------
+@app.route('/categories/all', methods=['GET'])
+def showCategories():
+    datas = mongo.db.categories.find()
+    r = []
+    
+    for data in datas:
+        r.append(data["name"])    
+    
+    return r
+#========================================================================
+
+#----------------mostrar palabras de una categoria-----------------------
+@app.route('/categories/words/<categorie>',methods=['GET'])
+def getWords(categorie):
+    datas = mongo.db.categories.find_one({"name":categorie})["words"]
+    return datas
+#========================================================================
+  
+    
 if __name__ == "__main__":
     app.run(debug=True)
 
@@ -204,7 +326,7 @@ db.categories.insertMany([
                                         {'name':'P', 'file': 'https://drive.google.com/file/d/19imxu_cFgZgK5WNuaAj3SAVWE5iAB_AI/view?usp=share_link'},
                                         {'name':'Q', 'file':'https://drive.google.com/file/d/1A3k25-Hf5gmRsYCjkD60Yw4ftDT8VNRD/view?usp=share_link'},
                                         {'name':'R', 'file': 'https://drive.google.com/file/d/1nZpQK8pvLMqtDQpbHrcp2Glb9IX2aIgV/view?usp=share_link'},]},
-   {'name':'letras2', 'words':[                                     
+   {'name':'letras3', 'words':[                                     
                                         {'name':'RR','file':'https://drive.google.com/file/d/1wxFwOHp4fjUXepz16zVrwlAmVN4hFKFd/view?usp=share_link'},
                                         {'name':'S', 'file': 'https://drive.google.com/file/d/1PgAqrE6n1oxsYpaUlgFUqSYNj2A47Zgz/view?usp=share_link'},
                                         {'name':'T', 'file': 'hhttps://drive.google.com/file/d/18DIh-xbUHitO9dPH5DCzim7Hoe8fRKsF/view?usp=share_link'},
