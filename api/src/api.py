@@ -57,7 +57,8 @@ def create_user():
         return {'ERROR': 'ya esta en uso este correo'}
     
     
-    if json['username'] and json['password'] and json['email'] and (json['type'] != None):
+    if json['username'] and json['password'] and json['email']:
+        json['email'] = json['email'].lower() # ponemos el mail en minusculas
         json["grades"] = {
             "verboscomunes1":   0,
             "verboscomunes2":   0,
@@ -96,7 +97,7 @@ def login():
     json = request.json
     #reviso si el usuario puso su username o su correo
     if "@" in json['username']: #es un correo
-        data = mongo.db.users.find_one({'email':json['username'], 'password': json['password']},{'_id':1,'username':1,'email':1,'group':1,'type':1})
+        data = mongo.db.users.find_one({'email':json['username'].lower(), 'password': json['password']},{'_id':1,'username':1,'email':1,'group':1,'type':1})
     else:
         data = mongo.db.users.find_one({'username':json['username'], 'password': json['password']},{'_id':1,'username':1,'email':1,'group':1,'type':1})
 
@@ -110,8 +111,7 @@ def login():
             '_id': str(data['_id']),
             'username': data['username'],
             'email': data['email'],
-            'type': data['type'],
-            'loged': 1
+            'type': data['type']
         }
         if "group" in data:
             r["group"] = data["group"]
