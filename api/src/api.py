@@ -26,7 +26,7 @@ load_dotenv() # cargamos las variables de entorno
 
 
 DBpassword = os.getenv("PASSWORD")
-DBuser = os.getenv("USER")
+DBuser = os.getenv("USER_D")
 DataBase = os.getenv("DATABASE")
 Cluster = os.getenv("CLUSTER")
 
