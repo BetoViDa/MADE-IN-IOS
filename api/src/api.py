@@ -25,10 +25,10 @@ CORS(app) # se ocupa por ahora
 load_dotenv() # cargamos las variables de entorno
 
 
-DBpassword = os.getenv("PASSWORD")
-DBuser = os.getenv("USER_D")
-DataBase = os.getenv("DATABASE")
-Cluster = os.getenv("CLUSTER")
+DBpassword = os.getenv("PASSWORD_MONDOGO")
+DBuser = os.getenv("USER_MONDOGO")
+DataBase = os.getenv("DATABASE_MONDOGO")
+Cluster = os.getenv("CLUSTER_MONDOGO")
 
 #=====Conexión a la base de datos=======
 app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':'+DBpassword+'@cluster0.'+Cluster+'.mongodb.net/'+DataBase
@@ -85,7 +85,7 @@ def create_user():
         json["type"] = 0 # es usuario normal
         id = mongo.db.users.insert_one(json)
         json['_id'] = str(id.inserted_id)
-        return json # regresamos el json que se inserto 
+        return {'msj': 'usuario guardado'} # mensaje de exito 
     else:
         return {'msj': 'falta un campo'} # mensaje de error 
 #=====================================================================================================
@@ -94,6 +94,8 @@ def create_user():
 #falta cifrado de la contraseña para comparar contraseña cifrada con no cifrada
 @app.route('/user/login', methods=['POST'])
 def login():
+    # recibe usuario/correo y contraseña en un json asi 
+    # {"username":usuario/correo,, "password": contraseña}
     json = request.json
     #reviso si el usuario puso su username o su correo
     if "@" in json['username']: #es un correo
@@ -117,6 +119,9 @@ def login():
             r["group"] = data["group"]
         
         return r
+    #regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
+    #si el usuario tiene grupo regresa
+    #{"_id":string, "username": string, "email": string, "type": bool, "group":string}
 #=========================================================================    
 
 
