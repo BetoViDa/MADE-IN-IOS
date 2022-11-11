@@ -233,7 +233,7 @@ def createQuiz(categorie):
         else: # opcion multiple
             pregutna["format"] = "muliple"
             pregutna["options"] = []
-            pregutna["options"].append(pregutna["answer"]) # metemos la respuesta 
+            #pregutna["options"].append(pregutna["answer"]) # metemos la respuesta 
             #metemos de forma random 3 respuestas incorrectas 
             posiblesOpciones = words.copy() # copias las palabras
             posiblesOpciones.pop(x) # eliminas la palabra que ya esta en la lista de opciones
