@@ -18,6 +18,7 @@ from flask import Flask, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_cors import CORS
+import random
 
 app = Flask(__name__) #inicializamos la app
 CORS(app) # se ocupa por ahora
@@ -215,6 +216,33 @@ def getWords(categorie):
     return datas
 #========================================================================
   
+#---------------------Crear un quiz-------------------------------------
+@app.route('/quiz/<categorie>',methods=['GET'])
+def createQuiz(categorie):
+    words = getWords(categorie)
+    quiz = []
+    for _ in range(10):
+        pregutna = {}
+        x = random.randint(0,len(words)-1)
+        pregutna["file"] = words[x]["file"]
+        pregutna["answer"] = words[x]["name"]
+        if random.choice([True, False]): # true = abierto, false = multiple
+            pregutna["format"] = "open"
+        else: # opcion multiple
+            pregutna["format"] = "muliple"
+            pregutna["options"] = []
+            pregutna["options"].append(pregutna["answer"]) # metemos la respuesta 
+            #metemos de forma random 3 respuestas incorrectas 
+            posiblesOpciones = words.copy() # copias las palabras
+            posiblesOpciones.pop(x) # eliminas la palabra que ya esta en la lista de opciones
+            for _ in range(3):
+                r = random.choice(posiblesOpciones)
+                pregutna["options"].append(r["name"])
+                posiblesOpciones.remove(r)
+            random.shuffle(pregutna["options"])#revolvemos las respuestas
+        quiz.append(pregutna)         
+    return quiz
+#=======================================================================
     
 if __name__ == "__main__":
     app.run(debug=True)
