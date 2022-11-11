@@ -38,12 +38,6 @@ struct Login: View {
         }
         
     }
-
-      struct SecondView_Previews: PreviewProvider {
-          static var previews: some View {
-              SecondView()
-          }
-    }
 }
 
 struct Login_Previews: PreviewProvider {

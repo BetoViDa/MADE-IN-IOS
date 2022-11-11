@@ -1,8 +1,8 @@
 //
 //  Persistence.swift
-//  loginswift
+//  Signa
 //
-//  Created by Macías Romero on 09/11/22.
+//  Created by Macías Romero on 10/11/22.
 //
 
 import CoreData
@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "loginswift")
+        container = NSPersistentContainer(name: "Signa")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

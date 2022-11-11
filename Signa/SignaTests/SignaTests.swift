@@ -1,14 +1,14 @@
 //
-//  loginswiftTests.swift
-//  loginswiftTests
+//  SignaTests.swift
+//  SignaTests
 //
-//  Created by Macías Romero on 09/11/22.
+//  Created by Macías Romero on 10/11/22.
 //
 
 import XCTest
-@testable import loginswift
+@testable import Signa
 
-final class loginswiftTests: XCTestCase {
+final class SignaTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

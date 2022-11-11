@@ -1,14 +1,14 @@
 //
-//  loginswiftApp.swift
-//  loginswift
+//  SignaApp.swift
+//  Signa
 //
-//  Created by Macías Romero on 09/11/22.
+//  Created by Macías Romero on 10/11/22.
 //
 
 import SwiftUI
 
 @main
-struct loginswiftApp: App {
+struct SignaApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

@@ -1,13 +1,13 @@
 //
-//  loginswiftUITestsLaunchTests.swift
-//  loginswiftUITests
+//  SignaUITestsLaunchTests.swift
+//  SignaUITests
 //
-//  Created by Macías Romero on 09/11/22.
+//  Created by Macías Romero on 10/11/22.
 //
 
 import XCTest
 
-final class loginswiftUITestsLaunchTests: XCTestCase {
+final class SignaUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
