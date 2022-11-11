@@ -10,10 +10,16 @@ import UIKit
 
 
 struct SignUp: View {
-    @State var username: String = ""
-      @State var password: String = ""
-    @State var email: String = ""
     
+    struct Mensajes : Codable {
+        var msj : String
+        var ERROR : String
+    }
+    
+    @State var username: String = ""
+    @State var password: String = ""
+    @State var email: String = ""
+  
     func makePostRequest(){
         guard let url = URL(string: APIURL + "/user/signup") else{
             return
@@ -25,7 +31,6 @@ struct SignUp: View {
             "username" : username,
             "email": email,
             "password": password
-        
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
         //Make the request
@@ -34,16 +39,35 @@ struct SignUp: View {
                 return
             }
             do {
-                let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(response)
+                let response = try JSONDecoder().decode(Mensajes.self, from:    data)
+                
+                if (response.ERROR != "no"){
+                    //MOSTRAR MENSAJE DE ERROR EN ROJO
+                    print(response.ERROR)
+                } else {
+                    //ME MANDARA A LOGIN
+                    print(response.msj)
+                }
+
+                /*
+                NavigationLink(destination: Login()) {
+                    Text("REGISTRATE")
+                    
+                    .frame(minWidth: 0, maxWidth: 300)
+                    .padding()
+                    .border(.gray,width:2)
+                    .foregroundColor(.gray)
+                    .background(.white)
+                    .cornerRadius(0)
+                    .font(.title)
+                }
+                 */
+                
             } catch {
                 print(error)
             }
         }
         task.resume()
-        
-        
-        
     }
     
     
@@ -55,28 +79,7 @@ struct SignUp: View {
             TextField("Email", text: $email).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,20)
             SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 20)
             Spacer()
-            NavigationLink(destination: Main()) {
-                Text("REGISTRATE")
-                
-                .frame(minWidth: 0, maxWidth: 300)
-                .padding()
-                .border(.gray,width:2)
-                .foregroundColor(.gray)
-                .background(.white)
-                .cornerRadius(40)
-                .font(.title)
-        }
-            Button(action: {
-                makePostRequest()
-                        }, label: {
-                            Image("user")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width:50)
-                            Text(  "Registrarte         ")
-                
-                        }).buttonStyle(.bordered).buttonBorderShape(.capsule).controlSize(.small)
-            
+            Button("Registrateeeeee", action: makePostRequest)
         }
     }
 }

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct Login: View {
     @State var username: String = "vic"
     @State var password: String = "123";
