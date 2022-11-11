@@ -52,13 +52,13 @@ def create_user():
     json = request.json
     # si encuentra un usuario con ese username manda error
     if mongo.db.users.find_one({'username':json['username']}) != None:
-        return {'ERROR': 'ya existe este username'}
+        return {'msj':'error','ERROR': 'ya existe este username',}
     # si encuentro un usuario con este email mando error
     if mongo.db.users.find_one({'email':json['email'].lower()}) != None:
-        return {'ERROR': 'ya esta en uso este correo'}
+        return {'msj':'error','ERROR': 'ya esta en uso este correo'}
     
     
-    if json['username'] and json['password'] and json['email']:
+    if json['username'] and json['password'] and json['email'] and (json['username'] != "") and (json['password'] != "") and (json['email'] != ""):
         json['email'] = json['email'].lower() # ponemos el mail en minusculas
         json["grades"] = {
             "verboscomunes1":   0,
@@ -86,9 +86,9 @@ def create_user():
         json["type"] = 0 # es usuario normal
         id = mongo.db.users.insert_one(json)
         json['_id'] = str(id.inserted_id)
-        return {'msj': 'usuario guardado'} # mensaje de exito 
+        return {'msj': 'usuario guardado','ERROR':'no'} # mensaje de exito 
     else:
-        return {'msj': 'falta un campo'} # mensaje de error 
+        return {'msj':'error','ERROR': 'falta un campo'} # mensaje de error 
 #=====================================================================================================
 
 #-----------------------------LOGIN---------------------------------------
@@ -124,7 +124,6 @@ def login():
     #si el usuario tiene grupo regresa
     #{"_id":string, "username": string, "email": string, "type": bool, "group":string}
 #=========================================================================    
-
 
 #-------------------------------Join Group---------------------------------
 @app.route('/user/joinGroup', methods=['POST'])
@@ -165,7 +164,7 @@ def leaveGroup():
     return {"msj":"te saliste del grupo"}
 #=========================================================================    
 
-#---------------------------Mostrar niveles para niveles-----------------
+#--------------------Mostrar grades para niveles-----------------------
 @app.route('/user/grades', methods=['POST'])
 def checkGrades():
     #{username:leo, _id: 12312412414}
@@ -190,6 +189,9 @@ def setGrade():
                                   {f'grades.{json["categorie"]}':json["grade"]}
                                 })
     return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
+#=======================================================================
+
+#----------------------Numero de niveles arriba de 70-------------------
 #=======================================================================
 
 
