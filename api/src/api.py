@@ -229,9 +229,9 @@ def createQuiz(categorie):
         pregutna["file"] = words[x]["file"]
         pregutna["answer"] = words[x]["name"]
         if random.choice([True, False]): # true = abierto, false = multiple
-            pregutna["format"] = "open"
+            pregutna["quiz_type"] = "open"
         else: # opcion multiple
-            pregutna["format"] = "muliple"
+            pregutna["quiz_type"] = "muliple"
             pregutna["options"] = []
             #pregutna["options"].append(pregutna["answer"]) # metemos la respuesta 
             #metemos de forma random 3 respuestas incorrectas 
