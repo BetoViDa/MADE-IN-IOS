@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2491AE54291DC9550036C074 /* SignaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE53291DC9550036C074 /* SignaApp.swift */; };
+		2491AE56291DC9550036C074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE55291DC9550036C074 /* ContentView.swift */; };
+		2491AE58291DC9570036C074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE57291DC9570036C074 /* Assets.xcassets */; };
+		2491AE5B291DC9570036C074 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE5A291DC9570036C074 /* Preview Assets.xcassets */; };
+		2491AE5D291DC9570036C074 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE5C291DC9570036C074 /* Persistence.swift */; };
+		2491AE60291DC9570036C074 /* Signa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */; };
+		2491AE6A291DC9570036C074 /* SignaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE69291DC9570036C074 /* SignaTests.swift */; };
+		2491AE74291DC9570036C074 /* SignaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE73291DC9570036C074 /* SignaUITests.swift */; };
+		2491AE76291DC9570036C074 /* SignaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE75291DC9570036C074 /* SignaUITestsLaunchTests.swift */; };
+		2491AE83291DCB620036C074 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE82291DCB620036C074 /* SignUp.swift */; };
+		2491AE85291DCBFB0036C074 /* Globalvariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE84291DCBFB0036C074 /* Globalvariables.swift */; };
+		2491AE87291DCC250036C074 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE86291DCC250036C074 /* Login.swift */; };
+		2491AE89291DCC420036C074 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE88291DCC420036C074 /* Main.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2491AE66291DC9570036C074 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2491AE48291DC9550036C074 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2491AE4F291DC9550036C074;
+			remoteInfo = Signa;
+		};
+		2491AE70291DC9570036C074 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2491AE48291DC9550036C074 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2491AE4F291DC9550036C074;
+			remoteInfo = Signa;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2491AE50291DC9550036C074 /* Signa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2491AE53291DC9550036C074 /* SignaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaApp.swift; sourceTree = "<group>"; };
+		2491AE55291DC9550036C074 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2491AE57291DC9570036C074 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2491AE5A291DC9570036C074 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2491AE5C291DC9570036C074 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		2491AE5F291DC9570036C074 /* Signa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Signa.xcdatamodel; sourceTree = "<group>"; };
+		2491AE65291DC9570036C074 /* SignaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2491AE69291DC9570036C074 /* SignaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaTests.swift; sourceTree = "<group>"; };
+		2491AE6F291DC9570036C074 /* SignaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2491AE73291DC9570036C074 /* SignaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaUITests.swift; sourceTree = "<group>"; };
+		2491AE75291DC9570036C074 /* SignaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2491AE82291DCB620036C074 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		2491AE84291DCBFB0036C074 /* Globalvariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globalvariables.swift; sourceTree = "<group>"; };
+		2491AE86291DCC250036C074 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		2491AE88291DCC420036C074 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2491AE4D291DC9550036C074 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2491AE62291DC9570036C074 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2491AE6C291DC9570036C074 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2491AE47291DC9550036C074 = {
+			isa = PBXGroup;
+			children = (
+				2491AE52291DC9550036C074 /* Signa */,
+				2491AE68291DC9570036C074 /* SignaTests */,
+				2491AE72291DC9570036C074 /* SignaUITests */,
+				2491AE51291DC9550036C074 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2491AE51291DC9550036C074 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2491AE50291DC9550036C074 /* Signa.app */,
+				2491AE65291DC9570036C074 /* SignaTests.xctest */,
+				2491AE6F291DC9570036C074 /* SignaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2491AE52291DC9550036C074 /* Signa */ = {
+			isa = PBXGroup;
+			children = (
+				2491AE53291DC9550036C074 /* SignaApp.swift */,
+				2491AE55291DC9550036C074 /* ContentView.swift */,
+				2491AE57291DC9570036C074 /* Assets.xcassets */,
+				2491AE5C291DC9570036C074 /* Persistence.swift */,
+				2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */,
+				2491AE59291DC9570036C074 /* Preview Content */,
+				2491AE82291DCB620036C074 /* SignUp.swift */,
+				2491AE84291DCBFB0036C074 /* Globalvariables.swift */,
+				2491AE86291DCC250036C074 /* Login.swift */,
+				2491AE88291DCC420036C074 /* Main.swift */,
+			);
+			path = Signa;
+			sourceTree = "<group>";
+		};
+		2491AE59291DC9570036C074 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2491AE5A291DC9570036C074 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2491AE68291DC9570036C074 /* SignaTests */ = {
+			isa = PBXGroup;
+			children = (
+				2491AE69291DC9570036C074 /* SignaTests.swift */,
+			);
+			path = SignaTests;
+			sourceTree = "<group>";
+		};
+		2491AE72291DC9570036C074 /* SignaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2491AE73291DC9570036C074 /* SignaUITests.swift */,
+				2491AE75291DC9570036C074 /* SignaUITestsLaunchTests.swift */,
+			);
+			path = SignaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2491AE4F291DC9550036C074 /* Signa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2491AE79291DC9570036C074 /* Build configuration list for PBXNativeTarget "Signa" */;
+			buildPhases = (
+				2491AE4C291DC9550036C074 /* Sources */,
+				2491AE4D291DC9550036C074 /* Frameworks */,
+				2491AE4E291DC9550036C074 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Signa;
+			productName = Signa;
+			productReference = 2491AE50291DC9550036C074 /* Signa.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2491AE64291DC9570036C074 /* SignaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2491AE7C291DC9570036C074 /* Build configuration list for PBXNativeTarget "SignaTests" */;
+			buildPhases = (
+				2491AE61291DC9570036C074 /* Sources */,
+				2491AE62291DC9570036C074 /* Frameworks */,
+				2491AE63291DC9570036C074 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2491AE67291DC9570036C074 /* PBXTargetDependency */,
+			);
+			name = SignaTests;
+			productName = SignaTests;
+			productReference = 2491AE65291DC9570036C074 /* SignaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2491AE6E291DC9570036C074 /* SignaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2491AE7F291DC9570036C074 /* Build configuration list for PBXNativeTarget "SignaUITests" */;
+			buildPhases = (
+				2491AE6B291DC9570036C074 /* Sources */,
+				2491AE6C291DC9570036C074 /* Frameworks */,
+				2491AE6D291DC9570036C074 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2491AE71291DC9570036C074 /* PBXTargetDependency */,
+			);
+			name = SignaUITests;
+			productName = SignaUITests;
+			productReference = 2491AE6F291DC9570036C074 /* SignaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2491AE48291DC9550036C074 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					2491AE4F291DC9550036C074 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					2491AE64291DC9570036C074 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 2491AE4F291DC9550036C074;
+					};
+					2491AE6E291DC9570036C074 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 2491AE4F291DC9550036C074;
+					};
+				};
+			};
+			buildConfigurationList = 2491AE4B291DC9550036C074 /* Build configuration list for PBXProject "Signa" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2491AE47291DC9550036C074;
+			productRefGroup = 2491AE51291DC9550036C074 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2491AE4F291DC9550036C074 /* Signa */,
+				2491AE64291DC9570036C074 /* SignaTests */,
+				2491AE6E291DC9570036C074 /* SignaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2491AE4E291DC9550036C074 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2491AE5B291DC9570036C074 /* Preview Assets.xcassets in Resources */,
+				2491AE58291DC9570036C074 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2491AE63291DC9570036C074 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2491AE6D291DC9570036C074 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2491AE4C291DC9550036C074 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2491AE87291DCC250036C074 /* Login.swift in Sources */,
+				2491AE85291DCBFB0036C074 /* Globalvariables.swift in Sources */,
+				2491AE89291DCC420036C074 /* Main.swift in Sources */,
+				2491AE60291DC9570036C074 /* Signa.xcdatamodeld in Sources */,
+				2491AE5D291DC9570036C074 /* Persistence.swift in Sources */,
+				2491AE56291DC9550036C074 /* ContentView.swift in Sources */,
+				2491AE54291DC9550036C074 /* SignaApp.swift in Sources */,
+				2491AE83291DCB620036C074 /* SignUp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2491AE61291DC9570036C074 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2491AE6A291DC9570036C074 /* SignaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2491AE6B291DC9570036C074 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2491AE74291DC9570036C074 /* SignaUITests.swift in Sources */,
+				2491AE76291DC9570036C074 /* SignaUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2491AE67291DC9570036C074 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2491AE4F291DC9550036C074 /* Signa */;
+			targetProxy = 2491AE66291DC9570036C074 /* PBXContainerItemProxy */;
+		};
+		2491AE71291DC9570036C074 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2491AE4F291DC9550036C074 /* Signa */;
+			targetProxy = 2491AE70291DC9570036C074 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2491AE77291DC9570036C074 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2491AE78291DC9570036C074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2491AE7A291DC9570036C074 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Signa/Preview Content\"";
+				DEVELOPMENT_TEAM = 9S675N4Z9W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Signa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2491AE7B291DC9570036C074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Signa/Preview Content\"";
+				DEVELOPMENT_TEAM = 9S675N4Z9W;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Signa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2491AE7D291DC9570036C074 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9S675N4Z9W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SignaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Signa.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Signa";
+			};
+			name = Debug;
+		};
+		2491AE7E291DC9570036C074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9S675N4Z9W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SignaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Signa.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Signa";
+			};
+			name = Release;
+		};
+		2491AE80291DC9570036C074 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9S675N4Z9W;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SignaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Signa;
+			};
+			name = Debug;
+		};
+		2491AE81291DC9570036C074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9S675N4Z9W;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SignaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Signa;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2491AE4B291DC9550036C074 /* Build configuration list for PBXProject "Signa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2491AE77291DC9570036C074 /* Debug */,
+				2491AE78291DC9570036C074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2491AE79291DC9570036C074 /* Build configuration list for PBXNativeTarget "Signa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2491AE7A291DC9570036C074 /* Debug */,
+				2491AE7B291DC9570036C074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2491AE7C291DC9570036C074 /* Build configuration list for PBXNativeTarget "SignaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2491AE7D291DC9570036C074 /* Debug */,
+				2491AE7E291DC9570036C074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2491AE7F291DC9570036C074 /* Build configuration list for PBXNativeTarget "SignaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2491AE80291DC9570036C074 /* Debug */,
+				2491AE81291DC9570036C074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2491AE5F291DC9570036C074 /* Signa.xcdatamodel */,
+			);
+			currentVersion = 2491AE5F291DC9570036C074 /* Signa.xcdatamodel */;
+			path = Signa.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2491AE48291DC9550036C074 /* Project object */;
+}
