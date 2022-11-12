@@ -84,6 +84,7 @@ def create_user():
         }
         json["level"] = 0
         json["type"] = 0 # es usuario normal
+        json['group'] = ''
         id = mongo.db.users.insert_one(json)
         json['_id'] = str(id.inserted_id)
         return {'msj': 'usuario guardado','ERROR':'no'} # mensaje de exito 
@@ -114,11 +115,9 @@ def login():
             '_id': str(data['_id']),
             'username': data['username'],
             'email': data['email'],
-            'type': data['type']
+            'type': data['type'],
+            'group': data['group']
         }
-        if "group" in data:
-            r["group"] = data["group"]
-        
         return r
     #regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
     #si el usuario tiene grupo regresa
@@ -132,7 +131,7 @@ def joinGroup():
     json = request.json
     grupo = mongo.db.groups.find_one({'code': json['groupCode']})
     if grupo == None:
-        return {"ERROR": "Codigo invalido"}
+        return {"msj": "ERROR Codigo invalido"}
     
     id = json['_id']
     objId = ObjectId(id)
@@ -140,7 +139,7 @@ def joinGroup():
     user = mongo.db.users.find_one({"_id":objId},{"group":1})
     
     if "group" in user: # si ya estas en un grupo no te dejara unirte a otro
-        return {"msj": "ya estas en un grupo"}
+        return {"msj": "ERROR ya estas en un grupo"}
 
     # si no estas en un grupo, te mete a el
     mongo.db.users.update_one(
@@ -228,7 +227,7 @@ def createQuiz(categorie):
         x = random.randint(0,len(words)-1)
         pregutna["file"] = words[x]["file"]
         pregutna["answer"] = words[x]["name"]
-        if random.choice([True, False]): # true = abierto, false = multiple
+        if random.choice([ False]): # true = abierto, false = multiple
             pregutna["quiz_type"] = "open"
         else: # opcion multiple
             pregutna["quiz_type"] = "muliple"
@@ -242,8 +241,9 @@ def createQuiz(categorie):
                 pregutna["options"].append(r["name"])
                 posiblesOpciones.remove(r)
             random.shuffle(pregutna["options"])#revolvemos las respuestas
-        quiz.append(pregutna)         
-    return quiz
+        quiz.append(pregutna)  
+    response = {'results':quiz}       
+    return response
 #=======================================================================
     
 if __name__ == "__main__":
