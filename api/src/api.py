@@ -211,6 +211,20 @@ def showCategories(categorie):
     return r
 #========================================================================
 
+#-----------------mostrar video de una palabra--------------------------
+@app.route('/categories/file/<categorie>/<SearchWord>', methods=['GET'])
+def getFile(categorie,SearchWord):
+    #http://127.0.0.1:5000//categories/file/verboscomunes/explicar
+    # regresa 
+    # https://drive.google.com/file/d/1-yPXEYY8Pi3ly_XVFb8ND5ewC4l67ZKB/view?usp=share_link
+    datas = mongo.db.categories.find({"name":{'$regex':f'^{categorie}'}},{"words":1})
+    r = []
+    for data in datas:
+        for word in data["words"]:
+            if word["name"] == SearchWord : return {"file": word["file"]}
+    return r
+#=======================================================================
+
 #----------------mostrar palabras de una categoria-----------------------
 @app.route('/categories/words/<categorie>',methods=['GET'])
 def getWords(categorie):
