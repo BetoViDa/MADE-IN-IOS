@@ -198,15 +198,16 @@ def setGrade():
 #===================          CATEGORIES          ========================
 #=========================================================================
 #=========================================================================
-#----------------mostrar todas las categorias (solo nombre)--------------
-@app.route('/categories/all', methods=['GET'])
-def showCategories():
-    datas = mongo.db.categories.find()
+#----------------mostrar todas las palabras--------------
+@app.route('/categories/all/<categorie>', methods=['GET'])
+def showCategories(categorie):
+    # muestra todas las palabras de una categoria completa, ignorando el numero del nivel de categoria
+    # por ejemplo, /categories/all/verboscomunes regresa todas las palabras de verboscomunes 1, 2 ,3 y 4 
+    datas = mongo.db.categories.find({"name":{'$regex':f'^{categorie}'}},{"words":1})
     r = []
-    
     for data in datas:
-        r.append(data["name"])    
-    
+        for word in data["words"]:
+            r.append(word["name"])    
     return r
 #========================================================================
 
