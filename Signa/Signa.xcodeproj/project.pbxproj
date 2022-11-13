@@ -161,6 +161,8 @@
 			dependencies = (
 			);
 			name = Signa;
+			packageProductDependencies = (
+			);
 			productName = Signa;
 			productReference = 2491AE50291DC9550036C074 /* Signa.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +235,8 @@
 				Base,
 			);
 			mainGroup = 2491AE47291DC9550036C074;
+			packageReferences = (
+			);
 			productRefGroup = 2491AE51291DC9550036C074 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

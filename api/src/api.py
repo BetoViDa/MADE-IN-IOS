@@ -52,10 +52,10 @@ def create_user():
     json = request.json
     # si encuentra un usuario con ese username manda error
     if mongo.db.users.find_one({'username':json['username']}) != None:
-        return {'msj':'error','ERROR': 'ya existe este username',}
+        return {'msj':'ya existe este username','ERROR': 'si'}
     # si encuentro un usuario con este email mando error
     if mongo.db.users.find_one({'email':json['email'].lower()}) != None:
-        return {'msj':'error','ERROR': 'ya esta en uso este correo'}
+        return {'msj':'ya esta en uso este correo','ERROR': 'si'}
     
     
     if json['username'] and json['password'] and json['email'] and (json['username'] != "") and (json['password'] != "") and (json['email'] != ""):
@@ -89,7 +89,7 @@ def create_user():
         json['_id'] = str(id.inserted_id)
         return {'msj': 'usuario guardado','ERROR':'no'} # mensaje de exito 
     else:
-        return {'msj':'error','ERROR': 'falta un campo'} # mensaje de error 
+        return {'msj':'falta un campo','ERROR': 'si'} # mensaje de error 
 #=====================================================================================================
 
 #-----------------------------LOGIN---------------------------------------
