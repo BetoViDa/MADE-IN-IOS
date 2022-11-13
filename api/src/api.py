@@ -118,7 +118,6 @@ def login():
             'type': data['type'], # 1 admin,   0 normal
             'group': data['group']
         }
-        print(r)
         return r
     #regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
     #si el usuario tiene grupo regresa
@@ -222,27 +221,25 @@ def getWords(categorie):
 @app.route('/quiz/<categorie>',methods=['GET'])
 def createQuiz(categorie):
     words = getWords(categorie)
+
     quiz = []
-    for _ in range(10):
+    for x in range(len(words)):
         pregutna = {}
-        x = random.randint(0,len(words)-1)
         pregutna["file"] = words[x]["file"]
         pregutna["answer"] = words[x]["name"]
-        if random.choice([ False]): # true = abierto, false = multiple
-            pregutna["quiz_type"] = "open"
-        else: # opcion multiple
-            pregutna["quiz_type"] = "muliple"
-            pregutna["options"] = []
-            #pregutna["options"].append(pregutna["answer"]) # metemos la respuesta 
-            #metemos de forma random 3 respuestas incorrectas 
-            posiblesOpciones = words.copy() # copias las palabras
-            posiblesOpciones.pop(x) # eliminas la palabra que ya esta en la lista de opciones
-            for _ in range(3):
-                r = random.choice(posiblesOpciones)
-                pregutna["options"].append(r["name"])
-                posiblesOpciones.remove(r)
-            random.shuffle(pregutna["options"])#revolvemos las respuestas
+        
+        pregutna["options"] = []
+        #metemos de forma random 3 respuestas incorrectas 
+        posiblesOpciones = words.copy() # copias las palabras
+        posiblesOpciones.pop(x) # eliminas la palabra que ya esta en la lista de opciones
+        for _ in range(3):
+            r = random.choice(posiblesOpciones)
+            pregutna["options"].append(r["name"])
+            posiblesOpciones.remove(r)
+        random.shuffle(pregutna["options"])#revolvemos las respuestas
+
         quiz.append(pregutna)  
+
     response = {'results':quiz}       
     return response
 #=======================================================================
