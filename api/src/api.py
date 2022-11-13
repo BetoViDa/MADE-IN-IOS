@@ -198,17 +198,32 @@ def setGrade():
 #===================          CATEGORIES          ========================
 #=========================================================================
 #=========================================================================
-#----------------mostrar todas las categorias (solo nombre)--------------
-@app.route('/categories/all', methods=['GET'])
-def showCategories():
-    datas = mongo.db.categories.find()
+#----------------mostrar todas las palabras--------------
+@app.route('/categories/all/<categorie>', methods=['GET'])
+def showCategories(categorie):
+    # muestra todas las palabras de una categoria completa, ignorando el numero del nivel de categoria
+    # por ejemplo, /categories/all/verboscomunes regresa todas las palabras de verboscomunes 1, 2 ,3 y 4 
+    datas = mongo.db.categories.find({"name":{'$regex':f'^{categorie}'}},{"words":1})
     r = []
-    
     for data in datas:
-        r.append(data["name"])    
-    
+        for word in data["words"]:
+            r.append(word["name"])    
     return r
 #========================================================================
+
+#-----------------mostrar video de una palabra--------------------------
+@app.route('/categories/file/<categorie>/<SearchWord>', methods=['GET'])
+def getFile(categorie,SearchWord):
+    #http://127.0.0.1:5000//categories/file/verboscomunes/explicar
+    # regresa 
+    # https://drive.google.com/file/d/1-yPXEYY8Pi3ly_XVFb8ND5ewC4l67ZKB/view?usp=share_link
+    datas = mongo.db.categories.find({"name":{'$regex':f'^{categorie}'}},{"words":1})
+    r = []
+    for data in datas:
+        for word in data["words"]:
+            if word["name"] == SearchWord : return {"file": word["file"]}
+    return r
+#=======================================================================
 
 #----------------mostrar palabras de una categoria-----------------------
 @app.route('/categories/words/<categorie>',methods=['GET'])
