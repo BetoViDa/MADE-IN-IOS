@@ -24,7 +24,8 @@ struct SignUp: View {
     @State var msjErrorNombre: String = ""
     @State var msjErrorContra: String = ""
     @State var msjErrorSignUp: String = ""
-  
+    @AppStorage ("onboarding") var onboarding = false
+    
     func makePostRequest(){
         // si falta aglun campo mostramos un error
         if(username == "" || email == "" || password == ""){
@@ -58,7 +59,7 @@ struct SignUp: View {
         //========================================
         //--------Error con password--------------
         let passwordRegEx = "(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}"
-            //Minimum eight characters, at least one letter, one number and one special character:
+        //Minimum eight characters, at least one letter, one number and one special character:
         let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         if(!passwordPred.evaluate(with: password)){
             msjErrorContra = "Minimo 8 caracteres, una letra, un numero, y un caracter especail Solo se aceptan (@$!%*#?&)"
@@ -108,20 +109,23 @@ struct SignUp: View {
                 } else {
                     //ME MANDARA A LOGIN
                     print(response.msj)
+                    onboarding = true
+                    navLog()
+                 
                 }
-
+                
                 /*
-                NavigationLink(destination: Login()) {
-                    Text("REGISTRATE")
-                    
-                    .frame(minWidth: 0, maxWidth: 300)
-                    .padding()
-                    .border(.gray,width:2)
-                    .foregroundColor(.gray)
-                    .background(.white)
-                    .cornerRadius(0)
-                    .font(.title)
-                }
+                 NavigationLink(destination: Login()) {
+                 Text("REGISTRATE")
+                 
+                 .frame(minWidth: 0, maxWidth: 300)
+                 .padding()
+                 .border(.gray,width:2)
+                 .foregroundColor(.gray)
+                 .background(.white)
+                 .cornerRadius(0)
+                 .font(.title)
+                 }
                  */
                 
             } catch {
@@ -129,6 +133,13 @@ struct SignUp: View {
             }
         }
         task.resume()
+    }
+    func navLog(){
+        if onboarding {
+            Login()
+        } else{
+            SignUp()
+        }
     }
     
     
@@ -146,10 +157,11 @@ struct SignUp: View {
                 .font(.system(size: 9))
             //Spacer()
             Button("Registrateeeeee", action: makePostRequest)
+         
+           
             
         }
-    }
-}
+    }}
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {

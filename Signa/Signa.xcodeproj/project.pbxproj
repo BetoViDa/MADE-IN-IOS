@@ -10,7 +10,6 @@
 		2491AE54291DC9550036C074 /* SignaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE53291DC9550036C074 /* SignaApp.swift */; };
 		2491AE56291DC9550036C074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE55291DC9550036C074 /* ContentView.swift */; };
 		2491AE58291DC9570036C074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE57291DC9570036C074 /* Assets.xcassets */; };
-		2491AE5B291DC9570036C074 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE5A291DC9570036C074 /* Preview Assets.xcassets */; };
 		2491AE5D291DC9570036C074 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE5C291DC9570036C074 /* Persistence.swift */; };
 		2491AE60291DC9570036C074 /* Signa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */; };
 		2491AE6A291DC9570036C074 /* SignaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE69291DC9570036C074 /* SignaTests.swift */; };
@@ -19,7 +18,11 @@
 		2491AE83291DCB620036C074 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE82291DCB620036C074 /* SignUp.swift */; };
 		2491AE85291DCBFB0036C074 /* Globalvariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE84291DCBFB0036C074 /* Globalvariables.swift */; };
 		2491AE87291DCC250036C074 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE86291DCC250036C074 /* Login.swift */; };
-		2491AE89291DCC420036C074 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE88291DCC420036C074 /* Main.swift */; };
+		DBE755932921A21100308F57 /* DiccionarioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE755922921A21100308F57 /* DiccionarioView.swift */; };
+		DBE755952921A23200308F57 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE755942921A23200308F57 /* ProfileView.swift */; };
+		DBE755972921A27500308F57 /* AprenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE755962921A27500308F57 /* AprenderView.swift */; };
+		DBE7559A2921A2FB00308F57 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE755992921A2FB00308F57 /* CircleImage.swift */; };
+		DBE7559C2921A4E500308F57 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7559B2921A4E500308F57 /* Main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +47,6 @@
 		2491AE53291DC9550036C074 /* SignaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaApp.swift; sourceTree = "<group>"; };
 		2491AE55291DC9550036C074 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2491AE57291DC9570036C074 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2491AE5A291DC9570036C074 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2491AE5C291DC9570036C074 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2491AE5F291DC9570036C074 /* Signa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Signa.xcdatamodel; sourceTree = "<group>"; };
 		2491AE65291DC9570036C074 /* SignaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +57,11 @@
 		2491AE82291DCB620036C074 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		2491AE84291DCBFB0036C074 /* Globalvariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globalvariables.swift; sourceTree = "<group>"; };
 		2491AE86291DCC250036C074 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		2491AE88291DCC420036C074 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		DBE755922921A21100308F57 /* DiccionarioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiccionarioView.swift; sourceTree = "<group>"; };
+		DBE755942921A23200308F57 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DBE755962921A27500308F57 /* AprenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AprenderView.swift; sourceTree = "<group>"; };
+		DBE755992921A2FB00308F57 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		DBE7559B2921A4E500308F57 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,26 +112,30 @@
 		2491AE52291DC9550036C074 /* Signa */ = {
 			isa = PBXGroup;
 			children = (
+				DBE755982921A2EC00308F57 /* Components */,
 				2491AE53291DC9550036C074 /* SignaApp.swift */,
 				2491AE55291DC9550036C074 /* ContentView.swift */,
-				2491AE57291DC9570036C074 /* Assets.xcassets */,
 				2491AE5C291DC9570036C074 /* Persistence.swift */,
 				2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */,
-				2491AE59291DC9570036C074 /* Preview Content */,
-				2491AE82291DCB620036C074 /* SignUp.swift */,
 				2491AE84291DCBFB0036C074 /* Globalvariables.swift */,
-				2491AE86291DCC250036C074 /* Login.swift */,
-				2491AE88291DCC420036C074 /* Main.swift */,
+				DBE755BF2921B54A00308F57 /* Navigation */,
+				2491AE59291DC9570036C074 /* Views */,
 			);
 			path = Signa;
 			sourceTree = "<group>";
 		};
-		2491AE59291DC9570036C074 /* Preview Content */ = {
+		2491AE59291DC9570036C074 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2491AE5A291DC9570036C074 /* Preview Assets.xcassets */,
+				2491AE57291DC9570036C074 /* Assets.xcassets */,
+				2491AE82291DCB620036C074 /* SignUp.swift */,
+				DBE7559B2921A4E500308F57 /* Main.swift */,
+				DBE755922921A21100308F57 /* DiccionarioView.swift */,
+				2491AE86291DCC250036C074 /* Login.swift */,
+				DBE755942921A23200308F57 /* ProfileView.swift */,
+				DBE755962921A27500308F57 /* AprenderView.swift */,
 			);
-			path = "Preview Content";
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2491AE68291DC9570036C074 /* SignaTests */ = {
@@ -143,6 +153,21 @@
 				2491AE75291DC9570036C074 /* SignaUITestsLaunchTests.swift */,
 			);
 			path = SignaUITests;
+			sourceTree = "<group>";
+		};
+		DBE755982921A2EC00308F57 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DBE755992921A2FB00308F57 /* CircleImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DBE755BF2921B54A00308F57 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,7 +278,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2491AE5B291DC9570036C074 /* Preview Assets.xcassets in Resources */,
 				2491AE58291DC9570036C074 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,13 +303,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE755932921A21100308F57 /* DiccionarioView.swift in Sources */,
 				2491AE87291DCC250036C074 /* Login.swift in Sources */,
 				2491AE85291DCBFB0036C074 /* Globalvariables.swift in Sources */,
-				2491AE89291DCC420036C074 /* Main.swift in Sources */,
+				DBE755972921A27500308F57 /* AprenderView.swift in Sources */,
+				DBE7559A2921A2FB00308F57 /* CircleImage.swift in Sources */,
 				2491AE60291DC9570036C074 /* Signa.xcdatamodeld in Sources */,
+				DBE7559C2921A4E500308F57 /* Main.swift in Sources */,
 				2491AE5D291DC9570036C074 /* Persistence.swift in Sources */,
 				2491AE56291DC9550036C074 /* ContentView.swift in Sources */,
 				2491AE54291DC9550036C074 /* SignaApp.swift in Sources */,
+				DBE755952921A23200308F57 /* ProfileView.swift in Sources */,
 				2491AE83291DCB620036C074 /* SignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Signa/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9S675N4Z9W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
