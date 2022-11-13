@@ -76,7 +76,8 @@ struct SignUp: View {
         //===============================================
         
         
-        
+        //===============================================
+        //--------------API--------------------------------
         guard let url = URL(string: APIURL + "/user/signup") else{
             return
         }//ponemos el url de la api en una variable string

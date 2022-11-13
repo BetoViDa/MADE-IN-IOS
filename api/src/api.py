@@ -115,9 +115,10 @@ def login():
             '_id': str(data['_id']),
             'username': data['username'],
             'email': data['email'],
-            'type': data['type'],
+            'type': data['type'], # 1 admin,   0 normal
             'group': data['group']
         }
+        print(r)
         return r
     #regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
     #si el usuario tiene grupo regresa
