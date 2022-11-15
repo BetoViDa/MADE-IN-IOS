@@ -2,6 +2,7 @@ import SwiftUI
 
 
 struct AprenderView: View {
+    @StateObject var triviaManager = TriviaManager()
     var body: some View {
         
         NavigationView {
@@ -15,22 +16,32 @@ struct AprenderView: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .multilineTextAlignment(.center).padding()
+                            
                             Spacer()
                         }
                         
                             
                         HStack(alignment: .center){
                             Spacer()
-                            Image("abc")
-                                .scaleEffect(0.18)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
+                            NavigationLink{
+                                TriviaView()
+                                    .environmentObject(triviaManager)
+                                
+                            } label:{
+                               
+                                Image("abc")
+                                    .scaleEffect(0.18)
+                                    .frame(width:100, height: 100)
+                                    .scaledToFit()
+                                    .clipShape(Circle())
+                                    .overlay {
+                                        Circle().stroke(.white, lineWidth: 4)
+                                    }
+                                    .shadow(radius: 7)
+                                Spacer()
+                            }
+
+                            
                             
                             Image("panda")
                                 .scaleEffect(0.30)

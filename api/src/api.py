@@ -208,7 +208,7 @@ def showCategories(categorie):
     for data in datas:
         for word in data["words"]:
             r.append(word["name"])    
-    return r
+    return {"palabra":r}
 #========================================================================
 
 #-----------------mostrar video de una palabra--------------------------

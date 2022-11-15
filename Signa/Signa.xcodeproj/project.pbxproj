@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24185A452923E8D0005AA8C5 /* Trivia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A352923E8D0005AA8C5 /* Trivia.swift */; };
+		24185A462923E8D0005AA8C5 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A362923E8D0005AA8C5 /* Answer.swift */; };
+		24185A472923E8D0005AA8C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24185A382923E8D0005AA8C5 /* Preview Assets.xcassets */; };
+		24185A482923E8D0005AA8C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A392923E8D0005AA8C5 /* Extensions.swift */; };
+		24185A492923E8D0005AA8C5 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A3B2923E8D0005AA8C5 /* ProgressBar.swift */; };
+		24185A4A2923E8D0005AA8C5 /* AnswerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A3C2923E8D0005AA8C5 /* AnswerRow.swift */; };
+		24185A4B2923E8D0005AA8C5 /* PrimaryButtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A3D2923E8D0005AA8C5 /* PrimaryButtom.swift */; };
+		24185A4C2923E8D0005AA8C5 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A3E2923E8D0005AA8C5 /* TriviaManager.swift */; };
+		24185A4D2923E8D0005AA8C5 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A402923E8D0005AA8C5 /* QuestionView.swift */; };
+		24185A4E2923E8D0005AA8C5 /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A412923E8D0005AA8C5 /* TriviaView.swift */; };
 		2491AE54291DC9550036C074 /* SignaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE53291DC9550036C074 /* SignaApp.swift */; };
 		2491AE56291DC9550036C074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE55291DC9550036C074 /* ContentView.swift */; };
 		2491AE58291DC9570036C074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE57291DC9570036C074 /* Assets.xcassets */; };
@@ -43,6 +53,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24185A352923E8D0005AA8C5 /* Trivia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trivia.swift; sourceTree = "<group>"; };
+		24185A362923E8D0005AA8C5 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		24185A382923E8D0005AA8C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		24185A392923E8D0005AA8C5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		24185A3B2923E8D0005AA8C5 /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		24185A3C2923E8D0005AA8C5 /* AnswerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerRow.swift; sourceTree = "<group>"; };
+		24185A3D2923E8D0005AA8C5 /* PrimaryButtom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButtom.swift; sourceTree = "<group>"; };
+		24185A3E2923E8D0005AA8C5 /* TriviaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
+		24185A402923E8D0005AA8C5 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		24185A412923E8D0005AA8C5 /* TriviaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaView.swift; sourceTree = "<group>"; };
 		2491AE50291DC9550036C074 /* Signa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2491AE53291DC9550036C074 /* SignaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaApp.swift; sourceTree = "<group>"; };
 		2491AE55291DC9550036C074 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +109,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24185A342923E8D0005AA8C5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24185A352923E8D0005AA8C5 /* Trivia.swift */,
+				24185A362923E8D0005AA8C5 /* Answer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		24185A372923E8D0005AA8C5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				24185A382923E8D0005AA8C5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		2491AE47291DC9550036C074 = {
 			isa = PBXGroup;
 			children = (
@@ -112,13 +149,14 @@
 		2491AE52291DC9550036C074 /* Signa */ = {
 			isa = PBXGroup;
 			children = (
+				24185A3E2923E8D0005AA8C5 /* TriviaManager.swift */,
+				24185A372923E8D0005AA8C5 /* Preview Content */,
 				DBE755982921A2EC00308F57 /* Components */,
 				2491AE53291DC9550036C074 /* SignaApp.swift */,
 				2491AE55291DC9550036C074 /* ContentView.swift */,
 				2491AE5C291DC9570036C074 /* Persistence.swift */,
 				2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */,
 				2491AE84291DCBFB0036C074 /* Globalvariables.swift */,
-				DBE755BF2921B54A00308F57 /* Navigation */,
 				2491AE59291DC9570036C074 /* Views */,
 			);
 			path = Signa;
@@ -127,7 +165,10 @@
 		2491AE59291DC9570036C074 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24185A342923E8D0005AA8C5 /* Models */,
 				2491AE57291DC9570036C074 /* Assets.xcassets */,
+				24185A412923E8D0005AA8C5 /* TriviaView.swift */,
+				24185A402923E8D0005AA8C5 /* QuestionView.swift */,
 				2491AE82291DCB620036C074 /* SignUp.swift */,
 				DBE7559B2921A4E500308F57 /* Main.swift */,
 				DBE755922921A21100308F57 /* DiccionarioView.swift */,
@@ -158,16 +199,13 @@
 		DBE755982921A2EC00308F57 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				24185A3D2923E8D0005AA8C5 /* PrimaryButtom.swift */,
+				24185A3C2923E8D0005AA8C5 /* AnswerRow.swift */,
+				24185A392923E8D0005AA8C5 /* Extensions.swift */,
+				24185A3B2923E8D0005AA8C5 /* ProgressBar.swift */,
 				DBE755992921A2FB00308F57 /* CircleImage.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		DBE755BF2921B54A00308F57 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24185A472923E8D0005AA8C5 /* Preview Assets.xcassets in Resources */,
 				2491AE58291DC9570036C074 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,17 +342,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24185A4C2923E8D0005AA8C5 /* TriviaManager.swift in Sources */,
 				DBE755932921A21100308F57 /* DiccionarioView.swift in Sources */,
+				24185A492923E8D0005AA8C5 /* ProgressBar.swift in Sources */,
 				2491AE87291DCC250036C074 /* Login.swift in Sources */,
 				2491AE85291DCBFB0036C074 /* Globalvariables.swift in Sources */,
 				DBE755972921A27500308F57 /* AprenderView.swift in Sources */,
+				24185A4B2923E8D0005AA8C5 /* PrimaryButtom.swift in Sources */,
+				24185A452923E8D0005AA8C5 /* Trivia.swift in Sources */,
 				DBE7559A2921A2FB00308F57 /* CircleImage.swift in Sources */,
 				2491AE60291DC9570036C074 /* Signa.xcdatamodeld in Sources */,
+				24185A4D2923E8D0005AA8C5 /* QuestionView.swift in Sources */,
 				DBE7559C2921A4E500308F57 /* Main.swift in Sources */,
 				2491AE5D291DC9570036C074 /* Persistence.swift in Sources */,
+				24185A4A2923E8D0005AA8C5 /* AnswerRow.swift in Sources */,
 				2491AE56291DC9550036C074 /* ContentView.swift in Sources */,
 				2491AE54291DC9550036C074 /* SignaApp.swift in Sources */,
+				24185A482923E8D0005AA8C5 /* Extensions.swift in Sources */,
+				24185A4E2923E8D0005AA8C5 /* TriviaView.swift in Sources */,
 				DBE755952921A23200308F57 /* ProfileView.swift in Sources */,
+				24185A462923E8D0005AA8C5 /* Answer.swift in Sources */,
 				2491AE83291DCB620036C074 /* SignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
