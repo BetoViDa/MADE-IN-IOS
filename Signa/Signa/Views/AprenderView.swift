@@ -414,7 +414,7 @@ struct AprenderView: View {
                 
                 
             }.navigationTitle("Aprende").navigationBarTitleDisplayMode(.automatic)
-
+                
 
         }
     }

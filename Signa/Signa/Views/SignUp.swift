@@ -110,7 +110,7 @@ struct SignUp: View {
                     //ME MANDARA A LOGIN
                     print(response.msj)
                     onboarding = true
-                    navLog()
+                   
                  
                 }
                 
@@ -134,13 +134,7 @@ struct SignUp: View {
         }
         task.resume()
     }
-    func navLog(){
-        if onboarding {
-            Login()
-        } else{
-            SignUp()
-        }
-    }
+    
     
     
     var body: some View {
@@ -157,9 +151,6 @@ struct SignUp: View {
                 .font(.system(size: 9))
             //Spacer()
             Button("Registrateeeeee", action: makePostRequest)
-         
-           
-            
         }
     }}
 
