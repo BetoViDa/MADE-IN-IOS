@@ -110,8 +110,6 @@ struct SignUp: View {
                     //ME MANDARA A LOGIN
                     print(response.msj)
                     onboarding = true
-                    
-                    
                  
                 }
                 
@@ -135,7 +133,6 @@ struct SignUp: View {
         }
         task.resume()
     }
-   
     
     
     var body: some View {
@@ -152,9 +149,6 @@ struct SignUp: View {
                 .font(.system(size: 9))
             //Spacer()
             Button("Registrateeeeee", action: makePostRequest)
-         
-           
-            
         }
     }}
 

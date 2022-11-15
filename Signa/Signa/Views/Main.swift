@@ -28,6 +28,8 @@ struct Main: View {
                                 DiccionarioView()
                             }
                             .navigationTitle("Diccionario")
+                            
+
                         }
                     case 1:
                         NavigationView {
@@ -42,6 +44,8 @@ struct Main: View {
                                 ProfileView()
                             }
                             .navigationTitle("Perfil")
+                           
+
                         }
                     }
                 
