@@ -109,7 +109,7 @@ struct SignUp: View {
                 } else {
                     //ME MANDARA A LOGIN
                     print(response.msj)
-                    onboarding = true
+                   // onboarding = true
                  
                 }
                 
@@ -125,6 +125,7 @@ struct SignUp: View {
                  .cornerRadius(0)
                  .font(.title)
                  }
+                 @
                  */
                 
             } catch {
@@ -136,19 +137,30 @@ struct SignUp: View {
     
     
     var body: some View {
-        VStack{
-            Image("logoSigna").resizable().frame(width: 400, height:400)
-            Text("\(msjErrorSignUp)")
-            Text("\(msjError)").font(.system(size: 9))
-            TextField("Username", text: $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
+        VStack(alignment: .center){
+            Image("logoSigna").resizable().frame(width: 300, height:200)
+            ZStack{
+                Text("\(msjErrorSignUp)")
+                            Text("\(msjError)").font(.system(size: 9))
+            }
+            TextField("Username", text: $username).padding().background(Capsule()
+                .strokeBorder(Color.gray,lineWidth: 0.8)
+                .background(Color.white)
+                .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
             Text("\(msjErrorNombre)").font(.system(size: 9))
-            TextField("Email", text: $email).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
+            TextField("Email", text: $email).padding().background(Capsule()
+                .strokeBorder(Color.gray,lineWidth: 0.8)
+                .background(Color.white)
+                .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
             Text("\(msjErrorMail)").font(.system(size: 9))
-            SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 10)
+            SecureField("Password", text: $password).padding().background(Capsule()
+                .strokeBorder(Color.gray,lineWidth: 0.8)
+                .background(Color.white)
+                .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                
             Text("\(msjErrorContra)")
                 .font(.system(size: 9))
-            //Spacer()
-            Button("Registrateeeeee", action: makePostRequest)
+            Button("Registrate", action: makePostRequest).buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
         }
     }}
 
