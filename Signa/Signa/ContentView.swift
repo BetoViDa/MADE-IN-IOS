@@ -37,8 +37,8 @@ struct ContentView : View {
                          .resizable()
                          .scaledToFit()
                          .frame(width:50)
-                         .padding(.horizontal,15)
-                     Text(  "Registro    ").padding(.horizontal,10)
+                         .padding(.horizontal,10)
+                     Text(  "Registro       ").padding(.horizontal,15)
                      
                     
                  }.fontWeight(.light)

@@ -54,13 +54,21 @@ struct Login: View {
     
     var body: some View {
         VStack{
-            Image("logoSigna").resizable().frame(width: 400, height:400)
+            Spacer()
+            Image("logoSigna").resizable().frame(width: 300, height:200)
             Text("\(errorMsj)")
             TextField("Username", text:
-                        $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,20)
-            SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 20)
+                        $username).padding().background(Capsule()
+                            .strokeBorder(Color.gray,lineWidth: 0.8)
+                            .background(Color.white)
+                            .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+            SecureField("Password", text: $password).padding().background(Capsule()
+                .strokeBorder(Color.gray,lineWidth: 0.8)
+                .background(Color.white)
+                .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
             
-            Button("Entrar", action: APILogIn)
+            Button("Ingresar", action: APILogIn).buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large)
+                .padding(.top, 8).fontWeight(.bold)
             Spacer()
         }
         
