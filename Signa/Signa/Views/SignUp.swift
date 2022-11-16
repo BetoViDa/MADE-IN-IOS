@@ -24,7 +24,8 @@ struct SignUp: View {
     @State var msjErrorNombre: String = ""
     @State var msjErrorContra: String = ""
     @State var msjErrorSignUp: String = ""
-    @AppStorage ("onboarding") var onboarding = false
+    @State var showView: Bool = false
+    
     
     func makePostRequest(){
         // si falta aglun campo mostramos un error
@@ -109,8 +110,8 @@ struct SignUp: View {
                 } else {
                     //ME MANDARA A LOGIN
                     print(response.msj)
-                    onboarding = true
-                 
+                    showView = true
+                    
                 }
                 
                 /*
@@ -136,19 +137,34 @@ struct SignUp: View {
     
     
     var body: some View {
-        VStack{
-            Image("logoSigna").resizable().frame(width: 400, height:400)
-            Text("\(msjErrorSignUp)")
-            Text("\(msjError)").font(.system(size: 9))
-            TextField("Username", text: $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
-            Text("\(msjErrorNombre)").font(.system(size: 9))
-            TextField("Email", text: $email).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
-            Text("\(msjErrorMail)").font(.system(size: 9))
-            SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 10)
-            Text("\(msjErrorContra)")
-                .font(.system(size: 9))
-            //Spacer()
-            Button("Registrateeeeee", action: makePostRequest)
+        NavigationView{
+            VStack{
+                /*
+                NavigationLink(destination: Text("Prueba"), tag: "Login", selection: $showView){
+                    Login()
+                }
+                 */
+                NavigationLink(destination: Login().navigationBarBackButtonHidden(true), isActive: $showView){
+                    Text("")
+                }
+                
+                /*
+                Image("logoSigna").resizable().frame(width: 400, height:400)
+                 */
+                Text("\(msjErrorSignUp)")
+                Text("\(msjError)").font(.system(size: 9))
+                TextField("Username", text: $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
+                Text("\(msjErrorNombre)").font(.system(size: 9))
+                TextField("Email", text: $email).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
+                Text("\(msjErrorMail)").font(.system(size: 9))
+                SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 10)
+                Text("\(msjErrorContra)")
+                    .font(.system(size: 9))
+                //Spacer()
+                Button("Registrateeeeee"){
+                    makePostRequest()
+                }
+            }
         }
     }}
 

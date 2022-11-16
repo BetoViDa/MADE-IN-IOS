@@ -53,7 +53,6 @@ struct Login: View {
     }
     
     var body: some View {
-        
         VStack{
             Image("logoSigna").resizable().frame(width: 400, height:400)
             Text("\(errorMsj)")

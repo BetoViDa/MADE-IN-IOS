@@ -6,27 +6,38 @@
 //
 
 import SwiftUI
+import WrappingHStack
 
 struct DiccionarioView: View {
     
+    var imagenes = ["abc","5","earth3","earth2"]
+    
+    //PUEDE CAMBIARSE POR UN JSON...
+    var namestopics = ["ABC", "Preposiciones", "Verbos Comunes", "Verbos Narrativos"]
+    var topicos = ["letras", "preposiciones", "verboscomunes", "verbosnarrativos"]
+    
+    
+    //PARA EL TAMANIO DE LOS TEXTOS
+    var topicsSize : [Font] = [.title2,.title2,.title3,.system(size: 19)]
+    
     struct Palabras : Codable {
-        var palabra : String
+        var palabra : [String]
     }
     
     @State var topicword : String = ""
-    @State var results = [Palabras]()
+    @State var results : Palabras?
+    //var resultados : [Palabras]
     
     func loadWord(){
         guard let url = URL(string: "http://127.0.0.1:5000/categories/all/\(topicword)") else {
                     print("Invalid URL")
                     return
                 }
-        print(url)
                 let request = URLRequest(url: url)
 
                 URLSession.shared.dataTask(with: request) { data, response, error in
                     if let data = data {
-                        if let response = try? JSONDecoder().decode([Palabras].self, from: data) {
+                        if let response = try? JSONDecoder().decode(Palabras.self, from: data) {
                             DispatchQueue.main.async {
                                 self.results = response
                             }
@@ -55,93 +66,32 @@ struct DiccionarioView: View {
                             
                             
                             HStack(alignment: .center){
-                                Spacer()
-                                Button(action: {
-                                    print("Boton ABC precionado")
-                                    topicword = "letras"
-                                }){
-                                    Image("abc")
-                                        .scaleEffect(0.18)
-                                        .frame(width:100, height: 100)
-                                        .scaledToFit()
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(.white, lineWidth: 4)
+                                ForEach((0...3), id: \.self){index in
+                                    VStack(alignment: .center){
+                                        Button(action: {
+                                            topicword = topicos[index]
+                                            loadWord()
+                                        }){
+                                            Image(imagenes[index])
+                                                .scaleEffect(0.18)
+                                                .frame(width:100, height: 100)
+                                                .scaledToFit()
+                                                .clipShape(Circle())
+                                                .overlay {
+                                                    Circle().stroke(.white, lineWidth: 4)
+                                                }
+                                                .shadow(radius: 7)
                                         }
-                                        .shadow(radius: 7)
+                                        Text(namestopics[index])
+                                            .font(topicsSize[index])
+                                            .fontWeight(.semibold).padding()
+                                    }.frame(minWidth: 195, maxWidth: 200, minHeight: 195, maxHeight: 200, alignment: .center)
+                                        
                                 }
-                                Spacer()
-                                Button(action: {
-                                    print("Boton Preposiciones precionado")
-                                }){
-                                    Image("5")
-                                        .scaleEffect(0.18)
-                                        .frame(width:100, height: 100)
-                                        .scaledToFit()
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(.white, lineWidth: 4)
-                                        }
-                                        .shadow(radius: 7)
-                                }
-                                Spacer()
-                                Button(action: {
-                                    print("Boton VComunes precionado")
-                                }){
-                                    Image("earth3")
-                                        .scaleEffect(0.20)
-                                        .frame(width:100, height: 100)
-                                        .scaledToFit()
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(.white, lineWidth: 4)
-                                        }
-                                        .shadow(radius: 7)
-                                }
-                                Spacer()
-                                Button(action: {
-                                    print("Boton VNarrativos precionado")
-                                }){
-                                    Image("earth2")
-                                        .scaleEffect(0.25)
-                                        .frame(width:100, height: 100)
-                                        .scaledToFit()
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(.white, lineWidth: 4)
-                                        }
-                                        .shadow(radius: 7)
-                                }
-                                Spacer()
-                                
-                                
-                            }
-                            HStack(alignment: .center){
-                                Spacer()
-                                Text("ABC")
-                                    .font(.title2)
-                                    .fontWeight(.semibold).padding()
-                                Spacer()
-                                Text("Preposiciones")
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                    .padding()
-                                Spacer()
-                                Text("Verbos Comunes")
-                                    .font(.title2)
-                                    .fontWeight(.semibold).padding()
-                                Spacer()
-                                Text("Verbos Narrativos")
-                                    .font(.title2)
-                                    .fontWeight(.semibold).padding()
-                                Spacer()
                             }
                         }
                     }
                     Spacer()
-                    
-                    
-                    
                     
                     Group {
                         HStack{
@@ -151,44 +101,14 @@ struct DiccionarioView: View {
                                 .multilineTextAlignment(.center).padding()
                             Spacer()
                         }
-                    
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("Palabra1")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("Palabra2")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .padding()
-                            Spacer()
-                            Text("Palabra3")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
+                        
+                        if results != nil {
+                            WrappingHStack(results!.palabra, id:\.self, alignment: .center) { resultados in
+                                Text(resultados)
+                                        .frame(width: 120, height: 50, alignment: .center)
+                                        .background(.red)
+                            }.frame(minWidth: 250)
                         }
-                        
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("Palabra4")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("Palabra5")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .padding()
-                            Spacer()
-                            Text("Palabra6")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                        }
-                        
-                        
-                        
-                        
                     }
                 }
             }.navigationTitle("Diccionario").navigationBarTitleDisplayMode(.automatic)
