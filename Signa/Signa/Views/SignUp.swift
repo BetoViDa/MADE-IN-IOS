@@ -110,13 +110,12 @@ struct SignUp: View {
                 } else {
                     //ME MANDARA A LOGIN
                     print(response.msj)
-<<<<<<< HEAD
-                   // onboarding = true
-                 
-=======
-                    showView = true
+
                     
->>>>>>> e0ab2b9289fc7e6cc3940e78decb512200159a19
+                 
+
+                    showView = true
+
                 }
                 
                 /*
@@ -143,61 +142,49 @@ struct SignUp: View {
     
     
     var body: some View {
-<<<<<<< HEAD
-        VStack(alignment: .center){
-            Image("logoSigna").resizable().frame(width: 300, height:200)
-            ZStack{
-                Text("\(msjErrorSignUp)")
-                            Text("\(msjError)").font(.system(size: 9))
-            }
-            TextField("Username", text: $username).padding().background(Capsule()
-                .strokeBorder(Color.gray,lineWidth: 0.8)
-                .background(Color.white)
-                .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
-            Text("\(msjErrorNombre)").font(.system(size: 9))
-            TextField("Email", text: $email).padding().background(Capsule()
-                .strokeBorder(Color.gray,lineWidth: 0.8)
-                .background(Color.white)
-                .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
-            Text("\(msjErrorMail)").font(.system(size: 9))
-            SecureField("Password", text: $password).padding().background(Capsule()
-                .strokeBorder(Color.gray,lineWidth: 0.8)
-                .background(Color.white)
-                .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
-                
-            Text("\(msjErrorContra)")
-                .font(.system(size: 9))
-            Button("Registrate", action: makePostRequest).buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
-=======
+
         NavigationView{
             VStack{
+                Image("logoSigna").resizable().frame(width: 300, height:200)
                 /*
                 NavigationLink(destination: Text("Prueba"), tag: "Login", selection: $showView){
                     Login()
                 }
                  */
+                
                 NavigationLink(destination: Login().navigationBarBackButtonHidden(true), isActive: $showView){
                     Text("")
                 }
                 
+                ZStack{
+                    Text("\(msjErrorSignUp)")
+                                Text("\(msjError)").font(.system(size: 9))
+                }
                 /*
                 Image("logoSigna").resizable().frame(width: 400, height:400)
                  */
-                Text("\(msjErrorSignUp)")
-                Text("\(msjError)").font(.system(size: 9))
-                TextField("Username", text: $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
+                TextField("Username", text: $username).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
                 Text("\(msjErrorNombre)").font(.system(size: 9))
-                TextField("Email", text: $email).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
+                TextField("Email", text: $email).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
                 Text("\(msjErrorMail)").font(.system(size: 9))
-                SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 10)
+                SecureField("Password", text: $password).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
                 Text("\(msjErrorContra)")
                     .font(.system(size: 9))
                 //Spacer()
-                Button("Registrateeeeee"){
+                Button("Registrate"){
                     makePostRequest()
-                }
+                }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
             }
->>>>>>> e0ab2b9289fc7e6cc3940e78decb512200159a19
+
         }
     }}
 
