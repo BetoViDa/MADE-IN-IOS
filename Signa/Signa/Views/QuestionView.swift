@@ -25,7 +25,7 @@ struct QuestionView: View {
                 }
                 ProgressBar(progress: triviaManager.progress)
                 VStack(alignment: .leading, spacing: 20){
-                    Text(triviaManager.question)
+                    Text(triviaManager.question )
                         .font(.system(size:20))
                         .bold()
                         .foregroundColor(.gray)

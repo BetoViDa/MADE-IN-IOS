@@ -53,7 +53,6 @@ struct Login: View {
     }
     
     var body: some View {
-        
         VStack{
             Spacer()
             Image("logoSigna").resizable().frame(width: 300, height:200)

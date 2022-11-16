@@ -19,9 +19,11 @@ class TriviaManager: ObservableObject{
     @Published private(set) var reachedEnd = false
     @Published private(set) var answerSelected = false
     @Published private(set) var question: AttributedString = ""
+
     @Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
+    
     
     init(){
         Task.init{
@@ -29,6 +31,7 @@ class TriviaManager: ObservableObject{
         }
     }
     func fetchTrivia() async{
+        
         guard let url = URL(string: "http://127.0.0.1:5000/quiz/verboscomunes1") else{
             fatalError("Missing URL")}
         let urlRequest = URLRequest(url: url)

@@ -3,6 +3,8 @@ import SwiftUI
 
 struct AprenderView: View {
     @StateObject var triviaManager = TriviaManager()
+    
+    
     var body: some View {
         
         NavigationView {
@@ -26,6 +28,8 @@ struct AprenderView: View {
                             NavigationLink{
                                 TriviaView()
                                     .environmentObject(triviaManager)
+                               
+                                
                                 
                             } label:{
                                
@@ -39,6 +43,7 @@ struct AprenderView: View {
                                     }
                                     .shadow(radius: 7)
                                 Spacer()
+                                
                             }
 
                             

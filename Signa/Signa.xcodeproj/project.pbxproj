@@ -17,6 +17,7 @@
 		24185A4C2923E8D0005AA8C5 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A3E2923E8D0005AA8C5 /* TriviaManager.swift */; };
 		24185A4D2923E8D0005AA8C5 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A402923E8D0005AA8C5 /* QuestionView.swift */; };
 		24185A4E2923E8D0005AA8C5 /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A412923E8D0005AA8C5 /* TriviaView.swift */; };
+		24611B77292459A20067404F /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 24611B76292459A20067404F /* WrappingHStack */; };
 		2491AE54291DC9550036C074 /* SignaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE53291DC9550036C074 /* SignaApp.swift */; };
 		2491AE56291DC9550036C074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE55291DC9550036C074 /* ContentView.swift */; };
 		2491AE58291DC9570036C074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE57291DC9570036C074 /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24611B77292459A20067404F /* WrappingHStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +227,7 @@
 			);
 			name = Signa;
 			packageProductDependencies = (
+				24611B76292459A20067404F /* WrappingHStack */,
 			);
 			productName = Signa;
 			productReference = 2491AE50291DC9550036C074 /* Signa.app */;
@@ -299,6 +302,7 @@
 			);
 			mainGroup = 2491AE47291DC9550036C074;
 			packageReferences = (
+				24611B75292459A20067404F /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = 2491AE51291DC9550036C074 /* Products */;
 			projectDirPath = "";
@@ -687,6 +691,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24611B75292459A20067404F /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24611B76292459A20067404F /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24611B75292459A20067404F /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2491AE5E291DC9570036C074 /* Signa.xcdatamodeld */ = {
