@@ -26,15 +26,15 @@ struct Main: View {
                         NavigationView {
                             VStack{
                                 DiccionarioView()
+                               
                             }
-                            .navigationTitle("Diccionario")
-                            
 
                         }
                     case 1:
                         NavigationView {
                             VStack{
                                 AprenderView()
+                               
                             }
                         }
                         
@@ -43,7 +43,7 @@ struct Main: View {
                             VStack{
                                 ProfileView()
                             }
-                            .navigationTitle("Perfil")
+                            
                            
 
                         }
@@ -63,11 +63,10 @@ struct Main: View {
                         Spacer()
                      
                             Image(systemName: icons[number])
+                            .font(.system(size: 25,weight: .regular, design: .default) )
+                            .foregroundColor( selectedIndex == number ? Color("AccentColor") : Color(UIColor.lightGray))
                                 
-                                .font(.system(size: 25,
-                                              weight: .regular,
-                                              design: .default) )
-                                .foregroundColor( selectedIndex == number ? Color("30d5c8") : Color(UIColor.lightGray))
+                                
                         Spacer()
                     }
 

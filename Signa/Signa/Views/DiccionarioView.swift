@@ -111,7 +111,7 @@ struct DiccionarioView: View {
                         }
                     }
                 }
-            }.navigationTitle("Diccionario").navigationBarTitleDisplayMode(.automatic)
+            }.navigationBarTitleDisplayMode(.automatic)
         }
     }
 }

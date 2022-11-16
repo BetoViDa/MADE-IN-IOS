@@ -10,6 +10,7 @@ import SwiftUI
 struct QuestionView: View {
     @EnvironmentObject var triviaManager: TriviaManager
     
+    
     var body: some View {
  
             VStack(spacing: 40){
@@ -19,16 +20,16 @@ struct QuestionView: View {
                     Text("\(triviaManager.index + 1) out of \(triviaManager.length)")
                         .foregroundColor(Color("AccentColor"))
                         .fontWeight(.heavy)
-                    
-                   
                   
                 }
                 ProgressBar(progress: triviaManager.progress)
                 VStack(alignment: .leading, spacing: 20){
+                    
                     Text(triviaManager.question )
                         .font(.system(size:20))
                         .bold()
                         .foregroundColor(.gray)
+                    //AsyncImage(url: URL(triviaManager.))
                     
                     ForEach(triviaManager.answerChoices, id: \.id){
                         answer in AnswerRow(answer:answer)
