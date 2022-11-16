@@ -147,7 +147,7 @@ struct SignUp: View {
                 NavigationLink(destination: Login().navigationBarBackButtonHidden(true), isActive: $showView){
                     Text("")
                 }
-                
+               
                 /*
                 Image("logoSigna").resizable().frame(width: 400, height:400)
                  */
@@ -163,7 +163,7 @@ struct SignUp: View {
                 //Spacer()
                 Button("Registrateeeeee"){
                     makePostRequest()
-                }
+                }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
             }
         }
     }}
