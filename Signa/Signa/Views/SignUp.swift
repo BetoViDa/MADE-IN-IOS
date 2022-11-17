@@ -24,7 +24,9 @@ struct SignUp: View {
     @State var msjErrorNombre: String = ""
     @State var msjErrorContra: String = ""
     @State var msjErrorSignUp: String = ""
-  
+    @State var showView: Bool = false
+    
+    
     func makePostRequest(){
         // si falta aglun campo mostramos un error
         if(username == "" || email == "" || password == ""){
@@ -58,7 +60,7 @@ struct SignUp: View {
         //========================================
         //--------Error con password--------------
         let passwordRegEx = "(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}"
-            //Minimum eight characters, at least one letter, one number and one special character:
+        //Minimum eight characters, at least one letter, one number and one special character:
         let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         if(!passwordPred.evaluate(with: password)){
             msjErrorContra = "Minimo 8 caracteres, una letra, un numero, y un caracter especail Solo se aceptan (@$!%*#?&)"
@@ -108,20 +110,27 @@ struct SignUp: View {
                 } else {
                     //ME MANDARA A LOGIN
                     print(response.msj)
-                }
 
-                /*
-                NavigationLink(destination: Login()) {
-                    Text("REGISTRATE")
                     
-                    .frame(minWidth: 0, maxWidth: 300)
-                    .padding()
-                    .border(.gray,width:2)
-                    .foregroundColor(.gray)
-                    .background(.white)
-                    .cornerRadius(0)
-                    .font(.title)
+                 
+
+                    showView = true
+
                 }
+                
+                /*
+                 NavigationLink(destination: Login()) {
+                 Text("REGISTRATE")
+                 
+                 .frame(minWidth: 0, maxWidth: 300)
+                 .padding()
+                 .border(.gray,width:2)
+                 .foregroundColor(.gray)
+                 .background(.white)
+                 .cornerRadius(0)
+                 .font(.title)
+                 }
+                 @
                  */
                 
             } catch {
@@ -133,23 +142,51 @@ struct SignUp: View {
     
     
     var body: some View {
-        VStack{
-            Image("logoSigna").resizable().frame(width: 400, height:400)
-            Text("\(msjErrorSignUp)")
-            Text("\(msjError)").font(.system(size: 9))
-            TextField("Username", text: $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
-            Text("\(msjErrorNombre)").font(.system(size: 9))
-            TextField("Email", text: $email).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,10)
-            Text("\(msjErrorMail)").font(.system(size: 9))
-            SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 10)
-            Text("\(msjErrorContra)")
-                .font(.system(size: 9))
-            //Spacer()
-            Button("Registrateeeeee", action: makePostRequest)
-            
+
+        NavigationView{
+            VStack{
+                Image("logoSigna").resizable().frame(width: 300, height:200)
+                /*
+                NavigationLink(destination: Text("Prueba"), tag: "Login", selection: $showView){
+                    Login()
+                }
+                 */
+                
+                NavigationLink(destination: Login().navigationBarBackButtonHidden(true), isActive: $showView){
+                    Text("")
+                }
+                
+                ZStack{
+                    Text("\(msjErrorSignUp)")
+                                Text("\(msjError)").font(.system(size: 9))
+                }
+                /*
+                Image("logoSigna").resizable().frame(width: 400, height:400)
+                 */
+                TextField("Username", text: $username).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
+                Text("\(msjErrorNombre)").font(.system(size: 9))
+                TextField("Email", text: $email).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                Text("\(msjErrorMail)").font(.system(size: 9))
+                SecureField("Password", text: $password).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                Text("\(msjErrorContra)")
+                    .font(.system(size: 9))
+                //Spacer()
+                Button("Registrate"){
+                    makePostRequest()
+                }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
+            }
+
         }
-    }
-}
+    }}
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {

@@ -1,3 +1,4 @@
+
 import SwiftUI
 
 struct ContentView : View {
@@ -31,23 +32,23 @@ struct ContentView : View {
                             .stroke(Color.gray, style: StrokeStyle(lineWidth: 2))).frame(width:200)
                 
                 
-                 NavigationLink(destination: SignUp()) {
-                     Image("user")
-                         .resizable()
-                         .scaledToFit()
-                         .frame(width:50)
-                         .padding(.horizontal,15)
-                     Text(  "Registro    ").padding(.horizontal,10)
-                     
-                    
-                 }.fontWeight(.light)
-                     .foregroundColor(.gray)
-                     .padding(.top,5)
-                     .padding(.bottom,5)
-                     .padding(.horizontal,1)
-                     .overlay(
-                         Capsule(style: .continuous)
-                             .stroke(Color.gray, style: StrokeStyle(lineWidth: 2))).frame(width:200)
+                NavigationLink(destination: SignUp()) {
+                                     Image("user")
+                                         .resizable()
+                                         .scaledToFit()
+                                         .frame(width:50)
+                                         .padding(.horizontal,10)
+                                     Text(  "Registro       ").padding(.horizontal,15)
+                                     
+                                    
+                                 }.fontWeight(.light)
+                                     .foregroundColor(.gray)
+                                     .padding(.top,5)
+                                     .padding(.bottom,5)
+                                     .padding(.horizontal,1)
+                                     .overlay(
+                                         Capsule(style: .continuous)
+                                             .stroke(Color.gray, style: StrokeStyle(lineWidth: 2))).frame(width:200)
                    
           }
         }
@@ -59,4 +60,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-

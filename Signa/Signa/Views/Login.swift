@@ -15,6 +15,7 @@ struct Login: View {
     @State var errorMsj: String = ""
     @State var username: String = ""
     @State var password: String = "";
+    @State var showViewMain: Bool = false
     
     func APILogIn(){
         
@@ -38,6 +39,7 @@ struct Login: View {
                 // en este do intentaremos crear el usuario
                 let response = try JSONDecoder().decode(User.self, from: data)// tratamos de decodearlo en una estructura de tipo User
                 logedUser = response
+                showViewMain = true
                 errorMsj = ""
             }
             catch{
@@ -53,19 +55,34 @@ struct Login: View {
     }
     
     var body: some View {
-        
-        VStack{
-            Image("logoSigna").resizable().frame(width: 400, height:400)
-            Text("\(errorMsj)")
-            TextField("Username", text:
-                        $username).padding().background(.cyan).cornerRadius(10.0).padding(.bottom,20)
-            SecureField("Password", text: $password).padding().background(.cyan).cornerRadius(5.0).padding(.bottom, 20)
+        NavigationView{
             
-            Button("Entrar", action: APILogIn)
-            Spacer()
-        }
-        
-    }
+         
+            VStack{
+                NavigationLink(destination: Main().navigationBarBackButtonHidden(true), isActive: $showViewMain){
+                    Text("")
+                }
+                Spacer()
+                Image("logoSigna").resizable().frame(width: 300, height:200)
+                Text("\(errorMsj)")
+                TextField("Username", text:
+                            $username).padding().background(Capsule()
+                                .strokeBorder(Color.gray,lineWidth: 0.8)
+                                .background(Color.white)
+                                .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                SecureField("Password", text: $password).padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                
+               
+                Button("Ingresar"){
+                    APILogIn()
+                }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
+                Spacer()
+            }
+            
+        }}
 }
 
 struct Login_Previews: PreviewProvider {

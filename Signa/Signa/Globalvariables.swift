@@ -25,4 +25,6 @@ public var logedUser = User(
 
 
 public var APIURL: String = "http://127.0.0.1:5000"
+public var TriviaCategor: String = ""
+//Variable para el Quiz
 
