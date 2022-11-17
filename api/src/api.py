@@ -259,6 +259,37 @@ def createQuiz(categorie):
     return response
 #=======================================================================
     
+    
+    
+#=========================================================================
+#===================       GROUP (para admin)     ========================
+#=========================================================================
+#=========================================================================
+
+#------quiz con % de personas en el grupo que han terminado el nivel------ 
+@app.route('/group/<group>', methods=['GET'])
+def getPorQuiz(group):
+    count = 0
+    r = {}
+    
+    for i in mongo.db.users.find({'group':group},{'grades':1}):
+        count += 1
+        
+        for j in i['grades'] :
+            if i['grades'][j] > 70: # si aprobo
+                r[j] = (((r.get(j,0)/100)*(count-1) + 1)/count)*100  #aumentamos el numero de personas en el dic, el get nos setea en 0 si no existe en el dic
+            else:
+                r[j] = (((r.get(j,0)/100)*(count-1))/count)*100         
+    #lo ponemos en un areglo de jsons
+    result = []
+    for i in r: # i guarda la key del dic   
+        result.append({"name":i,"percentage": r[i]})
+        
+        
+    return {"data":result}
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
