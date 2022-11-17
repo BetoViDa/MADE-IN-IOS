@@ -25,13 +25,13 @@ struct ProfileView: View {
                 .font(.title)
                 .fontWeight(.bold)
 
-                       HStack {
-                           Spacer()
-                           Text("Nivel 1")
-                               .font(.subheadline)
-            }
-               .font(.subheadline)
-               .foregroundColor(.secondary)
+               HStack {
+                   Spacer()
+                   Text("Nivel 1")
+                       .font(.subheadline)
+               }
+                   .font(.subheadline)
+                   .foregroundColor(.secondary)
 
             Divider()
             VStack(alignment: .leading){
@@ -46,8 +46,8 @@ struct ProfileView: View {
                     .foregroundColor(.secondary)
           
             }
-                   }
-                   .padding()
+        }
+        .padding()
             
             //Esto es prueba
             VStack{
