@@ -56,7 +56,7 @@ struct DiccionarioView: View {
                     
                     ScrollView(.horizontal){
                         Group {
-                            
+                            /*
                             HStack{
                                 Text("Tópicos")
                                     .font(.title)
@@ -64,7 +64,7 @@ struct DiccionarioView: View {
                                     .multilineTextAlignment(.center).padding()
                                 Spacer()
                             }
-                            
+                            */
                             
                             HStack(alignment: .center){
                                 ForEach((0...3), id: \.self){index in
@@ -106,17 +106,22 @@ struct DiccionarioView: View {
                         
                         if results != nil {
                             WrappingHStack(results!.palabra, id:\.self, alignment: .center) { resultados in
-                                Text(resultados)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color.white)
-                                        .frame(width: 130, height: 50, alignment: .center)
-                                        .background(signa)
-                                        .padding()
+                                Button( action: {
+                                    //ESTO SE CAMBIARA V
+                                    print("SE MUESTRA IMAGEN/VIDEO. Fue presionado la palabra: " + resultados)
+                                }){
+                                    Text(resultados)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.white)
+                                            .frame(width: 130, height: 50, alignment: .center)
+                                            .background(signa)
+                                            .padding()
+                                }
                             }.frame(minWidth: 250)
                         }
                     }
                 }
-            }.navigationBarTitleDisplayMode(.automatic)
+            }.navigationTitle("Tópicos").navigationBarTitleDisplayMode(.automatic)
         }
     }
 }
