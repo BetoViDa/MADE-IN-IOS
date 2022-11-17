@@ -4,7 +4,7 @@ import SwiftUI
 struct AprenderView: View {
     @StateObject var triviaManager = TriviaManager()
     @State var showview: Bool = false
-    
+    var namestopics = ["abc1", "abc2", "abc3", "Prepos 1","Prepos 2", "Prepos 3", "prepos4", "prepos5", "prepos 6", "prepos7", "prepos8", "prepos9", "prepos10", "prepos11", "verbos1", "verbos2", "verbos3", "narrativo1", "narrativo2"]
     var body: some View {
     
         NavigationView {
@@ -56,35 +56,11 @@ struct AprenderView: View {
                                         Circle().stroke(.white, lineWidth: 4)
                                     }
                                     .shadow(radius: 7)
-                                Spacer()
                             })
-                            /*
-                            NavigationLink{
-                                TriviaCategor = "verboscomunes1"
-                                print(TriviaCategor)
-                                Task.init{
-                                    await triviaManager.fetchTrivia()
-                                    TriviaView()
-                                        .environmentObject(triviaManager)
-                                }
-                            } label:{
-                               
-                                Image("abc")
-                                    .scaleEffect(0.18)
-                                    .frame(width:100, height: 100)
-                                    .scaledToFit()
-                                    .clipShape(Circle())
-                                    .overlay {
-                                        Circle().stroke(.white, lineWidth: 4)
-                                    }
-                                    .shadow(radius: 7)
-                                Spacer()
-                                
-                            }
-                            */
-                            
+                            Spacer()
+
                             Image("panda")
-                                .scaleEffect(0.30)
+                                .scaleEffect(0.25)
                                 .frame(width:100, height: 100)
                                 .scaledToFit()
                                 .clipShape(Circle())
@@ -153,7 +129,7 @@ struct AprenderView: View {
                             Spacer()
                             
                             Image("karate")
-                                .scaleEffect(0.20)
+                                .scaleEffect(0.25)
                                 .frame(width:100, height: 100)
                                 .scaledToFit()
                                 .clipShape(Circle())
@@ -367,7 +343,7 @@ struct AprenderView: View {
                             Spacer()
                             
                             Image("running")
-                                .scaleEffect(0.20)
+                                .scaleEffect(0.25)
                                 .frame(width:100, height: 100)
                                 .scaledToFit()
                                 .clipShape(Circle())

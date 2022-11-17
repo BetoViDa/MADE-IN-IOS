@@ -26,8 +26,6 @@ struct ProfileView: View {
                 .fontWeight(.bold)
 
                        HStack {
-                           Text("Copa Bronce")
-                               .font(.subheadline)
                            Spacer()
                            Text("Nivel 1")
                                .font(.subheadline)

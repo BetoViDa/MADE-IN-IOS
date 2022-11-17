@@ -11,7 +11,8 @@ import WrappingHStack
 struct DiccionarioView: View {
     
     var imagenes = ["abc","5","earth3","earth2"]
-    
+    let signa = Color(red: 48/256, green: 212/256, blue: 200/256)
+
     //PUEDE CAMBIARSE POR UN JSON...
     var namestopics = ["ABC", "Preposiciones", "Verbos Comunes", "Verbos Narrativos"]
     var topicos = ["letras", "preposiciones", "verboscomunes", "verbosnarrativos"]
@@ -106,8 +107,11 @@ struct DiccionarioView: View {
                         if results != nil {
                             WrappingHStack(results!.palabra, id:\.self, alignment: .center) { resultados in
                                 Text(resultados)
-                                        .frame(width: 120, height: 50, alignment: .center)
-                                        .background(.red)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
+                                        .frame(width: 130, height: 50, alignment: .center)
+                                        .background(signa)
+                                        .padding()
                             }.frame(minWidth: 250)
                         }
                     }
