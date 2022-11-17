@@ -40,7 +40,7 @@ struct Trivia: Decodable {
         // Custom coding key, not included in the API response, so we need to set it inside the closure
         
         //APIURL + "categories/file/\(answer)"
-        var img: file
+       
         var answers: [Answer] {
             do {
                 // Formatting all answer strings into AttributedStrings and creating an instance of Answer for each

@@ -1,12 +1,12 @@
-import SwiftUI
 
+import SwiftUI
 
 struct AprenderView: View {
     @StateObject var triviaManager = TriviaManager()
-    
+    @State var showview: Bool = false
     
     var body: some View {
-        
+    
         NavigationView {
             ScrollView {
                 VStack(alignment: .center) {
@@ -25,12 +25,48 @@ struct AprenderView: View {
                             
                         HStack(alignment: .center){
                             Spacer()
+                            
+                            /*
+                            Button("Asi es", action: {
+                                
+                            })
+                            */
+                            
+                            
+                            
+                            NavigationLink(destination: TriviaView()
+                                .environmentObject(triviaManager), isActive: $showview){
+                                    Text("")
+                            }
+                            
+                            Button(action: {
+                                TriviaCategor = "verboscomunes1"
+                                print(TriviaCategor)
+                                Task.init{
+                                    await triviaManager.fetchTrivia()
+                                    showview = true
+                                }
+                            }, label: {
+                                Image("abc")
+                                    .scaleEffect(0.18)
+                                    .frame(width:100, height: 100)
+                                    .scaledToFit()
+                                    .clipShape(Circle())
+                                    .overlay {
+                                        Circle().stroke(.white, lineWidth: 4)
+                                    }
+                                    .shadow(radius: 7)
+                                Spacer()
+                            })
+                            /*
                             NavigationLink{
-                                TriviaView()
-                                    .environmentObject(triviaManager)
-                               
-                                
-                                
+                                TriviaCategor = "verboscomunes1"
+                                print(TriviaCategor)
+                                Task.init{
+                                    await triviaManager.fetchTrivia()
+                                    TriviaView()
+                                        .environmentObject(triviaManager)
+                                }
                             } label:{
                                
                                 Image("abc")
@@ -45,8 +81,7 @@ struct AprenderView: View {
                                 Spacer()
                                 
                             }
-
-                            
+                            */
                             
                             Image("panda")
                                 .scaleEffect(0.30)
@@ -441,3 +476,5 @@ struct AprenderView: View {
         }
     }
 }
+
+

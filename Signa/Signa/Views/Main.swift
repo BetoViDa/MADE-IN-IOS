@@ -43,9 +43,6 @@ struct Main: View {
                             VStack{
                                 ProfileView()
                             }
-                            
-                           
-
                         }
                     }
                 
@@ -77,7 +74,7 @@ struct Main: View {
             
             }.background(.white)
               
-        }
+        }.navigationBarHidden(true)
     }
 }
 

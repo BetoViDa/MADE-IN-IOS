@@ -43,10 +43,7 @@ struct QuestionView: View {
                     PrimaryButtom(text: "Next", background: triviaManager.answerSelected ?  Color("AccentColor") : Color("adb5bd") )
                 }
                 .disabled(!triviaManager.answerSelected)
-                   
-                
-                
-              
+                  
             }.padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationBarHidden(true) /// esto es para que ya no salga el boton de back

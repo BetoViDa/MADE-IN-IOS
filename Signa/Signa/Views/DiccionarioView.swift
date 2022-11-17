@@ -71,6 +71,7 @@ struct DiccionarioView: View {
                                         Button(action: {
                                             topicword = topicos[index]
                                             loadWord()
+                                            
                                         }){
                                             Image(imagenes[index])
                                                 .scaleEffect(0.18)
