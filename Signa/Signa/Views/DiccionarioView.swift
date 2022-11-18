@@ -111,10 +111,12 @@ struct DiccionarioView: View {
                                     print("SE MUESTRA IMAGEN/VIDEO. Fue presionado la palabra: " + resultados)
                                 }){
                                     Text(resultados)
+                                        .font(.title2)
                                         .fontWeight(.bold)
                                         .foregroundColor(Color.white)
                                             .frame(width: 130, height: 50, alignment: .center)
                                             .background(signa)
+                                            .containerShape(Capsule())
                                             .padding()
                                 }
                             }.frame(minWidth: 250)

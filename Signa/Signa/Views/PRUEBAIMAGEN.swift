@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct PRUEBAIMAGEN: View {
     
@@ -37,16 +38,16 @@ struct PRUEBAIMAGEN: View {
                 }.resume()
     }  */
     
-    var urldrive = "https://drive.google.com/file/d/"
+    var urldrive = "https://drive.google.com/uc?export=view&id="
+    var idfile = "1fwjznopswbFUHAnWYzIZXIE1TPIPPWkp"
 
     var body: some View {
-        AsyncImage(url: URL(string: "https://drive.google.com/file/d/1QKqGSkKy5a7CYT0hmX9u-kFHB7wP-5_M")){ phase in
+        AsyncImage(url: URL(string:urldrive + idfile)){ phase in
             if let image = phase.image {
-                image // Displays the loaded image.
+                image // Cuando el file es IMAGEN
             } else if phase.error != nil {
-                Color.red // Indicates an error.
-            } else {
-                Color.blue // Acts as a placeholder.
+                // Cuando el file es VIDEO
+                VideoPlayer(player: AVPlayer(url: URL(string: urldrive + idfile)!))
             }
         }
     }
