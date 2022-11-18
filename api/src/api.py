@@ -316,18 +316,7 @@ funcion que recibe un arreglo de jsons, los cuales son los datos de las palabras
 
 ------------------------------------EJEMPLO-------------------------------------------
 
-use('signDB')
 
-db.categories.insertMany([
-    {'name':'letras', 'level':1, 'words':[
-                                        {'name':'A', 'video':'link/A.mp4', 'img': 'link/A.png'},
-                                        {'name':'B', 'video':'link/B.mp4', 'img': 'link/B.png'}
-                                        ]},
-    {'name':'animales', 'level':1, 'words':[
-                                        {'name':'perro', 'video':'link/perro.mp4', 'img': 'link/perro.png'},
-                                        {'name':'gato', 'video':'link/gato.mp4', 'img': 'link/gato.png'}
-                                        ]}                           
-])
 --------------------------------------------------------------------------------------
 
 use('signaDB')
@@ -389,6 +378,7 @@ db.categories.insertMany([
                                         {'name':'I', 'file': 'https://drive.google.com/file/d/1kJHbFQuIq4-uEv7ZFvgIB5NTNbPcIPkB/view?usp=share_link'},
                                         {'name':'J', 'file':'https://drive.google.com/file/d/1CUfKsJ6gsPyJUxkSJHch0-CX_Y3AlZ2w/view?usp=share_link'},]},
     {'name':'letras2', 'words':[
+                                        {'name':'K', 'file': 'https://drive.google.com/file/d/1t6WZb35qND4_bVG8e69wo0UFBjK1GFKP/view?usp=share_link'},
                                         {'name':'L', 'file': 'https://drive.google.com/file/d/1t6WZb35qND4_bVG8e69wo0UFBjK1GFKP/view?usp=share_link'},
                                         {'name':'LL','file':'https://drive.google.com/file/d/1n486o9HvJbfCDlbpDPvTfz5VocHopLwy/view?usp=share_link'},
                                         {'name':'M', 'file': 'https://drive.google.com/file/d/13XYgt5aH-d0f-4SAniF6RNnIK5sTRxy6/view?usp=share_link'},
