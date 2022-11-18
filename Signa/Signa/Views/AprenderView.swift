@@ -1,111 +1,64 @@
 
 import SwiftUI
+import WrappingHStack
 
 struct AprenderView: View {
     @StateObject var triviaManager = TriviaManager()
     @State var showview: Bool = false
-    var namestopics = ["abc1", "abc2", "abc3", "Prepos 1","Prepos 2", "Prepos 3", "prepos4", "prepos5", "prepos 6", "prepos7", "prepos8", "prepos9", "prepos10", "prepos11", "verbos1", "verbos2", "verbos3", "narrativo1", "narrativo2"]
+    var namestopicsfront = ["ABC 1", "ABC 2", "ABC 3", "Preposiciones 1","Preposiciones 2", "Preposiciones 3", "Preposiciones 4", "Preposiciones 5", "Preposiciones 6", "Preposiciones 7", "Preposiciones 8", "Preposiciones 9", "Preposiciones 10", "Preposiciones 11", "Comunes 1", "Comunes 2", "Comunes 3", "Narrativos 1", "Narrativos 2"]
+    var namestopicsapi = ["letras1", "letras2", "letras3", "preposiciones1", "preposiciones2", "preposiciones3","preposiciones4", "preposiciones5", "preposiciones6", "preposiciones7", "preposiciones8","preposiciones9", "preposiciones10", "preposiciones11", "verboscomunes1", "verboscomunes2","verboscomunes3", "verbosnarrativos1", "verbosnarrativos2"]
+    var imgs = ["abc","panda","earth3", "5", "karate", "prep", "prep3", "pig", "prep7", "prep8", "prep6", "prep2", "prep4", "earth", "com", "running", "earth4", "lion", "earth2"]
+    
     var body: some View {
     
         NavigationView {
             ScrollView {
                 VStack(alignment: .center) {
-
-
                     Group {
+                        NavigationLink(destination: TriviaView()
+                            .environmentObject(triviaManager), isActive: $showview){
+                                Text("")
+                        }
                         HStack{
                             Text("ABC")
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .multilineTextAlignment(.center).padding()
-                            
                             Spacer()
-                        }
-                        
-                            
+                        }           
                         HStack(alignment: .center){
-                            Spacer()
-                            
-                            /*
-                            Button("Asi es", action: {
-                                
-                            })
-                            */
-                            
-                            
-                            
-                            NavigationLink(destination: TriviaView()
-                                .environmentObject(triviaManager), isActive: $showview){
-                                    Text("")
-                            }
-                            
-                            Button(action: {
-                                TriviaCategor = "verboscomunes1"
-                                print(TriviaCategor)
-                                Task.init{
-                                    await triviaManager.fetchTrivia()
-                                    showview = true
-                                }
-                            }, label: {
-                                Image("abc")
-                                    .scaleEffect(0.18)
-                                    .frame(width:100, height: 100)
-                                    .scaledToFit()
-                                    .clipShape(Circle())
-                                    .overlay {
-                                        Circle().stroke(.white, lineWidth: 4)
+                            ForEach((0...2), id: \.self){index in
+                                Spacer()
+                                VStack(alignment: .center){
+                                    Button(action: {
+                                        TriviaCategor = namestopicsapi[index]
+                                        print(TriviaCategor)
+                                        Task.init{
+                                            await triviaManager.fetchTrivia()
+                                            showview = true
+                                        }
+                                    }){
+                                        Image(imgs[index])
+                                            .scaleEffect(0.18)
+                                            .frame(width:100, height: 100)
+                                            .scaledToFit()
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle().stroke(.white, lineWidth: 4)
+                                            }
+                                            .shadow(radius: 7)
                                     }
-                                    .shadow(radius: 7)
-                            })
-                            Spacer()
-
-                            Image("panda")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
+                                    Text(namestopicsfront[index])
+                                        .font(.title3)
+                                        .fontWeight(.semibold).padding()
                                 }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("earth3")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                        }
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("ABC 1")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("ABC 2")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .padding()
-                            Spacer()
-                            Text("ABC 3")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
+                                Spacer()
+                            }
                         }
                     }
                     
                     Spacer()
-                    
 
-
-                    
                     Group {
                         HStack{
                             Text("Preposiciones")
@@ -114,211 +67,37 @@ struct AprenderView: View {
                                 .multilineTextAlignment(.center).padding()
                             Spacer()
                         }
-                        
-                        HStack(alignment: .center){
+                        WrappingHStack(3...13, id:\.self){index in
                             Spacer()
-                            Image("5")
-                                .scaleEffect(0.18)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
+                            Spacer()
+                            VStack(alignment: .center){
+                                Button(action: {
+                                    TriviaCategor = namestopicsapi[index]
+                                    print(TriviaCategor)
+                                    Task.init{
+                                        await triviaManager.fetchTrivia()
+                                        showview = true
+                                    }
+                                }){
+                                    Image(imgs[index])
+                                        .scaleEffect(0.18)
+                                        .frame(width:100, height: 100)
+                                        .scaledToFit()
+                                        .clipShape(Circle())
+                                        .overlay {
+                                            Circle().stroke(.white, lineWidth: 4)
+                                        }
+                                        .shadow(radius: 7)
                                 }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("karate")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("prep")
-                                .scaleEffect(0.30)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                        }
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("Prepos 1")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("Prepos 2")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .padding()
-                            Spacer()
-                            Text("Prepos 3")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
+                                Text(namestopicsfront[index])
+                                    .font(.system(size: 14))
+                                    .fontWeight(.semibold).padding()
+                            }
                             Spacer()
                         }
-                        
-                        HStack(alignment: .center){
-                            Spacer()
-                            Image("prep3")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("pig")
-                                .scaleEffect(0.30)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("prep7")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                        }
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("Prepos 4")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("Prepos 5")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Spacer()
-                            Text("Prepos 6")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                        }
-                        HStack(alignment: .center){
-                            Spacer()
-                            Image("prep8")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("prep6")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("prep2")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                        }
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("Prepos 7")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("Prepos 8")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Spacer()
-                            Text("Prepos 9")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                        }
-                        HStack(alignment: .center){
-                            Image("prep4")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7).padding()
-                            
-                            
-                            Image("earth")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                            
-                        }
-                        HStack(alignment: .center){
-                            Text("Prepos 10")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            
-                            Text("Prepos 11")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Spacer()
-                        }
-                        
                     }
+                         
                     Spacer()
-                    
                     
                     Group {
                         HStack{
@@ -328,61 +107,34 @@ struct AprenderView: View {
                                 .multilineTextAlignment(.center).padding()
                             Spacer()
                         }
-                        
                         HStack(alignment: .center){
-                            Spacer()
-                            Image("com")
-                                .scaleEffect(0.20)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
+                            ForEach((14...16), id: \.self){index in
+                                Spacer()
+                                VStack(alignment: .center){
+                                    Button(action: {
+                                        TriviaCategor = namestopicsapi[index]
+                                        print(TriviaCategor)
+                                        Task.init{
+                                            await triviaManager.fetchTrivia()
+                                            showview = true
+                                        }
+                                    }){
+                                        Image(imgs[index])
+                                            .scaleEffect(0.18)
+                                            .frame(width:100, height: 100)
+                                            .scaledToFit()
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle().stroke(.white, lineWidth: 4)
+                                            }
+                                            .shadow(radius: 7)
+                                    }
+                                    Text(namestopicsfront[index])
+                                        .font(.system(size: 15.5))
+                                        .fontWeight(.semibold).padding()
                                 }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("running")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            Image("earth4")
-                                .scaleEffect(0.23)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                        }
-                        
-                        HStack(alignment: .center){
-                            Spacer()
-                            Text("Verbos 1")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
-                            Text("Verbos 2")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                            Spacer()
-                            Text("Verbos 3")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            Spacer()
+                                Spacer()
+                            }
                         }
                     }
                     
@@ -397,52 +149,40 @@ struct AprenderView: View {
                                 .multilineTextAlignment(.center).padding()
                             Spacer()
                         }
-                        
                         HStack(alignment: .center){
-                            Image("lion")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
+                            ForEach((17...18), id: \.self){index in
+                                Spacer()
+                                VStack(alignment: .center){
+                                    Button(action: {
+                                        TriviaCategor = namestopicsapi[index]
+                                        print(TriviaCategor)
+                                        Task.init{
+                                            await triviaManager.fetchTrivia()
+                                            showview = true
+                                        }
+                                    }){
+                                        Image(imgs[index])
+                                            .scaleEffect(0.18)
+                                            .frame(width:100, height: 100)
+                                            .scaledToFit()
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle().stroke(.white, lineWidth: 4)
+                                            }
+                                            .shadow(radius: 7)
+                                    }
+                                    Text(namestopicsfront[index])
+                                        .font(.system(size: 15.5))
+                                        .fontWeight(.semibold).padding()
                                 }
-                                .shadow(radius: 7).padding()
-                            
-                            
-                            Image("earth2")
-                                .scaleEffect(0.25)
-                                .frame(width:100, height: 100)
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(.white, lineWidth: 4)
-                                }
-                                .shadow(radius: 7)
-                            Spacer()
-                            
-                            
-                            
-                        }
-                        HStack(alignment: .center){
-                            Text("Narrativo 1")
-                                .font(.title2)
-                                .fontWeight(.semibold).padding()
-                            
-                            Text("Narrativo 2")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                
-                            Spacer()
+                                Spacer()
+                            }
                         }
                     }
                 }
                 
                 
             }.navigationTitle("Aprende").navigationBarTitleDisplayMode(.automatic)
-                
-
         }
     }
     

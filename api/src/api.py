@@ -267,6 +267,7 @@ def createQuiz(categorie):
 #=========================================================================
 
 #------quiz con % de personas en el grupo que han terminado el nivel------ 
+#ejemplo /group/John%20Deere
 @app.route('/group/<group>', methods=['GET'])
 def getPorQuiz(group):
     count = 0

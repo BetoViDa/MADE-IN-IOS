@@ -19,6 +19,7 @@
 		24185A4E2923E8D0005AA8C5 /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24185A412923E8D0005AA8C5 /* TriviaView.swift */; };
 		24611B77292459A20067404F /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 24611B76292459A20067404F /* WrappingHStack */; };
 		2487DE102925C104001F2CB3 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487DE0F2925C104001F2CB3 /* AdminView.swift */; };
+		2487DE122925D9B2001F2CB3 /* PRUEBAIMAGEN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487DE112925D9B2001F2CB3 /* PRUEBAIMAGEN.swift */; };
 		2491AE54291DC9550036C074 /* SignaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE53291DC9550036C074 /* SignaApp.swift */; };
 		2491AE56291DC9550036C074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2491AE55291DC9550036C074 /* ContentView.swift */; };
 		2491AE58291DC9570036C074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2491AE57291DC9570036C074 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		24185A402923E8D0005AA8C5 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		24185A412923E8D0005AA8C5 /* TriviaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaView.swift; sourceTree = "<group>"; };
 		2487DE0F2925C104001F2CB3 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		2487DE112925D9B2001F2CB3 /* PRUEBAIMAGEN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRUEBAIMAGEN.swift; sourceTree = "<group>"; };
 		2491AE50291DC9550036C074 /* Signa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2491AE53291DC9550036C074 /* SignaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaApp.swift; sourceTree = "<group>"; };
 		2491AE55291DC9550036C074 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				DBE755942921A23200308F57 /* ProfileView.swift */,
 				DBE755962921A27500308F57 /* AprenderView.swift */,
 				2487DE0F2925C104001F2CB3 /* AdminView.swift */,
+				2487DE112925D9B2001F2CB3 /* PRUEBAIMAGEN.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				24185A452923E8D0005AA8C5 /* Trivia.swift in Sources */,
 				DBE7559A2921A2FB00308F57 /* CircleImage.swift in Sources */,
 				2491AE60291DC9570036C074 /* Signa.xcdatamodeld in Sources */,
+				2487DE122925D9B2001F2CB3 /* PRUEBAIMAGEN.swift in Sources */,
 				24185A4D2923E8D0005AA8C5 /* QuestionView.swift in Sources */,
 				DBE7559C2921A4E500308F57 /* Main.swift in Sources */,
 				2491AE5D291DC9570036C074 /* Persistence.swift in Sources */,
