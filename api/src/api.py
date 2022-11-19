@@ -277,7 +277,7 @@ def createQuiz(categorie):
         quiz.append(pregutna)
 
 
-    response = {'results': random.shuffle(quiz)}
+    response = {'results': quiz}
     return response
 # =======================================================================
 
