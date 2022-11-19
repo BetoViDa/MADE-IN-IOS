@@ -276,7 +276,7 @@ def createQuiz(categorie):
         random.shuffle(pregutna["options"])  # revolvemos las respuestas
         quiz.append(pregutna)
 
-
+    random.shuffle(quiz)
     response = {'results': quiz}
     return response
 # =======================================================================
