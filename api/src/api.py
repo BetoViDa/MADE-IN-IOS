@@ -263,7 +263,7 @@ def createQuiz(categorie):
         pregutna = {}
         pregutna["file"] = words[x]["file"]
         pregutna["answer"] = words[x]["name"]
-
+        pregutna["fileType"] = True
         pregutna["options"] = []
         # metemos de forma random 3 respuestas incorrectas
         posiblesOpciones = words.copy()  # copias las palabras
@@ -283,7 +283,7 @@ def createQuiz(categorie):
 
 
 # =========================================================================
-# ===================       GROUP (para admin)     ========================
+# ===================       GROUP  y calificaciones     ===================
 # =========================================================================
 # =========================================================================
 
@@ -309,6 +309,11 @@ def getPorQuiz(group):
         result.append({"name": i, "percentage": r[i]})
 
     return {"data": result}
+
+@app.route('/UserGrade/<username>', methods=['GET'])
+def getUserId(username):
+    data = mongo.db.users.fin({'username': username},  {'grades':1, '_id':0})
+    return data
 
 
 if __name__ == "__main__":
@@ -605,26 +610,26 @@ db.categories.insertMany([
                                         {'name':'aprender', 'file':'11x8aTxZq647D0DYSYYS4iDitgVHqJDwU'}
   ]},
   {'name':'letras1', 'words':[
-                                        {'name':'A', 'file': '1ou7Kmy4Xg_fSDc44uDkB_4tblsmK_Ub1'},
-                                        {'name':'B', 'file': '1tKCjpIGoDdDzCHdz7W8Z4Bz_t0_tIVlZ'},
-                                        {'name':'C', 'file': '1HONPypOgXdLkiXQW4HjWI9mLarWqqxJ4'},
-                                        {'name':'D', 'file': '1HONPypOgXdLkiXQW4HjWI9mLarWqqxJ4'},
-                                        {'name':'E', 'file': '1X6f8tsfA4UfrlIkHwExdu6JHRVL85mxe'},
-                                        {'name':'F', 'file': '1ZccFRQR-l2E5pbW374NQfoRUJd0povep'},
-                                        {'name':'G', 'file': '1Rwf-GvvTY-TvZqGFzagPTgNCxldVtWRd'},
-                                        {'name':'H', 'file': '1N-sKQpwHFA8WN9y1v_4iHajqPxMSFFe8'},
-                                        {'name':'I', 'file': '1sZaMPpD3jpX7PHwW449oLnyA2LZQf1Or'},
-                                        {'name':'J', 'file':'1xsrLa2o_oFXERWY7KAH0_uo_TSPVf9qG'}]},
+                                        {'name':'A', 'file': '1ou7Kmy4Xg_fSDc44uDkB_4tblsmK_Ub1'}, BIEN
+                                        {'name':'B', 'file': '1tKCjpIGoDdDzCHdz7W8Z4Bz_t0_tIVlZ'}, BIEN
+                                        {'name':'C', 'file': '1HONPypOgXdLkiXQW4HjWI9mLarWqqxJ4'}, BIEN
+                                        {'name':'D', 'file': '1HONPypOgXdLkiXQW4HjWI9mLarWqqxJ4'}, MAL
+                                        {'name':'E', 'file': '1X6f8tsfA4UfrlIkHwExdu6JHRVL85mxe'}, MAL
+                                        {'name':'F', 'file': '1ZccFRQR-l2E5pbW374NQfoRUJd0povep'}, BIEN
+                                        {'name':'G', 'file': '1Rwf-GvvTY-TvZqGFzagPTgNCxldVtWRd'}, BIEN
+                                        {'name':'H', 'file': '1N-sKQpwHFA8WN9y1v_4iHajqPxMSFFe8'}, BIEN
+                                        {'name':'I', 'file': '1sZaMPpD3jpX7PHwW449oLnyA2LZQf1Or'}, BIEN
+                                        {'name':'J', 'file':'1xsrLa2o_oFXERWY7KAH0_uo_TSPVf9qG'}]},BIEN
     {'name':'letras2', 'words':[
-			                            {'name':'K', 'file':'1DYQ72t5Xyr0tDx14r0GPScizYLTETDSv'},
+			                            {'name':'K', 'file':'1DYQ72t5Xyr0tDx14r0GPScizYLTETDSv'},        
                                         {'name':'L', 'file': '1o1736id19a3rdLy0mLOKHstK26Q2I_3X'},
                                         {'name':'LL','file':'1Nho5O9oVKdHuHsaJ2uuqaLMqfASW0Chz'},
                                         {'name':'M', 'file': '1QqhZNjoBCqzTNkgOkuz3aVJbr4-I-COd'},
                                         {'name':'N', 'file': '1L6kg8WFcbn7dIoQFKgA4U0I685emy2SA'},
                                         {'name':'Ñ', 'file':'1Y9cY6rIpHFMzZvcD4SJ4ORhYrC8TqR23'},
                                         {'name':'O', 'file': '1vMdT51TJyWHHv1qMgkZ9CiYrG1jPy6j0'},
-                                        {'name':'P', 'file': '1Z7Pp4rRPgIxAArqXcddVpLZZCIGPQUrg'},
-                                        {'name':'Q', 'file':'1f-T3A0ZDhCrhqCXjn6X7ATkEh7EvdSHU'},
+                                        {'name':'P', 'file': '1Z7Pp4rRPgIxAArqXcddVpLZZCIGPQUrg'},     
+                                        {'name':'Q', 'file':'1f-T3A0ZDhCrhqCXjn6X7ATkEh7EvdSHU'},      
                                         {'name':'R', 'file': '19WweoR_JXM688W_VuHH_9kCJaQ_iuwWk'}]},
    {'name':'letras3', 'words':[                                     
                                         {'name':'RR','file':'1DkEGIpWEvDMlssFZ04-gcOkJY35ah0am'},
