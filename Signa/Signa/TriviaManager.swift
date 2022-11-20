@@ -22,7 +22,7 @@ class TriviaManager: ObservableObject{
     @Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
-    @State var topic : String = ""
+    //@State var topic : String = ""
     
     
     init(){

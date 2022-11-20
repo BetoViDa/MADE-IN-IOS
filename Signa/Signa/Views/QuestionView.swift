@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct QuestionView: View {
     @EnvironmentObject var triviaManager: TriviaManager
-    
     
     var body: some View {
  
@@ -25,12 +25,20 @@ struct QuestionView: View {
                 ProgressBar(progress: triviaManager.progress)
                 VStack(alignment: .leading, spacing: 20){
                     
-                    Text(triviaManager.question )
-                        .font(.system(size:20))
-                        .bold()
-                        .foregroundColor(.gray)
-                    //AsyncImage(url: URL(triviaManager.))
-                    
+                    if(triviaManager.trivia[triviaManager.index].fileType){ // true = image
+                        // mostramos una imagen 
+                        AsyncImage(url: URL(string: UrlDriveFiles + triviaManager.trivia[triviaManager.index].file)){ image in
+                            image.resizable().frame(width: 200, height: 100)
+                        } placeholder: {
+                            ProgressView()
+                        }
+    
+                    } else {
+                        // mostramos un video
+                        VideoPlayer(player: AVPlayer(url: URL(string: UrlDriveFiles + triviaManager.trivia[triviaManager.index].file)!))
+                            .frame(width: 300, height: 120)
+                    }
+
                     ForEach(triviaManager.answerChoices, id: \.id){
                         answer in AnswerRow(answer:answer)
                             .environmentObject(triviaManager)

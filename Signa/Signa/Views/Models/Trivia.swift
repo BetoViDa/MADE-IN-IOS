@@ -16,7 +16,8 @@ struct Trivia: Decodable {
             UUID()
         }
         var answer: String
-        var file: URL
+        var fileType: Bool // true = image,   false = video
+        var file: String
         var options: [String]
         //var quiz_type: String
         

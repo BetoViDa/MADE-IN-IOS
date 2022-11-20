@@ -107,6 +107,7 @@ struct DiccionarioView: View {
                         if results != nil {
                             WrappingHStack(results!.palabra, id:\.self, alignment: .center) { resultados in
                                 Button( action: {
+                                    
                                     //ESTO SE CAMBIARA V
                                     print("SE MUESTRA IMAGEN/VIDEO. Fue presionado la palabra: " + resultados)
                                 }){

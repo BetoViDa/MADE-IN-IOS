@@ -23,6 +23,6 @@ public var logedUser = User(
     group : ""
 )
 
-
-public var APIURL: String = "http://127.0.0.1:5000"
+public let UrlDriveFiles = "https://drive.google.com/uc?export=view&id="
+public let APIURL: String = "http://127.0.0.1:5000"
 public var TriviaCategor: String = ""   //Variable para el Quiz
