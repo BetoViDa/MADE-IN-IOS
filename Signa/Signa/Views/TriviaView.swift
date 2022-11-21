@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TriviaView: View {
     @EnvironmentObject var triviaManager: TriviaManager
+    @State var showViewAprende: Bool = false
 
     // llamada a la api
     
@@ -19,16 +20,19 @@ struct TriviaView: View {
         let body: [String:AnyHashable] = [
             "_id" : logedUser._id,
             "categorie": TriviaCategor,
-            "grade":(triviaManager.score / triviaManager.length) * 100 // porcentaje
+            "grade":(Float(triviaManager.score) / Float(triviaManager.length)) * 100 // porcentaje
         ]
         var request = URLRequest(url:url)//lo convertimos en una request para poder poner que es post y un body
         request.httpMethod = "POST"//ponemos su metodo como post
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)//ponemos el body con los datos en el request
         let task = URLSession.shared.dataTask(with: request) {data, _, error in
+            /*
             guard let data = data, error == nil else{
                 return
             }
+             */
+            showViewAprende = true
         }
         task.resume()
     }
@@ -40,18 +44,15 @@ struct TriviaView: View {
             // aqui mandamos la calificación del usuario jaja
             
             VStack(spacing: 20){
+                
+                NavigationLink(destination: AprenderView().navigationBarBackButtonHidden(true), isActive: $showViewAprende){
+                    Text("")
+                }
+                
                 title(text:"Trivia game")
                 Text("Felicidades terminaste el quizz!")
                 Text("You scored \(triviaManager.score) out of \(triviaManager.length)")
-                /*
-                Button{
-                    Task.init{
-                        await triviaManager.fetchTrivia()
-                    }
-                } label: {
-                    PrimaryButtom(text: "Play again")
-                }
-                */
+
                 Button{
                     Task.init{
                         mandarCali()

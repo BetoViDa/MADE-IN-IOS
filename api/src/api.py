@@ -191,15 +191,21 @@ def checkGrades():
 @app.route('/user/setGrade', methods=['POST'])
 def setGrade():
     # {_id:13325fdsf, categorie:letras1, grade:90}
-    json = request.json
-    id = json["_id"]
-    objId = ObjectId(id)
+   json = request.json
+   id = json["_id"]
+   objId = ObjectId(id)
 
-    mongo.db.users.update_one({"_id": objId},
-                              {"$set":
-                                  {f'grades.{json["categorie"]}': json["grade"]}
-                               })
-    return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
+    # para revizar si la nueva calificación es mayor o menor
+   calActual = mongo.db.users.find_one({"_id": objId},{f'grades.{json["categorie"]}':1, '_id':0})
+
+   if calActual["grades"][json["categorie"]] < json["grade"]:
+      mongo.db.users.update_one({"_id": objId},
+                                 {"$set":
+                                    {f'grades.{json["categorie"]}': json["grade"]}
+                                 })
+      return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
+   return {"msj": f'la calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]}'}
+
 # =======================================================================
 
 # ----------------------Numero de niveles arriba de 70-------------------
