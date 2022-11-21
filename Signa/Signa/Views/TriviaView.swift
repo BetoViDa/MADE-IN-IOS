@@ -10,12 +10,40 @@ import SwiftUI
 struct TriviaView: View {
     @EnvironmentObject var triviaManager: TriviaManager
 
+    // llamada a la api
+    
+    func mandarCali(){
+        guard let url = URL(string: APIURL + "/user/setGrade") else{
+            return
+        }
+        let body: [String:AnyHashable] = [
+            "_id" : logedUser._id,
+            "categorie": TriviaCategor,
+            "grade":(triviaManager.score / triviaManager.length) * 100 // porcentaje
+        ]
+        var request = URLRequest(url:url)//lo convertimos en una request para poder poner que es post y un body
+        request.httpMethod = "POST"//ponemos su metodo como post
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)//ponemos el body con los datos en el request
+        let task = URLSession.shared.dataTask(with: request) {data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+        }
+        task.resume()
+    }
+    
+
     var body: some View {
+        
         if triviaManager.reachedEnd{
+            // aqui mandamos la calificación del usuario jaja
+            
             VStack(spacing: 20){
                 title(text:"Trivia game")
                 Text("Felicidades terminaste el quizz!")
                 Text("You scored \(triviaManager.score) out of \(triviaManager.length)")
+                /*
                 Button{
                     Task.init{
                         await triviaManager.fetchTrivia()
@@ -23,10 +51,20 @@ struct TriviaView: View {
                 } label: {
                     PrimaryButtom(text: "Play again")
                 }
+                */
+                Button{
+                    Task.init{
+                        mandarCali()
+                    }
+                } label: {
+                    PrimaryButtom(text: "Terminar")
+                }
             }.foregroundColor(Color("AccentColor"))
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.white)
+            
+
         }else{
             QuestionView()
                 .environmentObject(triviaManager)
