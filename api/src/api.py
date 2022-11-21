@@ -3,20 +3,22 @@
 pasos:
     python3 -m venv venv                         creamos entorno virtual llamado "venv"
     venv\Scripts\activate    en MacOS ejecutar:  source venv/bin/activate
-    pip install <lo que se deba instalar> 
+    pip install <lo que se deba instalar>       para linux y macos usar "pip3"
     python3 src/api.py                           corremos la api estando en la carpeta API
 '''
 # <lo que se debe instalar>
 # pip install flask          Componente basico
 # pip install pymongo
-# pip install flask-pymongo
+# pip install flask-pymongo   
 # pip install flask-cors
 # pip install python-dotenv  Para el archivo .env
+#pip install cryptography
 from dotenv import load_dotenv  # esto para las variables de entorno .env
 import os
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from cryptography.fernet import  Fernet # para cifrar 
 from flask_cors import CORS
 import random
 
