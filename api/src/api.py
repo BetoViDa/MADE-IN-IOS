@@ -238,7 +238,7 @@ def getFile(categorie, SearchWord):
     for data in datas:
         for word in data["words"]:
             if word["name"] == SearchWord:
-                return {"file": word["file"]}
+                return {"file": word["file"], "fileType":word["fileType"]}
     return r
 # =======================================================================
 
