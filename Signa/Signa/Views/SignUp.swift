@@ -110,28 +110,10 @@ struct SignUp: View {
                 } else {
                     //ME MANDARA A LOGIN
                     print(response.msj)
-
-                    
-                 
-
                     showView = true
 
                 }
-                
-                /*
-                 NavigationLink(destination: Login()) {
-                 Text("REGISTRATE")
-                 
-                 .frame(minWidth: 0, maxWidth: 300)
-                 .padding()
-                 .border(.gray,width:2)
-                 .foregroundColor(.gray)
-                 .background(.white)
-                 .cornerRadius(0)
-                 .font(.title)
-                 }
-                 @
-                 */
+
                 
             } catch {
                 print(error)
@@ -152,7 +134,7 @@ struct SignUp: View {
                 }
                  */
                 
-                NavigationLink(destination: Login().navigationBarBackButtonHidden(false), isActive: $showView){
+                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(false), isActive: $showView){
                     Text("")
                 }
                 
@@ -160,9 +142,6 @@ struct SignUp: View {
                     Text("\(msjErrorSignUp)")
                                 Text("\(msjError)").font(.system(size: 9))
                 }
-                /*
-                Image("logoSigna").resizable().frame(width: 400, height:400)
-                 */
                 TextField("Username", text: $username).padding().background(Capsule()
                     .strokeBorder(Color.gray,lineWidth: 0.8)
                     .background(Color.white)
