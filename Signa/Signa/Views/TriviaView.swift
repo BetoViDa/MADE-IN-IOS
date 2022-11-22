@@ -10,6 +10,10 @@ import SwiftUI
 struct TriviaView: View {
     @EnvironmentObject var triviaManager: TriviaManager
     @State var showViewAprende: Bool = false
+    @State var mensj : Mensaje?
+    struct Mensaje : Codable{
+        var msj : String = ""
+    }
 
     // llamada a la api
     
@@ -27,12 +31,25 @@ struct TriviaView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)//ponemos el body con los datos en el request
         let task = URLSession.shared.dataTask(with: request) {data, _, error in
-            /*
+            
             guard let data = data, error == nil else{
                 return
             }
-             */
-            showViewAprende = true
+            do{
+                // en este do intentaremos crear el mensaje
+                let response = try JSONDecoder().decode(Mensaje.self, from: data)// tratamos de decodearlo en una estructura de tipo User
+                
+                if(response.msj == "Level UP"){
+                    logedUser.lvl = logedUser.lvl + 1;
+                    mensj?.msj = "Has subido de nivel a " + String(logedUser.lvl) + "!!!"
+                }   
+                mensj = response   
+            }
+            catch{
+                print("ERROR")
+            }
+
+            
         }
         task.resume()
     }
@@ -49,18 +66,23 @@ struct TriviaView: View {
                     Text("")
                 }
                 
-                title(text:"Trivia game")
-                Text("Felicidades terminaste el quizz!")
-                Text("You scored \(triviaManager.score) out of \(triviaManager.length)")
+                title(text:"Quizz")
+                Text("Tu puntuación fue \(triviaManager.score) de \(triviaManager.length)")
+                
+                Text(mensj?.msj ?? "")
 
                 Button{
                     Task.init{
-                        mandarCali()
+                        showViewAprende = true
                     }
                 } label: {
                     PrimaryButtom(text: "Terminar")
                 }
-            }.foregroundColor(Color("AccentColor"))
+            }
+            .onAppear(){
+                mandarCali()
+            }
+            .foregroundColor(Color("AccentColor"))
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.white)

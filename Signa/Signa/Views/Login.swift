@@ -14,7 +14,7 @@ struct Login: View {
     
     @State var errorMsj: String = ""
     @State var username: String = ""
-    @State var password: String = "";
+    @State var password: String = ""
     @State var showViewMain: Bool = false
     
     func APILogIn(){
@@ -55,34 +55,33 @@ struct Login: View {
     }
     
     var body: some View {
-        NavigationView{
-            
-         
-            VStack{
-                NavigationLink(destination: Main().navigationBarBackButtonHidden(true), isActive: $showViewMain){
-                    Text("")
-                }
-                Spacer()
-                Image("logoSigna").resizable().frame(width: 300, height:200)
-                Text("\(errorMsj)")
-                TextField("Username", text:
-                            $username).padding().background(Capsule()
-                                .strokeBorder(Color.gray,lineWidth: 0.8)
-                                .background(Color.white)
-                                .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
-                SecureField("Password", text: $password).padding().background(Capsule()
-                    .strokeBorder(Color.gray,lineWidth: 0.8)
-                    .background(Color.white)
-                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+            NavigationView{
+                VStack{
+                    NavigationLink(destination: Main().navigationBarBackButtonHidden(true), isActive: $showViewMain){
+                        Text("")
+                    }
+                    Spacer()
+                    Image("logoSigna").resizable().frame(width: 300, height:200)
+                    Text("\(errorMsj)")
+                    TextField("Username", text:
+                                $username).padding().background(Capsule()
+                                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                                    .background(Color.white)
+                                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                    SecureField("Password", text: $password).padding().background(Capsule()
+                        .strokeBorder(Color.gray,lineWidth: 0.8)
+                        .background(Color.white)
+                        .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                    
                 
-               
-                Button("Ingresar"){
-                    APILogIn()
-                }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
-                Spacer()
+                    Button("Ingresar"){
+                        APILogIn()
+                    }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
+                    Spacer()
+                }
+                
             }
-            
-        }}
+        }
 }
 
 struct Login_Previews: PreviewProvider {

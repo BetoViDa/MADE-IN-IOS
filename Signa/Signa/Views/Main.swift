@@ -11,8 +11,8 @@ import SwiftUI
 struct Main: View {
     @State var selectedIndex = 0
     
-    let icons = ["book",
-                 "graduationcap",
+    let icons = ["graduationcap",
+                 "book",
                  "person",
                 
                 ]
@@ -25,7 +25,8 @@ struct Main: View {
                     case 0:
                         NavigationView {
                             VStack{
-                                DiccionarioView()
+                                AprenderView()
+                                
                                
                             }
 
@@ -33,8 +34,8 @@ struct Main: View {
                     case 1:
                         NavigationView {
                             VStack{
-                                AprenderView()
-                               
+                        
+                                DiccionarioView()
                             }
                         }
                         

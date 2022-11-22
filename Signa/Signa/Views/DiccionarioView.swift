@@ -29,7 +29,7 @@ struct DiccionarioView: View {
         var file : String
         var fileType : Bool 
     }
-    @State var topicword : String = ""
+    @State var topicword : String = "letras1"
     @State var results : Palabras?
     @State var archivoID : Archivo?
 
@@ -88,16 +88,6 @@ struct DiccionarioView: View {
 
                         ScrollView(.horizontal){
                             Group {
-                                /*
-                                HStack{
-                                    Text("Tópicos")
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                        .multilineTextAlignment(.center).padding()
-                                    Spacer()
-                                }
-                                */
-
                                 HStack(alignment: .center){
                                     ForEach((0...3), id: \.self){index in
                                         VStack(alignment: .center){
@@ -125,6 +115,9 @@ struct DiccionarioView: View {
                                 }
                             }
                         }
+                        .onAppear(){
+                            loadWord()
+                        }
                         Spacer()
 
                         Group {
@@ -139,7 +132,6 @@ struct DiccionarioView: View {
                             if results != nil {
                                 WrappingHStack(results!.palabra, id:\.self, alignment: .center) { resultados in
                                     Button( action: {
-                                        ///categories/file/<categorie>/<SearchWord>
                                         loadArchivo(palabra: resultados)
                                         self.presentPopup = true
                                     }){
@@ -180,8 +172,6 @@ struct DiccionarioView: View {
                     }
                     
                 }
-                
-
                 Button(action : {
                     withAnimation {
                         self.presentPopup = false

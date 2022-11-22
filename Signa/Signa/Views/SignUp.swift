@@ -152,7 +152,7 @@ struct SignUp: View {
                 }
                  */
                 
-                NavigationLink(destination: Login().navigationBarBackButtonHidden(true), isActive: $showView){
+                NavigationLink(destination: Login().navigationBarBackButtonHidden(false), isActive: $showView){
                     Text("")
                 }
                 

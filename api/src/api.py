@@ -149,27 +149,22 @@ def login():
 
 @app.route('/user/joinGroup', methods=['POST'])
 def joinGroup():
-    # {_id:"636c330384831804d80d0283, groupCode: "vVlkLalskcjhlk12csda81"}
-    json = request.json
-    grupo = mongo.db.groups.find_one({'code': json['groupCode']})
-    if grupo == None:
-        return {"msj": "ERROR Codigo invalido"}
-
-    id = json['_id']
-    objId = ObjectId(id)
-
-    user = mongo.db.users.find_one({"_id": objId}, {"group": 1})
-
-    if "group" in user:  # si ya estas en un grupo no te dejara unirte a otro
-        return {"msj": "ERROR ya estas en un grupo"}
-
-    # si no estas en un grupo, te mete a el
-    mongo.db.users.update_one(
-        {"_id": objId},
-        {"$set": {"group": grupo["name"]}},
-        upsert=False)
-
-    return {"msj": "te uniste al grupo"}
+   # {_id:"636c330384831804d80d0283, groupCode: "vVlkLalskcjhlk12csda81"}
+   json = request.json
+   grupo = mongo.db.groups.find_one({'code': json['groupCode']})
+   if grupo == None:
+      return {"msj": "ERROR Codigo invalido", "group":"None"}
+   id = json['_id']
+   objId = ObjectId(id)
+   user = mongo.db.users.find_one({"_id": objId}, {"group": 1})
+   if user["group"] != "":  # si ya estas en un grupo no te dejara unirte a otro
+      return {"msj": "ERROR ya estas en un grupo", "group":"None"}
+   # si no estas en un grupo, te mete a el
+   mongo.db.users.update_one(
+      {"_id": objId},
+      {"$set": {"group": grupo["name"]}},
+      upsert=False)
+   return {"msj": "te uniste al grupo", "group":grupo["name"]}
 # =========================================================================
 
 # ----------------------------leave group----------------------------------
@@ -212,23 +207,28 @@ def checkGrades(_id):
 
 @app.route('/user/setGrade', methods=['POST'])
 def setGrade():
-    # {_id:13325fdsf, categorie:letras1, grade:90}
-    json = request.json
-    id = json["_id"]
-    objId = ObjectId(id)
-
-    # para revizar si la nueva calificación es mayor o menor
-    calActual = mongo.db.users.find_one(
-        {"_id": objId}, {f'grades.{json["categorie"]}': 1, '_id': 0})
-
-    if calActual["grades"][json["categorie"]] < json["grade"]:
-        mongo.db.users.update_one({"_id": objId},
-                                  {"$set":
-                                   {f'grades.{json["categorie"]}': json["grade"]}
-                                   })
-      
-        return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
-    return {"msj": f'la calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]}'}
+   # {_id:13325fdsf, categorie:letras1, grade:90}
+   json = request.json
+   id = json["_id"]
+   objId = ObjectId(id)
+   # para revizar si la nueva calificación es mayor o menor
+   calActual = mongo.db.users.find_one(
+       {"_id": objId}, {f'grades.{json["categorie"]}': 1, '_id': 0, 'level':1})
+   if calActual["grades"][json["categorie"]] < json["grade"]:
+      if (calActual["grades"][json["categorie"]] < 70) and (json["grade"] >= 70):
+         mongo.db.users.update_one({"_id": objId},
+                                {"$set":
+                                    {f'grades.{json["categorie"]}': json["grade"], 'level':calActual['level']+1}
+                                 })
+         return {"msj": "Level UP"}
+      else:
+         mongo.db.users.update_one({"_id": objId},
+                                {"$set":
+                                    {f'grades.{json["categorie"]}': json["grade"]}
+                                 })
+      return {"msj": f'Calificación de {json["categorie"]} actualizada a {json["grade"]:.2f}'}
+       
+   return {"msj": f'La calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]:.2f}'}
 
 # =======================================================================
 

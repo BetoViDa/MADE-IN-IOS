@@ -32,7 +32,7 @@ struct AprenderView: View {
                                 VStack(alignment: .center){
                                     Button(action: {
                                         TriviaCategor = namestopicsapi[index]
-                                        print(TriviaCategor)
+                               
                                         Task.init{
                                             await triviaManager.fetchTrivia()
                                             showview = true
@@ -73,7 +73,7 @@ struct AprenderView: View {
                             VStack(alignment: .center){
                                 Button(action: {
                                     TriviaCategor = namestopicsapi[index]
-                                    print(TriviaCategor)
+                                    
                                     Task.init{
                                         await triviaManager.fetchTrivia()
                                         showview = true
@@ -113,7 +113,7 @@ struct AprenderView: View {
                                 VStack(alignment: .center){
                                     Button(action: {
                                         TriviaCategor = namestopicsapi[index]
-                                        print(TriviaCategor)
+                                        
                                         Task.init{
                                             await triviaManager.fetchTrivia()
                                             showview = true
@@ -155,7 +155,7 @@ struct AprenderView: View {
                                 VStack(alignment: .center){
                                     Button(action: {
                                         TriviaCategor = namestopicsapi[index]
-                                        print(TriviaCategor)
+                                       
                                         Task.init{
                                             await triviaManager.fetchTrivia()
                                             showview = true
