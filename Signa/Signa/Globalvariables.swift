@@ -13,6 +13,7 @@ public struct User: Codable{
     var email : String
     var type : Int // 1 es admin, 0 es normal
     var group : String
+    var lvl : Int
 }
 
 public var logedUser = User(
@@ -20,7 +21,8 @@ public var logedUser = User(
     username : "",
     email : "",
     type : 0,
-    group : ""
+    group : "",
+    lvl : 0
 )
 
 public let UrlDriveFiles = "https://drive.google.com/uc?export=view&id="

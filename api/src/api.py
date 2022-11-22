@@ -9,16 +9,16 @@ pasos:
 # <lo que se debe instalar>
 # pip install flask          Componente basico
 # pip install pymongo
-# pip install flask-pymongo   
+# pip install flask-pymongo
 # pip install flask-cors
 # pip install python-dotenv  Para el archivo .env
-#pip install cryptography
+
 from dotenv import load_dotenv  # esto para las variables de entorno .env
 import os
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from cryptography.fernet import  Fernet # para cifrar 
+import hashlib  # para hashear la password con sha256
 from flask_cors import CORS
 import random
 
@@ -44,6 +44,7 @@ mongo = PyMongo(app)  # mongo es nuestra base de datos (mongo.db)
 # falta cifrar datos sensibles como password y correo
 @app.route('/user/signup', methods=['POST'])
 def create_user():
+   
     '''
     {
     "username":"Leopoldo",
@@ -53,15 +54,22 @@ def create_user():
     '''
     # {"username":nombre,"password":pass,"email":mail,"type":0,}
     json = request.json
+
+    username  =  json["username"]    
+    email     =  json["email"].lower() 
+    password  =  hashlib.sha256(json["password"].encode()).hexdigest()    # password hasheado
+    print(username)
     # si encuentra un usuario con ese username manda error
-    if mongo.db.users.find_one({'username': json['username']}) != None:
+    if mongo.db.users.find_one({'username': username}) != None:
         return {'msj': 'ya existe este username', 'ERROR': 'si'}
     # si encuentro un usuario con este email mando error
-    if mongo.db.users.find_one({'email': json['email'].lower()}) != None:
+    if mongo.db.users.find_one({'email': email}) != None:
         return {'msj': 'ya esta en uso este correo', 'ERROR': 'si'}
 
     if json['username'] and json['password'] and json['email'] and (json['username'] != "") and (json['password'] != "") and (json['email'] != ""):
-        json['email'] = json['email'].lower()  # ponemos el mail en minusculas
+        json['email'] = email # ponemos el mail encriptado
+        json['username'] = username # ponemos el username encriptado
+        json['password'] = password # ponemos la password hasheado
         json["grades"] = {
             "verboscomunes1":   0,
             "verboscomunes2":   0,
@@ -100,34 +108,40 @@ def create_user():
 
 @app.route('/user/login', methods=['POST'])
 def login():
-    # recibe usuario/correo y contraseña en un json asi
-    # {"username":usuario/correo,, "password": contraseña}
-    json = request.json
-    # reviso si el usuario puso su username o su correo
-    if "@" in json['username']:  # es un correo
-        data = mongo.db.users.find_one({'email': json['username'].lower(), 'password': json['password']}, {
-                                       '_id': 1, 'username': 1, 'email': 1, 'group': 1, 'type': 1})
-    else:
-        data = mongo.db.users.find_one({'username': json['username'], 'password': json['password']}, {
-                                       '_id': 1, 'username': 1, 'email': 1, 'group': 1, 'type': 1})
-
-    if data == None:
-        if "@" in json['username']:
-            return {'ERROR': "correo o contraseña incorrecta"}
-        else:
-            return {'ERROR': "nombre de usuario o contraseña incorrecta"}
-    else:
-        r = {
-            '_id': str(data['_id']),
-            'username': data['username'],
-            'email': data['email'],
-            'type': data['type'],  # 1 admin,   0 normal
-            'group': data['group']
-        }
-        return r
-    # regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
-    # si el usuario tiene grupo regresa
-    #{"_id":string, "username": string, "email": string, "type": bool, "group":string}
+   
+   # recibe usuario/correo y contraseña en un json asi
+   # {"username":usuario/correo,, "password": contraseña}
+   json = request.json
+   # reviso si el usuario puso su username o su correo
+   password = hashlib.sha256(json["password"].encode()).hexdigest()
+   if "@" in json['username']:  # es un correo
+     email = json["username"].lower()
+     
+     data = mongo.db.users.find_one({'email': email, 'password': password}, {
+                                      '_id': 1, 'username': 1, 'email': 1, 'group': 1, 'type': 1, 'level':1})
+   else:
+     username = json["username"]
+     data = mongo.db.users.find_one({'username': username, 'password': password}, {
+                                      '_id': 1, 'username': 1, 'email': 1, 'group': 1, 'type': 1, 'level':1})
+   
+   if data == None:
+       if "@" in json['username']:
+           return {'ERROR': "correo o contraseña incorrecta"}
+       else:
+           return {'ERROR': "nombre de usuario o contraseña incorrecta"}
+   else:
+       r = {
+           '_id': str(data['_id']),
+           'username':data['username'],
+           'email': data['email'],
+           'type': data['type'],  # 1 admin,   0 normal
+           'group': data['group'],
+           'lvl': data['level']
+       }
+       return r
+   # regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
+   # si el usuario tiene grupo regresa
+   #{"_id":string, "username": string, "email": string, "type": bool, "group":string}
 # =========================================================================
 
 # -------------------------------Join Group---------------------------------
@@ -176,15 +190,21 @@ def leaveGroup():
 # --------------------Mostrar grades para niveles-----------------------
 
 
-@app.route('/user/grades', methods=['POST'])
-def checkGrades():
-    #{username:leo, _id: 12312412414}
-    json = request.json
+@app.route('/user/grades/<_id>', methods=['GET'])
+def checkGrades(_id):
+   #{username:leo, _id: 12312412414}
 
-    objInstance = ObjectId(json['_id'])
+   objInstance = ObjectId(_id)
 
-    data = mongo.db.users.find_one({'_id': objInstance}, {'grades': 1})
-    return data["grades"]
+
+
+   data = mongo.db.users.find_one({'_id': objInstance}, {'grades': 1})
+   r = []
+   for key in data["grades"]:
+      r.append({"name":key, "grade":data["grades"][key]})
+      
+
+   return {"grades": r}
 # ========================================================================
 
 # --------------------------Actualizar calificacion----------------------
@@ -193,20 +213,22 @@ def checkGrades():
 @app.route('/user/setGrade', methods=['POST'])
 def setGrade():
     # {_id:13325fdsf, categorie:letras1, grade:90}
-   json = request.json
-   id = json["_id"]
-   objId = ObjectId(id)
+    json = request.json
+    id = json["_id"]
+    objId = ObjectId(id)
 
     # para revizar si la nueva calificación es mayor o menor
-   calActual = mongo.db.users.find_one({"_id": objId},{f'grades.{json["categorie"]}':1, '_id':0})
+    calActual = mongo.db.users.find_one(
+        {"_id": objId}, {f'grades.{json["categorie"]}': 1, '_id': 0})
 
-   if calActual["grades"][json["categorie"]] < json["grade"]:
-      mongo.db.users.update_one({"_id": objId},
-                                 {"$set":
-                                    {f'grades.{json["categorie"]}': json["grade"]}
-                                 })
-      return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
-   return {"msj": f'la calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]}'}
+    if calActual["grades"][json["categorie"]] < json["grade"]:
+        mongo.db.users.update_one({"_id": objId},
+                                  {"$set":
+                                   {f'grades.{json["categorie"]}': json["grade"]}
+                                   })
+      
+        return {"msj": f'calificación de {json["categorie"]} actualizada a {json["grade"]}'}
+    return {"msj": f'la calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]}'}
 
 # =======================================================================
 
@@ -228,7 +250,9 @@ def showCategories(categorie):
     r = []
     for data in datas:
         for word in data["words"]:
+            print(word["name"])
             r.append(word["name"])
+    r.sort()
     return {"palabra": r}
 # ========================================================================
 
@@ -246,7 +270,7 @@ def getFile(categorie, SearchWord):
     for data in datas:
         for word in data["words"]:
             if word["name"] == SearchWord:
-                return {"file": word["file"], "fileType":word["fileType"]}
+                return {"file": word["file"], "fileType": word["fileType"]}
     return r
 # =======================================================================
 
@@ -271,7 +295,8 @@ def createQuiz(categorie):
         pregutna = {}
         pregutna["file"] = words[x]["file"]
         pregutna["answer"] = words[x]["name"]
-        pregutna["fileType"] = words[x]["fileType"]  # True = imagen         false =
+        # True = imagen         false =
+        pregutna["fileType"] = words[x]["fileType"]
         pregutna["options"] = []
         # metemos de forma random 3 respuestas incorrectas
         posiblesOpciones = words.copy()  # copias las palabras
