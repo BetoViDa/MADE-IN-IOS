@@ -57,7 +57,7 @@ struct Login: View {
     var body: some View {
             NavigationView{
                 VStack{
-                    NavigationLink(destination: Main().navigationBarBackButtonHidden(false), isActive: $showViewMain){
+                    NavigationLink(destination: Main(), isActive: $showViewMain){
                         Text("")
                     }
                     Spacer()
@@ -80,7 +80,7 @@ struct Login: View {
                     Spacer()
                 }
                 
-            }
+            }.navigationBarBackButtonHidden(true)
         }
 }
 

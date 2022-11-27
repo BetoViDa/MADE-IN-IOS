@@ -8,6 +8,8 @@
 import SwiftUI
 import AVKit
 import WrappingHStack
+//import Combine
+//import Foundation
 
 struct DiccionarioView: View {
     
@@ -55,6 +57,7 @@ struct DiccionarioView: View {
                     }
                 }.resume()
     }
+    
 
     //=======================================================================
 
@@ -161,16 +164,39 @@ struct DiccionarioView: View {
                     
                     if (((archivoID?.file) != nil) && archivoID?.fileType == true) {
                         // mostramos una imagen
-                        AsyncImage(url: URL(string: UrlDriveFiles + archivoID!.file)){ image in
-                            image.resizable().frame(width: 200, height: 100)
-                        } placeholder: {
-                            ProgressView()
+                        AsyncImage(url: URL(string: UrlDriveFiles + archivoID!.file)){ phase in
+                            switch phase {
+                            case .success(let image):
+                                image.resizable()
+                                    .frame(width: 300, height: 200)
+                            case .failure(let error):
+                                let _ = print(error)
+                                //Text("error: \(error.localizedDescription)")
+                                Text("error al cargar la imagen")
+                            case .empty:
+                                ProgressView()
+                            @unknown default:
+                                fatalError()
+                            }
                         }
+                        
                     } else if (((archivoID?.file) != nil) && archivoID?.fileType == false) {
                         VideoPlayer(player: AVPlayer(url: URL(string: UrlDriveFiles + archivoID!.file)!))
-                            .frame(width: 300, height: 120)
+                            .frame(width: 300, height: 200)
+                        /*
+                        {phase in switch phase {
+                        case .success(let video):
+                            video.frame(width: 300, height: 200)
+                            
+                        case .failure(let error):
+                            let _ = print(error)
+                            Text("error al cargar el video")
+                        case .empty:
+                            ProgressView()
+                        }
+                    }*/
+                        
                     }
-                    
                 }
                 Button(action : {
                     withAnimation {
@@ -189,3 +215,36 @@ struct DiccionarioView_Previews: PreviewProvider {
         DiccionarioView()
     }
 }
+
+/*
+class ImageLoader {
+    
+    var downloadedImage: UIImage?
+    let didChange = PassthroughSubject<ImageLoader?, Never>()
+    
+    func load(url: String) {
+        
+        guard let imageURL = URL(string: url) else {
+            fatalError("ImageURL is not correct!")
+        }
+        
+        URLSession.shared.dataTask(with: imageURL) { data, response, error in
+            
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                     self.didChange.send(nil)
+                }
+                return
+            }
+            
+            self.downloadedImage = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.didChange.send(self)
+            }
+            
+        }.resume()
+        
+    }
+
+}
+*/

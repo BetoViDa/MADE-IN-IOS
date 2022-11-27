@@ -54,9 +54,7 @@ struct QuestionView: View {
                   
             }.padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .navigationBarHidden(true) /// esto es para que ya no salga el boton de back
-        
-    }
+    }//.navigationBarBackButtonHidden(true)
 }
 
 struct QuestionView_Previews: PreviewProvider {

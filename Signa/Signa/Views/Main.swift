@@ -16,25 +16,23 @@ struct Main: View {
                  "person",
                 
                 ]
-      var body: some View {
-        VStack {
-            //Content
-       
-            ZStack{
+    var body: some View {
+        NavigationView{
+            VStack {
+                //Content
+                
+                ZStack{
                     switch selectedIndex{
                     case 0:
                         NavigationView {
                             VStack{
                                 AprenderView()
-                                
-                               
                             }
-
+                            
                         }
                     case 1:
                         NavigationView {
                             VStack{
-                        
                                 DiccionarioView()
                             }
                         }
@@ -46,36 +44,37 @@ struct Main: View {
                             }
                         }
                     }
-                
-                }
-                 
-            
-            Divider()
-            //Navbar()
-            HStack {
-                ForEach(0..<3, id:  \.self) { number in
-                  
-                      Button(action: {
-                          self.selectedIndex = number
-                    }, label: {
-                        Spacer()
-                     
-                            Image(systemName: icons[number])
-                            .font(.system(size: 25,weight: .regular, design: .default) )
-                            .foregroundColor( selectedIndex == number ? Color("AccentColor") : Color(UIColor.lightGray))
-                                
-                                
-                        Spacer()
-                    }
-
-
-                      ).padding(.horizontal, 1).padding(.top, 10)
                     
                 }
-            
-            }.background(.white)
-              
-        }.navigationBarHidden(true)
+                
+                
+                Divider()
+                //Navbar()
+                HStack {
+                    ForEach(0..<3, id:  \.self) { number in
+                        
+                        Button(action: {
+                            self.selectedIndex = number
+                        }, label: {
+                            Spacer()
+                            
+                            Image(systemName: icons[number])
+                                .font(.system(size: 25,weight: .regular, design: .default) )
+                                .foregroundColor( selectedIndex == number ? Color("AccentColor") : Color(UIColor.lightGray))
+                            
+                            
+                            Spacer()
+                        }
+                               
+                               
+                        ).padding(.horizontal, 1).padding(.top, 10)
+                        
+                    }
+                    
+                }.background(.white)
+                
+            }//
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

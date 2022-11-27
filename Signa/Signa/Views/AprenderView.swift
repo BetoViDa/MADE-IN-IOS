@@ -15,7 +15,7 @@ struct AprenderView: View {
             ScrollView {
                 VStack(alignment: .center) {
                     Group {
-                        NavigationLink(destination: TriviaView()
+                        NavigationLink(destination: TriviaView().navigationBarBackButtonHidden(true)
                             .environmentObject(triviaManager), isActive: $showview){
                                 Text("")
                         }
@@ -90,7 +90,7 @@ struct AprenderView: View {
                                         .shadow(radius: 7)
                                 }
                                 Text(namestopicsfront[index])
-                                    .font(.system(size: 14))
+                                    .font(.system(size: 13))
                                     .fontWeight(.semibold).padding()
                             }
                             Spacer()
@@ -130,7 +130,7 @@ struct AprenderView: View {
                                             .shadow(radius: 7)
                                     }
                                     Text(namestopicsfront[index])
-                                        .font(.system(size: 15.5))
+                                        .font(.system(size: 15))
                                         .fontWeight(.semibold).padding()
                                 }
                                 Spacer()

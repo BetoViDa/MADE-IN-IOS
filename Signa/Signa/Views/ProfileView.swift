@@ -85,7 +85,6 @@ struct ProfileView: View {
     var body: some View {
         ZStack{
             VStack {
-                
                 if(logedUser.lvl == 19){
                     Image("goldcup")
                     .scaleEffect(0.2)

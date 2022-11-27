@@ -62,7 +62,7 @@ struct TriviaView: View {
             
             VStack(spacing: 20){
                 
-                NavigationLink(destination: AprenderView().navigationBarBackButtonHidden(false), isActive: $showViewAprende){
+                NavigationLink(destination: AprenderView().navigationBarBackButtonHidden(true), isActive: $showViewAprende){
                     Text("")
                 }
                 
