@@ -42,15 +42,15 @@ mongo = PyMongo(app)  # mongo es nuestra base de datos (mongo.db)
 # =======================================
 
 #==========Configuración de los logs================
-#LOG_FILENAME = './tmp/logs.log'
-#logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
+LOG_FILENAME = './tmp/logs.log'
+logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
 
 #===================================================
 
-#@app.route('/ok', methods = ['GET'])
-#def Server():
-   #app.logger.debug('Arranque de la aplicacion')
-   #return {"msj": "hello world"}
+@app.route('/ok', methods = ['GET'])
+def Server():
+   app.logger.debug('Arranque de la aplicacion')
+   return {"msj": "hello world"}
 
 
 # ------------------------------SIGN UP USER----------------------------------
@@ -368,8 +368,8 @@ def getUserId(username):
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0',debug=True,port='5003')
+   app.run(debug=True)
+   #app.run(host='0.0.0.0',debug=True,port='5003')
 
 
 '''
