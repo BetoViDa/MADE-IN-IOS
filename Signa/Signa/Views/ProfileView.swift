@@ -113,8 +113,8 @@ struct ProfileView: View {
                     }
                     .shadow(radius: 7)
                 }else{
-                    Image("earth3")
-                    .scaleEffect(0.5)
+                    Image("earth")
+                        .scaleEffect(0.2)
                     .frame(width:100, height: 100)
                     .scaledToFit()
                     .clipShape(Circle())
@@ -122,14 +122,16 @@ struct ProfileView: View {
                         Circle().stroke(.white, lineWidth: 4)
                     }
                     .shadow(radius: 7)
+                    .padding(.top,20)
                 }
 
 
                 VStack{
                 Text("\(logedUser.username)")
                     .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
+                    .fontWeight(.semibold)
+                    .padding(.top, 1)
+                    .padding(.bottom, 1)
                 
                 HStack {
                     if(logedUser.group != ""){
@@ -156,6 +158,7 @@ struct ProfileView: View {
                     Text("Nivel: \(logedUser.lvl)")
                         .font(.subheadline)
                 }
+                    
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
@@ -178,11 +181,15 @@ struct ProfileView: View {
                                 HStack {
                                     Text(calis!.grades[grade].name)
                                         .padding(.horizontal)
+                                        .fontWeight(.semibold)
+                                
                                     Text(String(format: "%.2f",calis!.grades[grade].grade) + " %")
+                                        
+                                        
                                 }
                                 ZStack(alignment: .leading) {
                                     RoundedRectangle(cornerRadius: 20)
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color("adb5bd"))
                                         .frame(width: 300, height: 20)
                                     RoundedRectangle(cornerRadius: 20)
                                                     .foregroundColor(signaColor)

@@ -12,7 +12,7 @@ struct QuestionView: View {
     @EnvironmentObject var triviaManager: TriviaManager
     
     var body: some View {
-        ScrollView{
+        
             VStack(spacing: 40){
                 HStack{
                     title(text: "\(TriviaCategor)")
@@ -28,13 +28,14 @@ struct QuestionView: View {
                 ProgressBar(progress: triviaManager.progress)
                 
                 //Spacer()
-                VStack(alignment: .leading, spacing: 20){
+                ScrollView{
+                VStack(alignment: .center, spacing: 20){
                     
                     if(triviaManager.trivia[triviaManager.index].fileType){ // true = image
                         // mostramos una imagen
                         AsyncImage(url: URL(string: UrlDriveFiles + triviaManager.trivia[triviaManager.index].file)){ image in
-                            image.resizable().frame(width: 350, height: 230)
-                                .padding(.horizontal)
+                            image.resizable().frame(width: 300, height: 200)
+                                .padding(.horizontal,2)
                         } placeholder: {
                             ProgressView()
                         }
@@ -42,7 +43,7 @@ struct QuestionView: View {
                     } else {
                         // mostramos un video
                         VideoPlayer(player: AVPlayer(url: URL(string: UrlDriveFiles + triviaManager.trivia[triviaManager.index].file)!))
-                            .frame(width: 350, height: 230)
+                            .frame(width: 300, height: 200)
                             .padding(.horizontal)
                     }
                     
@@ -56,12 +57,11 @@ struct QuestionView: View {
                 Button{
                     triviaManager.goToNextQuestion()
                 } label:{
-                    PrimaryButtom(text: "Siguiente", background: triviaManager.answerSelected ?  Color("AccentColor") : Color("adb5bd") )
+                    PrimaryButtom(text: "Siguiente", background: triviaManager.answerSelected ?  Color("AccentColor") : Color("adb5bd") ).foregroundColor(Color(.white))
                 }
                 .disabled(!triviaManager.answerSelected)
                 
-            }.padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
     
