@@ -1,0 +1,7 @@
+
+DEBUG:api:Arranque de la aplicacion
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 10:29:49] "GET /ok HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'D:\\Escritorio\\ios\\Made-in-IOS\\api\\src\\api.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 534-507-880
