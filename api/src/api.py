@@ -12,6 +12,7 @@ pasos:
 # pip install flask-pymongo
 # pip install flask-cors
 # pip install python-dotenv  Para el archivo .env
+# pip install pyopenssl      Para https
 
 from dotenv import load_dotenv  # esto para las variables de entorno .env
 import os
@@ -367,7 +368,8 @@ def getUserId(username):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+   app.run(debug=True)
+   #app.run(ssl_context = "adhoc" ,debug=True) # ssl para https
 
 
 '''
