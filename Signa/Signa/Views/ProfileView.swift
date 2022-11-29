@@ -143,6 +143,7 @@ struct ProfileView: View {
                             .font(.subheadline)
                                 .foregroundColor(.white)
                                 .frame(alignment: .center)
+                                .padding()
                                 
                         }
                         .background(signaColor)
@@ -213,6 +214,7 @@ struct ProfileView: View {
                         Text("Unirse")
                             .foregroundColor(.white)
                             .frame(alignment: .center)
+                            .padding()
                     })
                         .background(signaColor)
                         .padding(5)
@@ -225,6 +227,7 @@ struct ProfileView: View {
                         Text("Salir")
                             .foregroundColor(.white)
                             .frame(alignment: .center)
+                            .padding()
                     })
                         .background(signaColor)
                         .padding(5)
