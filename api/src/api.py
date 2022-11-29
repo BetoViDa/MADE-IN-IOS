@@ -12,6 +12,7 @@ pasos:
 # pip install flask-pymongo
 # pip install flask-cors
 # pip install python-dotenv  Para el archivo .env
+# pip install pyopenssl      Para https
 
 from dotenv import load_dotenv  # esto para las variables de entorno .env
 import os
