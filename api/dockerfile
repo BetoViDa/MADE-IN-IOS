@@ -4,4 +4,4 @@ RUN python -m pip install python-dotenv
 RUN pip install Flask-PyMongo
 RUN pip install Flask-Cors
 RUN pip3 install Flask
-CMD [ "python3" , "src/api.py"]
+CMD [ "python3", "src/api.py", "-m" , "flask", "run", "--host=0.0.0.0"]

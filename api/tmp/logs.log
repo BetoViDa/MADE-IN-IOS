@@ -156,11 +156,38 @@ INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 12:10:07] "GET /user/grades/638530675fd
 INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 12:12:47] "GET /quiz/letras1 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 12:12:59] "GET /user/grades/638530675fd024930016eb53 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 12:13:00] "GET /categories/all/letras1 HTTP/1.1" 200 -
+<<<<<<< HEAD
+=======
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:11:19] "POST /user/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:11:22] "GET /group/John%20Deere HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:11:26] "GET /user/users/John%20Deere HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:11:28] "GET /group/John%20Deere HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:12:42] "POST /user/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:12:42] "GET /quiz/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:12:44] "GET /categories/all/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:12:45] "GET /user/grades/637e27571d17ac2b8b1fdfbf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:12:49] "GET /quiz/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:12:51] "GET /quiz/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:42] "POST /user/setGrade HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:50] "GET /quiz/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:51] "GET /categories/all/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:52] "GET /user/grades/637e27571d17ac2b8b1fdfbf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:53] "GET /categories/all/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:53] "GET /categories/all/letras HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:13:56] "GET /categories/file/letras/A HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:16:23] "GET /user/grades/637e27571d17ac2b8b1fdfbf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:16:26] "GET /quiz/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:20:59] "GET /categories/all/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:21:00] "GET /user/grades/637e27571d17ac2b8b1fdfbf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:21:01] "GET /categories/all/letras1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 14:21:02] "GET /quiz/letras1 HTTP/1.1" 200 -
+>>>>>>> 7e35a7876ab6c4223169980a153c6dea17d7217c
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
+<<<<<<< HEAD
 INFO:werkzeug: * Debugger PIN: 534-507-880
 INFO:werkzeug: * Detected change in 'D:\\Escritorio\\ios\\Made-in-IOS\\api\\src\\api.py', reloading
 INFO:werkzeug: * Restarting with stat
@@ -185,11 +212,15 @@ WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 534-507-880
 INFO:werkzeug: * Detected change in 'D:\\Escritorio\\ios\\Made-in-IOS\\api\\src\\api.py', reloading
 INFO:werkzeug: * Restarting with stat
+=======
+INFO:werkzeug: * Debugger PIN: 102-848-949
+>>>>>>> 7e35a7876ab6c4223169980a153c6dea17d7217c
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
+<<<<<<< HEAD
 INFO:werkzeug: * Debugger PIN: 534-507-880
 DEBUG:api:Arranque de la aplicacion
 INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 15:50:51] "GET /ok HTTP/1.1" 200 -
@@ -201,3 +232,19 @@ WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 534-507-880
 DEBUG:api:Arranque de la aplicacion
 INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 16:10:09] "GET /ok HTTP/1.1" 200 -
+=======
+INFO:werkzeug: * Debugger PIN: 102-848-949
+INFO:werkzeug: * Detected change in '/Users/macias/Documents/GitHub/Made-in-IOS/api/src/api.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 102-848-949
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://10.22.152.212:5003
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 102-848-949
+>>>>>>> 7e35a7876ab6c4223169980a153c6dea17d7217c
