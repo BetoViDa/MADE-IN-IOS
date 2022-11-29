@@ -361,10 +361,7 @@ def getUserId(username):
 
 if __name__ == "__main__":
    #app.run(debug=True)
-<<<<<<< HEAD
    #app.run(host='0.0.0.0',debug=True,port='5003')
-=======
->>>>>>> 11c940b2c565afc02669a4164d9a54be43166df8
    app.run(ssl_context = "adhoc" ,debug=True) # ssl para https
 
 
