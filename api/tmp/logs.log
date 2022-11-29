@@ -251,3 +251,5 @@ INFO:werkzeug:[33mPress CTRL+C to quit[0m
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 102-848-949
+INFO:werkzeug: * Detected change in '/Users/macias/Documents/GitHub/Made-in-IOS/api/src/api.py', reloading
+INFO:werkzeug: * Restarting with stat
