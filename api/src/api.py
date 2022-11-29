@@ -238,7 +238,7 @@ def setGrade():
                                 {"$set":
                                     {f'grades.{json["categorie"]}': json["grade"], 'level':calActual['level']+1}
                                  })
-         return {"msj": "Level UP"}
+         return {"msj": "Subes de nivel"}
       else:
          mongo.db.users.update_one({"_id": objId},
                                 {"$set":
