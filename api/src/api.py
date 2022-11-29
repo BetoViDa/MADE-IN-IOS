@@ -20,6 +20,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import hashlib  # para hashear la password con sha256
 from flask_cors import CORS
+import logging # esta libreria se usa para controlar los logs en un fichero
 import random
 
 app = Flask(__name__)  # inicializamos la app
@@ -38,6 +39,17 @@ app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':' + \
     DBpassword+'@cluster0.'+Cluster+'.mongodb.net/'+DataBase
 mongo = PyMongo(app)  # mongo es nuestra base de datos (mongo.db)
 # =======================================
+
+#==========Configuración de los logs================
+LOG_FILENAME = './tmp/logs.log'
+logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
+
+#===================================================
+
+@app.route('/ok', methods = ['GET'])
+def Server():
+   app.logger.debug('Arranque de la aplicacion')
+   return {"msj": "hello world"}
 
 
 # ------------------------------SIGN UP USER----------------------------------
