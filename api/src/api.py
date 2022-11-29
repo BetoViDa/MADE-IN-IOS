@@ -37,7 +37,7 @@ Cluster = os.getenv("CLUSTER_MONDOGO")
 
 # =====Conexión a la base de datos=======
 app.config['MONGO_URI'] = 'mongodb+srv://'+DBuser+':' + \
-    DBpassword+'@cluster0.'+Cluster+'.mongodb.net/'+DataBase
+                           DBpassword+'@cluster0.'+Cluster+'.mongodb.net/'+DataBase
 mongo = PyMongo(app)  # mongo es nuestra base de datos (mongo.db)
 # =======================================
 
@@ -57,63 +57,61 @@ def Server():
 # falta cifrar datos sensibles como password y correo
 @app.route('/user/signup', methods=['POST'])
 def create_user():
+   '''
+   {
+   "username":"Leopoldo",
+   "password": "123",
+   "email": "Leopoldo@mail.com"
+   }
+   '''
+   # {"username":nombre,"password":pass,"email":mail,"type":0,}
+   json = request.json
+   username  =  json["username"]    
+   email     =  json["email"].lower() 
+   password  =  hashlib.sha256(json["password"].encode()).hexdigest()    # password hasheado
+   print(username)
+   # si encuentra un usuario con ese username manda error
+   if mongo.db.users.find_one({'username': username}) != None:
+      return {'msj': 'ya existe este username', 'ERROR': 'si'}
+   # si encuentro un usuario con este email mando error
+   if mongo.db.users.find_one({'email': email}) != None:
+      return {'msj': 'ya esta en uso este correo', 'ERROR': 'si'}
    
-    '''
-    {
-    "username":"Leopoldo",
-    "password": "123",
-    "email": "Leopoldo@mail.com"
-    }
-    '''
-    # {"username":nombre,"password":pass,"email":mail,"type":0,}
-    json = request.json
-
-    username  =  json["username"]    
-    email     =  json["email"].lower() 
-    password  =  hashlib.sha256(json["password"].encode()).hexdigest()    # password hasheado
-    print(username)
-    # si encuentra un usuario con ese username manda error
-    if mongo.db.users.find_one({'username': username}) != None:
-        return {'msj': 'ya existe este username', 'ERROR': 'si'}
-    # si encuentro un usuario con este email mando error
-    if mongo.db.users.find_one({'email': email}) != None:
-        return {'msj': 'ya esta en uso este correo', 'ERROR': 'si'}
-
-    if json['username'] and json['password'] and json['email'] and (json['username'] != "") and (json['password'] != "") and (json['email'] != ""):
-        json['email'] = email # ponemos el mail encriptado
-        json['username'] = username # ponemos el username encriptado
-        json['password'] = password # ponemos la password hasheado
-        json["grades"] = {
-            "verboscomunes1":   0,
-            "verboscomunes2":   0,
-            "verboscomunes3":   0,
-            "verboscomunes4":   0,
-            "letras1":          0,
-            "letras2":          0,
-            "letras3":          0,
-            "verbosnarrativos1": 0,
-            "verbosnarrativos2": 0,
-            "preposiciones1":   0,
-            "preposiciones2":   0,
-            "preposiciones3":   0,
-            "preposiciones4":   0,
-            "preposiciones5":   0,
-            "preposiciones6":   0,
-            "preposiciones7":   0,
-            "preposiciones8":   0,
-            "preposiciones9":   0,
-            "preposiciones10":  0,
-            "preposiciones11":  0
-        }
-        json["level"] = 0
-        json["type"] = 0  # es usuario normal
-        json['group'] = ''
-        id = mongo.db.users.insert_one(json)
-        json['_id'] = str(id.inserted_id)
-        return {'msj': 'usuario guardado', 'ERROR': 'no'}  # mensaje de exito
-    else:
-        return {'msj': 'falta un campo', 'ERROR': 'si'}  # mensaje de error
-# =====================================================================================================
+   if json['username'] and json['password'] and json['email'] and (json['username'] != "") and (json['password'] != "") and (json['email'] != ""):
+      json['email'] = email # ponemos el mail encriptado
+      json['username'] = username # ponemos el username encriptado
+      json['password'] = password # ponemos la password hasheado
+      json["grades"] = {
+         "verboscomunes1":   0,
+         "verboscomunes2":   0,
+         "verboscomunes3":   0,
+         "verboscomunes4":   0,
+         "letras1":          0,
+         "letras2":          0,
+         "letras3":          0,
+         "verbosnarrativos1": 0,
+         "verbosnarrativos2": 0,
+         "preposiciones1":   0,
+         "preposiciones2":   0,
+         "preposiciones3":   0,
+         "preposiciones4":   0,
+         "preposiciones5":   0,
+         "preposiciones6":   0,
+         "preposiciones7":   0,
+         "preposiciones8":   0,
+         "preposiciones9":   0,
+         "preposiciones10":  0,
+         "preposiciones11":  0
+      }
+      json["level"] = 0
+      json["type"] = 0  # es usuario normal
+      json['group'] = ''
+      id = mongo.db.users.insert_one(json)
+      json['_id'] = str(id.inserted_id)
+      return {'msj': 'usuario guardado', 'ERROR': 'no'}  # mensaje de exito
+   else:
+      return {'msj': 'falta un campo', 'ERROR': 'si'}  # mensaje de error
+# ====================================================================================================
 
 # -----------------------------LOGIN---------------------------------------
 # falta cifrado de la contraseña para comparar contraseña cifrada con no cifrada
@@ -128,30 +126,30 @@ def login():
    # reviso si el usuario puso su username o su correo
    password = hashlib.sha256(json["password"].encode()).hexdigest()
    if "@" in json['username']:  # es un correo
-     email = json["username"].lower()
-     
-     data = mongo.db.users.find_one({'email': email, 'password': password}, {
+      email = json["username"].lower()
+
+      data = mongo.db.users.find_one({'email': email, 'password': password}, {
                                       '_id': 1, 'username': 1, 'email': 1, 'group': 1, 'type': 1, 'level':1})
    else:
-     username = json["username"]
-     data = mongo.db.users.find_one({'username': username, 'password': password}, {
+      username = json["username"]
+      data = mongo.db.users.find_one({'username': username, 'password': password}, {
                                       '_id': 1, 'username': 1, 'email': 1, 'group': 1, 'type': 1, 'level':1})
    
    if data == None:
-       if "@" in json['username']:
-           return {'ERROR': "correo o contraseña incorrecta"}
-       else:
-           return {'ERROR': "nombre de usuario o contraseña incorrecta"}
+      if "@" in json['username']:
+         return {'ERROR': "correo o contraseña incorrecta"}
+      else:
+         return {'ERROR': "nombre de usuario o contraseña incorrecta"}
    else:
-       r = {
-           '_id': str(data['_id']),
-           'username':data['username'],
-           'email': data['email'],
-           'type': data['type'],  # 1 admin,   0 normal
-           'group': data['group'],
-           'lvl': data['level']
-       }
-       return r
+      r = {
+         '_id': str(data['_id']),
+         'username':data['username'],
+         'email': data['email'],
+         'type': data['type'],  # 1 admin,   0 normal
+         'group': data['group'],
+         'lvl': data['level']
+      }
+      return r
    # regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
    # si el usuario tiene grupo regresa
    #{"_id":string, "username": string, "email": string, "type": bool, "group":string}
@@ -198,14 +196,14 @@ def joinGroup():
 
 @app.route('/user/leaveGroup', methods=['POST'])
 def leaveGroup():
-    # {"_id":636c330384831804d80d0283}
-    id = request.json["_id"]
-    objInstance = ObjectId(id)
-    mongo.db.users.update_one(
-        {"_id": objInstance},
-        {"$unset": {"group": 1}}
-    )
-    return {"msj": "te saliste del grupo"}
+   # {"_id":636c330384831804d80d0283}
+   id = request.json["_id"]
+   objInstance = ObjectId(id)
+   mongo.db.users.update_one(
+      {"_id": objInstance},
+      {"$unset": {"group": 1}}
+   )
+   return {"msj": "te saliste del grupo"}
 # =========================================================================
 
 # --------------------Mostrar grades para niveles-----------------------
@@ -232,21 +230,20 @@ def setGrade():
    objId = ObjectId(id)
    # para revizar si la nueva calificación es mayor o menor
    calActual = mongo.db.users.find_one(
-       {"_id": objId}, {f'grades.{json["categorie"]}': 1, '_id': 0, 'level':1})
+      {"_id": objId}, {f'grades.{json["categorie"]}': 1, '_id': 0, 'level':1})
    if calActual["grades"][json["categorie"]] < json["grade"]:
       if (calActual["grades"][json["categorie"]] < 70) and (json["grade"] >= 70):
          mongo.db.users.update_one({"_id": objId},
-                                {"$set":
+                              {"$set":
                                     {f'grades.{json["categorie"]}': json["grade"], 'level':calActual['level']+1}
-                                 })
+                              })
          return {"msj": "Subes de nivel"}
       else:
          mongo.db.users.update_one({"_id": objId},
-                                {"$set":
+                                 {"$set":
                                     {f'grades.{json["categorie"]}': json["grade"]}
                                  })
       return {"msj": f'Calificación de {json["categorie"]} actualizada a {json["grade"]:.2f}'}
-       
    return {"msj": f'La calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]:.2f}'}
 
 # =======================================================================
@@ -262,33 +259,33 @@ def setGrade():
 # ----------------mostrar todas las palabras--------------
 @app.route('/categories/all/<categorie>', methods=['GET'])
 def showCategories(categorie):
-    # muestra todas las palabras de una categoria completa, ignorando el numero del nivel de categoria
-    # por ejemplo, /categories/all/verboscomunes regresa todas las palabras de verboscomunes 1, 2 ,3 y 4
-    datas = mongo.db.categories.find(
-        {"name": {'$regex': f'^{categorie}'}}, {"words": 1})
-    r = []
-    for data in datas:
-        for word in data["words"]:
-            print(word["name"])
-            r.append(word["name"])
-    r.sort()
-    return {"palabra": r}
+   # muestra todas las palabras de una categoria completa, ignorando el numero del nivel de categoria
+   # por ejemplo, /categories/all/verboscomunes regresa todas las palabras de verboscomunes 1, 2 ,3 y 4
+   datas = mongo.db.categories.find(
+      {"name": {'$regex': f'^{categorie}'}}, {"words": 1})
+   r = []
+   for data in datas:
+      for word in data["words"]:
+         print(word["name"])
+         r.append(word["name"])
+   r.sort()
+   return {"palabra": r}
 # ========================================================================
 
 # -----------------mostrar video de una palabra--------------------------
 @app.route('/categories/file/<categorie>/<SearchWord>', methods=['GET'])
 def getFile(categorie, SearchWord):
-    # http://127.0.0.1:5000//categories/file/verboscomunes/explicar
-    # regresa
-    # https://drive.google.com/file/d/1-yPXEYY8Pi3ly_XVFb8ND5ewC4l67ZKB/view?usp=share_link
-    datas = mongo.db.categories.find(
-        {"name": {'$regex': f'^{categorie}'}}, {"words": 1})
-    r = []
-    for data in datas:
-        for word in data["words"]:
-            if word["name"] == SearchWord:
-                return {"file": word["file"], "fileType": word["fileType"]}
-    return r
+   # http://127.0.0.1:5000//categories/file/verboscomunes/explicar
+   # regresa
+   # https://drive.google.com/file/d/1-yPXEYY8Pi3ly_XVFb8ND5ewC4l67ZKB/view?usp=share_link
+   datas = mongo.db.categories.find(
+      {"name": {'$regex': f'^{categorie}'}}, {"words": 1})
+   r = []
+   for data in datas:
+      for word in data["words"]:
+         if word["name"] == SearchWord:
+            return {"file": word["file"], "fileType": word["fileType"]}
+   return r
 # =======================================================================
 
 # ----------------mostrar palabras de una categoria-----------------------
@@ -296,8 +293,8 @@ def getFile(categorie, SearchWord):
 
 @app.route('/categories/words/<categorie>', methods=['GET'])
 def getWords(categorie):
-    datas = mongo.db.categories.find_one({"name": categorie})["words"]
-    return datas
+   datas = mongo.db.categories.find_one({"name": categorie})["words"]
+   return datas
 # ========================================================================
 
 # ---------------------Crear un quiz-------------------------------------
@@ -305,31 +302,29 @@ def getWords(categorie):
 
 @app.route('/quiz/<categorie>', methods=['GET'])
 def createQuiz(categorie):
-    words = getWords(categorie)
-
-    quiz = []
-    for x in range(len(words)):
-        pregutna = {}
-        pregutna["file"] = words[x]["file"]
-        pregutna["answer"] = words[x]["name"]
-        # True = imagen         false =
-        pregutna["fileType"] = words[x]["fileType"]
-        pregutna["options"] = []
-        # metemos de forma random 3 respuestas incorrectas
-        posiblesOpciones = words.copy()  # copias las palabras
-        # eliminas la palabra que ya esta en la lista de opciones
-        posiblesOpciones.pop(x)
-        for _ in range(3):
-            r = random.choice(posiblesOpciones)
-            pregutna["options"].append(r["name"])
-            posiblesOpciones.remove(r)
-        random.shuffle(pregutna["options"])  # revolvemos las respuestas
-        quiz.append(pregutna)
-
-    random.shuffle(quiz)
-    response = {'results': quiz}
-    return response
-# =======================================================================
+   words = getWords(categorie)
+   quiz = []
+   for x in range(len(words)):
+      pregutna = {}
+      pregutna["file"] = words[x]["file"]
+      pregutna["answer"] = words[x]["name"]
+      # True = imagen         false =
+      pregutna["fileType"] = words[x]["fileType"]
+      pregutna["options"] = []
+      # metemos de forma random 3 respuestas incorrectas
+      posiblesOpciones = words.copy()  # copias las palabras
+      # eliminas la palabra que ya esta en la lista de opciones
+      posiblesOpciones.pop(x)
+      for _ in range(3):
+         r = random.choice(posiblesOpciones)
+         pregutna["options"].append(r["name"])
+         posiblesOpciones.remove(r)
+      random.shuffle(pregutna["options"])  # revolvemos las respuestas
+      quiz.append(pregutna)
+   random.shuffle(quiz)
+   response = {'results': quiz}
+   return response
+# ======================================================================
 
 
 # =========================================================================
@@ -341,35 +336,33 @@ def createQuiz(categorie):
 # ejemplo /group/John%20Deere
 @app.route('/group/<group>', methods=['GET'])
 def getPorQuiz(group):
-    count = 0
-    r = {}
-
-    for i in mongo.db.users.find({'group': group, 'type':0}, {'grades': 1}):
-        count += 1
-
-        for j in i['grades']:
-            if i['grades'][j] > 70:  # si aprobo
-                # aumentamos el numero de personas en el dic, el get nos setea en 0 si no existe en el dic
-                r[j] = (((r.get(j, 0)/100)*(count-1) + 1)/count)*100
-            else:
-                r[j] = (((r.get(j, 0)/100)*(count-1))/count)*100
-    # lo ponemos en un areglo de jsons
-    result = []
-    for i in r:  # i guarda la key del dic
-        result.append({"name": i, "grade": r[i]})
-
-    return {"grades": result}
+   count = 0
+   r = {}
+   for i in mongo.db.users.find({'group': group, 'type':0}, {'grades': 1}):
+      count += 1
+      for j in i['grades']:
+         if i['grades'][j] > 70:  # si aprobo
+            # aumentamos el numero de personas en el dic, el get nos setea en 0 si no existe en el dic
+            r[j] = (((r.get(j, 0)/100)*(count-1) + 1)/count)*100
+         else:
+            r[j] = (((r.get(j, 0)/100)*(count-1))/count)*100
+   # lo ponemos en un areglo de jsons
+   result = []
+   for i in r:  # i guarda la key del dic
+      result.append({"name": i, "grade": r[i]})
+   return {"grades": result}
 
 
 @app.route('/UserGrade/<username>', methods=['GET'])
 def getUserId(username):
-    data = mongo.db.users.fin({'username': username},  {'grades': 1, '_id': 0})
-    return data
+   data = mongo.db.users.fin({'username': username},  {'grades': 1, '_id': 0})
+   return data
 
 
 if __name__ == "__main__":
    app.run(debug=True)
    #app.run(host='0.0.0.0',debug=True,port='5003')
+   #app.run(ssl_context = "adhoc" ,debug=True) # ssl para https
 
 
 '''
