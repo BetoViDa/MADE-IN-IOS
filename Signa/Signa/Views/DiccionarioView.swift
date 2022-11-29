@@ -40,7 +40,7 @@ struct DiccionarioView: View {
     //var resultados : [Palabras]
     
     func loadWord(){
-        guard let url = URL(string: "http://127.0.0.1:5000/categories/all/\(topicword)") else {
+        guard let url = URL(string: APIURL + "/categories/all/\(topicword)") else {
                     print("Invalid URL")
                     return
                 }
@@ -64,7 +64,7 @@ struct DiccionarioView: View {
     func loadArchivo(palabra: String){
         //
         self.palabraSelec = palabra
-        guard let url = URL(string: "http://127.0.0.1:5000/categories/file/\(topicword)/\(palabra)") else {
+        guard let url = URL(string:APIURL + "/categories/file/\(topicword)/\(palabra)") else {
                     print("Invalid URL")
                     return
                 }
@@ -164,7 +164,7 @@ struct DiccionarioView: View {
                     
                     if (((archivoID?.file) != nil) && archivoID?.fileType == true) {
                         // mostramos una imagen
-                        AsyncImage(url: URL(string: UrlDriveFiles + archivoID!.file)){ phase in
+                        AsyncImage(url: URL(string: urlFiles+self.palabraSelec.lowercased()+".JPG")){ phase in
                             switch phase {
                             case .success(let image):
                                 image.resizable()
@@ -181,7 +181,7 @@ struct DiccionarioView: View {
                         }
                         
                     } else if (((archivoID?.file) != nil) && archivoID?.fileType == false) {
-                        VideoPlayer(player: AVPlayer(url: URL(string: UrlDriveFiles + archivoID!.file)!))
+                        VideoPlayer(player: AVPlayer(url: URL(string: urlFiles + self.palabraSelec + "_Web.m4v")!))
                             .frame(width: 300, height: 200)
                         /*
                         {phase in switch phase {
