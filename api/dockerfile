@@ -1,0 +1,7 @@
+FROM python:3.9.15-slim-bullseye
+COPY . .
+RUN python -m pip install python-dotenv
+RUN pip install Flask-PyMongo
+RUN pip install Flask-Cors
+RUN pip3 install Flask
+CMD [ "python3" , "src/api.py"]
