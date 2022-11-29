@@ -5,21 +5,26 @@ struct ContentView : View {
     var body: some View {
         NavigationView {
             VStack {
+               
                 Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width:350)
                 //.imageScale(.small)
                 //.foregroundColor(.accentColor)
-                Text("Inicia sesión").font(.system(size:30, weight: .bold, design: .rounded))
-
+                Text("Inicia sesión").font(.system(size:30, weight: .bold, design: .rounded)).foregroundColor(Color("adb5bd"))
+                
                 NavigationLink(destination: Login()) {
-                    Image("user")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width:50)
-                        .padding(.horizontal,10)
-                    Text(  "Iniciar sesión     ").padding(.horizontal,10)
+                    
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:40)
+                            .padding(.horizontal,5)
+                            .foregroundColor(.white)
+                    Text(  "Iniciar sesión     .").foregroundColor(.white).fontWeight(.semibold)
+                    
+                   
                     
                    
                 }.fontWeight(.light)
@@ -29,16 +34,19 @@ struct ContentView : View {
                     .padding(.horizontal,1)
                     .overlay(
                         Capsule(style: .continuous)
-                            .stroke(Color.gray, style: StrokeStyle(lineWidth: 2))).frame(width:200)
+                            .stroke(Color("AccentColor"), style: StrokeStyle(lineWidth: 2)))
+                    .background(Capsule().fill(Color("AccentColor")))
+                    .frame(width:200)
                 
                 
                 NavigationLink(destination: SignUp()) {
-                                     Image("user")
+                                     Image(systemName: "plus.circle.fill")
                                          .resizable()
                                          .scaledToFit()
-                                         .frame(width:50)
-                                         .padding(.horizontal,10)
-                                     Text(  "Registro       ").padding(.horizontal,15)
+                                         .frame(width:40)
+                                         .padding(.horizontal,6)
+                                         .foregroundColor(Color("adb5bd"))
+                                     Text(  "Registro             .").foregroundColor(Color("adb5bd")).fontWeight(.semibold)
                                      
                                     
                                  }.fontWeight(.light)
@@ -48,7 +56,7 @@ struct ContentView : View {
                                      .padding(.horizontal,1)
                                      .overlay(
                                          Capsule(style: .continuous)
-                                             .stroke(Color.gray, style: StrokeStyle(lineWidth: 2))).frame(width:200)
+                                             .stroke(Color("adb5bd"), style: StrokeStyle(lineWidth: 2))).frame(width:200)
                    
           }
         }

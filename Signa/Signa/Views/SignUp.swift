@@ -147,17 +147,17 @@ struct SignUp: View {
                         Text("\(msjErrorSignUp)")
                         Text("\(msjError)").font(.system(size: 9))
             
-                        TextField("Username", text: $username).padding().background(Capsule()
+                        TextField("Usuario", text: $username).padding().background(Capsule()
                             .strokeBorder(Color.gray,lineWidth: 0.8)
                             .background(Color.white)
                             .clipped()).cornerRadius(10.0).padding(.horizontal,30.0)
                         Text("\(msjErrorNombre)").font(.system(size: 9))
-                        TextField("Email", text: $email).padding().background(Capsule()
+                        TextField("Correo", text: $email).padding().background(Capsule()
                             .strokeBorder(Color.gray,lineWidth: 0.8)
                             .background(Color.white)
                             .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
                         Text("\(msjErrorMail)").font(.system(size: 9))
-                        SecureField("Password", text: $password).padding().background(Capsule()
+                        SecureField("Contraseña", text: $password).padding().background(Capsule()
                             .strokeBorder(Color.gray,lineWidth: 0.8)
                             .background(Color.white)
                             .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
@@ -166,7 +166,7 @@ struct SignUp: View {
                         //Spacer()
                         Button("Registrate"){
                             makePostRequest()
-                        }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
+                        }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold).font(.system(size:17, weight: .bold, design: .rounded))
                     }
                     HStack{
                         Button (action : {
@@ -175,15 +175,24 @@ struct SignUp: View {
                             Text("Términos y Condiciones")
                                 .foregroundColor(.blue)
                                 .font(.system(size: 15))
+                                
                         }
+                        Text("|")
+                            .foregroundColor(Color("adb5bd"))
+                            .font(.system(size: 15))
+                            .padding(.horizontal,2)
+                       
                         Button (action : {
                             popupAvisPriv = true
                         }){
                             Text("Aviso de Privacidad")
                                 .foregroundColor(.blue)
                                 .font(.system(size: 15))
+
+                            
                         }
                     }.padding(.all)
+                   
                     Text("\(msjErrorTyC)").font(.system(size: 9))
                 }
                 
