@@ -193,3 +193,11 @@ WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 534-507-880
 DEBUG:api:Arranque de la aplicacion
 INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 15:50:51] "GET /ok HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 534-507-880
+DEBUG:api:Arranque de la aplicacion
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2022 16:10:09] "GET /ok HTTP/1.1" 200 -
