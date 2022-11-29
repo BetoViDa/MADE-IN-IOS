@@ -77,10 +77,7 @@ struct ProfileView: View {
         var name : String
         var grade : Float
     }
-    
-    
-    
-     
+ 
 
     var body: some View {
         ZStack{

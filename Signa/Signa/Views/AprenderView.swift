@@ -32,7 +32,7 @@ struct AprenderView: View {
                                 VStack(alignment: .center){
                                     Button(action: {
                                         TriviaCategor = namestopicsapi[index]
-                               
+                                            
                                         Task.init{
                                             await triviaManager.fetchTrivia()
                                             showview = true

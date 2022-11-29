@@ -11,16 +11,14 @@ import SwiftUI
 struct Main: View {
     @State var selectedIndex = 0
     
-    let icons = ["graduationcap",
-                 "book",
-                 "person",
-                
-                ]
+    let icons = ["graduationcap", "book", "person"]
+    let vartitles = ["Aprende", "Diccionario", "Perfil"]
+    
+    
     var body: some View {
         NavigationView{
             VStack {
                 //Content
-                
                 ZStack{
                     switch selectedIndex{
                     case 0:
@@ -28,7 +26,6 @@ struct Main: View {
                             VStack{
                                 AprenderView()
                             }
-                            
                         }
                     case 1:
                         NavigationView {
@@ -62,7 +59,6 @@ struct Main: View {
                                 .font(.system(size: 25,weight: .regular, design: .default) )
                                 .foregroundColor( selectedIndex == number ? Color("AccentColor") : Color(UIColor.lightGray))
                             
-                            
                             Spacer()
                         }
                                
@@ -73,7 +69,18 @@ struct Main: View {
                     
                 }.background(.white)
                 
-            }//
+                HStack{
+                    ForEach(0...2, id: \.self){index in
+                        Spacer()
+                        Text("\(vartitles[index])")
+                            .font(.system(size: 15))
+                            .foregroundColor(selectedIndex == index ? Color("AccentColor") : Color(UIColor.lightGray))
+                        Spacer()
+                        Spacer()
+                    }
+                }
+                
+            }
         }.navigationBarBackButtonHidden(true)
     }
 }

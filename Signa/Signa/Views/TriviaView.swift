@@ -66,10 +66,14 @@ struct TriviaView: View {
                     Text("")
                 }
                 
-                title(text:"Quizz")
+                title(text:"\(TriviaCategor)")
                 Text("Tu puntuación fue \(triviaManager.score) de \(triviaManager.length)")
+                    .foregroundColor(.black)
                 
                 Text(mensj?.msj ?? "")
+                    .foregroundColor(.black)
+                    .fontWeight(.bold)
+                
 
                 Button{
                     Task.init{

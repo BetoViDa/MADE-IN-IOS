@@ -144,6 +144,19 @@ def login():
    #{"_id":string, "username": string, "email": string, "type": bool, "group":string}
 # =========================================================================
 
+# -------------------------------Users group---------------------------------
+
+@app.route('/user/users/<group>', methods=['GET'])
+def usersGroup(group):
+   users = mongo.db.users.find({'group': group, 'type': 0}, {'username': 1, '_id':1, 'level':1})
+   data = []
+
+   for user in users:
+      data.append({"username":user['username'], "_id":str(user["_id"]), "lvl": user["level"]})
+   return {"usersL": data}
+
+#============================================================================
+
 # -------------------------------Join Group---------------------------------
 
 
@@ -183,16 +196,11 @@ def leaveGroup():
 # =========================================================================
 
 # --------------------Mostrar grades para niveles-----------------------
-
-
 @app.route('/user/grades/<_id>', methods=['GET'])
 def checkGrades(_id):
    #{username:leo, _id: 12312412414}
 
    objInstance = ObjectId(_id)
-
-
-
    data = mongo.db.users.find_one({'_id': objInstance}, {'grades': 1})
    r = []
    for key in data["grades"]:
@@ -203,8 +211,6 @@ def checkGrades(_id):
 # ========================================================================
 
 # --------------------------Actualizar calificacion----------------------
-
-
 @app.route('/user/setGrade', methods=['POST'])
 def setGrade():
    # {_id:13325fdsf, categorie:letras1, grade:90}
@@ -257,8 +263,6 @@ def showCategories(categorie):
 # ========================================================================
 
 # -----------------mostrar video de una palabra--------------------------
-
-
 @app.route('/categories/file/<categorie>/<SearchWord>', methods=['GET'])
 def getFile(categorie, SearchWord):
     # http://127.0.0.1:5000//categories/file/verboscomunes/explicar
@@ -327,7 +331,7 @@ def getPorQuiz(group):
     count = 0
     r = {}
 
-    for i in mongo.db.users.find({'group': group}, {'grades': 1}):
+    for i in mongo.db.users.find({'group': group, 'type':0}, {'grades': 1}):
         count += 1
 
         for j in i['grades']:
@@ -339,9 +343,9 @@ def getPorQuiz(group):
     # lo ponemos en un areglo de jsons
     result = []
     for i in r:  # i guarda la key del dic
-        result.append({"name": i, "percentage": r[i]})
+        result.append({"name": i, "grade": r[i]})
 
-    return {"data": result}
+    return {"grades": result}
 
 
 @app.route('/UserGrade/<username>', methods=['GET'])

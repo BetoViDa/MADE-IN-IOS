@@ -152,7 +152,7 @@ struct DiccionarioView: View {
                             }
                         }
                     }
-                }.navigationTitle("Tópicos").navigationBarTitleDisplayMode(.automatic)
+                }.navigationTitle("Diccionario").navigationBarTitleDisplayMode(.automatic)
             }
         }
         if presentPopup {

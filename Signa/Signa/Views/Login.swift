@@ -16,6 +16,9 @@ struct Login: View {
     @State var username: String = ""
     @State var password: String = ""
     @State var showViewMain: Bool = false
+    @State var showViewAdmin: Bool = false
+    
+    @State var showBack: Bool = false
     
     func APILogIn(){
         
@@ -39,7 +42,16 @@ struct Login: View {
                 // en este do intentaremos crear el usuario
                 let response = try JSONDecoder().decode(User.self, from: data)// tratamos de decodearlo en una estructura de tipo User
                 logedUser = response
-                showViewMain = true
+                
+                if(logedUser.type == 0){
+                    showViewMain = true
+                    showBack = true
+                }
+                else{
+                    showViewAdmin = true
+                    showBack = true
+                }
+                
                 errorMsj = ""
             }
             catch{
@@ -55,33 +67,35 @@ struct Login: View {
     }
     
     var body: some View {
-            NavigationView{
-                VStack{
-                    NavigationLink(destination: Main(), isActive: $showViewMain){
-                        Text("")
-                    }
-                    Spacer()
-                    Image("logoSigna").resizable().frame(width: 300, height:200)
-                    Text("\(errorMsj)")
-                    TextField("Username", text:
-                                $username).padding().background(Capsule()
-                                    .strokeBorder(Color.gray,lineWidth: 0.8)
-                                    .background(Color.white)
-                                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
-                    SecureField("Password", text: $password).padding().background(Capsule()
-                        .strokeBorder(Color.gray,lineWidth: 0.8)
-                        .background(Color.white)
-                        .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
-                    
-                
-                    Button("Ingresar"){
-                        APILogIn()
-                    }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
-                    Spacer()
+        NavigationView{
+            VStack{
+                NavigationLink(destination: Main(), isActive: $showViewMain){
+                    Text("")
                 }
-                
-            }.navigationBarBackButtonHidden(true)
-        }
+                NavigationLink(destination: AdminView(),
+                    isActive: $showViewAdmin){
+                    Text("")
+                }
+                Spacer()
+                Image("logoSigna").resizable().frame(width: 300, height:200)
+                Text("\(errorMsj)")
+                TextField("Username", text: $username)
+                    .padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                SecureField("Password", text: $password)
+                    .padding().background(Capsule()
+                    .strokeBorder(Color.gray,lineWidth: 0.8)
+                    .background(Color.white)
+                    .clipped()).cornerRadius(5.0).padding(.horizontal,30.0)
+                Button("Ingresar"){
+                    APILogIn()
+                }.buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(Color.accentColor).foregroundColor(.white).controlSize(.large).fontWeight(.bold)
+                Spacer()
+            }
+        }.navigationBarBackButtonHidden(showBack)
+    }
 }
 
 struct Login_Previews: PreviewProvider {
