@@ -46,11 +46,12 @@ LOG_FILENAME = './tmp/logs.log'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
 
 #===================================================
+secret = {"secret": "esto esta oculto"}
 
-@app.route('/ok', methods = ['GET'])
-def Server():
+@app.route('/ok/<msj>', methods = ['GET'])
+def Server(msj):
    app.logger.debug('Arranque de la aplicacion')
-   return {"msj": "hello world"}
+   return {"msj": f"hello world {msj}"}
 
 
 # ------------------------------SIGN UP USER----------------------------------
@@ -224,7 +225,7 @@ def leaveGroup():
 @app.route('/user/grades/<_id>', methods=['GET'])
 def checkGrades(_id):
    #{username:leo, _id: 12312412414}
-
+   
    objInstance = ObjectId(_id)
    data = mongo.db.users.find_one({'_id': objInstance}, {'grades': 1})
    r = []
@@ -289,6 +290,7 @@ def showCategories(categorie):
          print(word["name"])
          r.append(word["name"])
    r.sort()
+   app.logger.info(f"se mostraron todas la palabras de {categorie}")
    return {"palabra": r}
 # ========================================================================
 
@@ -304,7 +306,9 @@ def getFile(categorie, SearchWord):
    for data in datas:
       for word in data["words"]:
          if word["name"] == SearchWord:
+            app.logger.info(f"se encontro la palabra {SearchWord}")
             return {"file": word["file"], "fileType": word["fileType"]}
+   app.logger.debug(f"no se encontro la palabra {SearchWord}")
    return r
 # =======================================================================
 
@@ -314,6 +318,7 @@ def getFile(categorie, SearchWord):
 @app.route('/categories/words/<categorie>', methods=['GET'])
 def getWords(categorie):
    datas = mongo.db.categories.find_one({"name": categorie})["words"]
+   app.logger.info(f"Se mostro quiz de {categorie}")
    return datas
 # ========================================================================
 
@@ -343,6 +348,7 @@ def createQuiz(categorie):
       quiz.append(pregutna)
    random.shuffle(quiz)
    response = {'results': quiz}
+   app.logger.info(f"Se mostro quiz de {categorie}")
    return response
 # ======================================================================
 
