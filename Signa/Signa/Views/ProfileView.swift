@@ -129,14 +129,17 @@ struct ProfileView: View {
                 VStack{
                 Text("\(logedUser.username)")
                     .font(.title)
-                    .fontWeight(.semibold)
+                    .fontWeight(.semibold).foregroundColor(.gray)
                     .padding(.top, 1)
                     .padding(.bottom, 1)
                 
                 HStack {
                     if(logedUser.group != ""){
-                        Text("Grupo: \(logedUser.group)")
-                            .font(.title2)
+                        Text("Grupo: ")
+                            .fontWeight(.bold).foregroundColor(Color("AccentColor"))
+                        Text("\(logedUser.group)")
+                            .fontWeight(.bold).foregroundColor(.gray)
+                            
                     }else { 
                         Button ( action:{
                                 self.presentPopup = true
@@ -156,7 +159,7 @@ struct ProfileView: View {
 
                     Spacer()
                     Text("Nivel: \(logedUser.lvl)")
-                        .font(.subheadline)
+                        .font(.subheadline) .fontWeight(.bold)
                 }
                     
                     .font(.subheadline)
@@ -165,7 +168,7 @@ struct ProfileView: View {
                 
                 Divider()
     
-            }
+            }.padding(.top, 3)
             .onAppear(){
                 sacarCalificaciones()
             }

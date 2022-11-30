@@ -77,7 +77,7 @@ struct usersList: View {
         Spacer()
         Text("Usuarios de \(logedUser.group)")
             .font(.title)
-            .fontWeight(.bold)
+            .fontWeight(.bold).foregroundColor(.gray)
         ScrollView{
             VStack{
                 Spacer(minLength: 6.0)

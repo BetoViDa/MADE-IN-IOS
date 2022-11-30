@@ -110,8 +110,8 @@ struct AdminView: View {
                             }
                             .shadow(radius: 7)
                     }else{
-                        Image("earth3")
-                            .scaleEffect(0.5)
+                        Image("earth")
+                            .scaleEffect(0.2)
                             .frame(width:100, height: 100)
                             .scaledToFit()
                             .clipShape(Circle())
@@ -122,20 +122,20 @@ struct AdminView: View {
                     }
                     
                     
-                    VStack{
-                        
-                        HStack {
-                            Text("Grupo: \(logedUser.group)")
-                                .padding(.horizontal)
-                                .font(.title)
-                                .fontWeight(.bold)
-                        }
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        
+                    VStack(alignment: .center, spacing: 20){
                         Text("\(logedUser.username)")
-                            .font(.title2)
-                            .padding()
+                            .font(.system(size:15, weight: .semibold, design: .rounded)).foregroundColor(.gray)
+                        HStack {
+                            Text("Grupo: ")
+                                .font(.title)
+                                .fontWeight(.bold).foregroundColor(.gray)
+                            Text("\(logedUser.group)")
+                                .font(.title)
+                                .fontWeight(.bold).foregroundColor(Color("AccentColor"))
+                        }
+                        .font(.system(size:20, weight: .semibold, design: .rounded))
+                        
+                       
                         
                         Divider()
                         

@@ -158,7 +158,7 @@ struct DiccionarioView: View {
         if presentPopup {
             //popup view
             VStack(spacing : 10){
-                Text("Palabra: " + self.palabraSelec.replacingOccurrences(of: "%20", with: " "))
+                Text("Palabra: " + self.palabraSelec.replacingOccurrences(of: "%20", with: " ")).font(.system(size:20, weight: .semibold, design: .rounded)).foregroundColor(.gray)
                 
                 if((archivoID?.fileType) != nil){ // true = image
                     
@@ -204,7 +204,7 @@ struct DiccionarioView: View {
                         self.presentPopup = false
                     }
                 }, label: {
-                    Text("Cerrar")
+                    Text("Cerrar").font(.system(size:15, weight: .bold, design: .rounded)).foregroundColor(Color("AccentColor"))
                 })
             }
         }
