@@ -66,7 +66,6 @@ struct usersList: View {
                 if let response = try? JSONDecoder().decode(Userslist.self, from: data) {
                     DispatchQueue.main.async{
                         self.lu = response
-                        print(response)
                     }
                     return
                 }
@@ -85,28 +84,24 @@ struct usersList: View {
                 if lu != nil{
                         ForEach((0...((lu?.usersL.count)!-1)), id: \.self){index in
                             Group{
-                              
-                                    HStack(alignment: .center, spacing: 4){
-                                        
-                                        
-                                        Button("\(lu!.usersL[index].username)"){
-                                            infoUser(idUser: (lu?.usersL[index]._id)!)
-                                            self.userA = lu!.usersL[index].username
-                                            self.lvlUser = lu!.usersL[index].lvl
-                                            showUserInfo = true
-                                        }.font(.system(size:22, weight: .bold, design: .rounded)).foregroundColor(.white).padding(.horizontal,10)
+                                HStack{
+                                    Button(action:{
+                                        infoUser(idUser: (lu?.usersL[index]._id)!)
+                                        self.userA = lu!.usersL[index].username
+                                        self.lvlUser = lu!.usersL[index].lvl
+                                        showUserInfo = true
+                                    }, label: {
+                                        Text("\(lu!.usersL[index].username)")
                                         Spacer()
-                                        Text("Nivel: \(lu!.usersL[index].lvl)").padding(.horizontal).font(.system(size:22, weight: .bold, design: .rounded)).foregroundColor(.white).padding(.horizontal,5)
-                                        
-                                       
-                                    }.font(.title3)
-                                        .overlay(
-                                            Capsule(style: .continuous)
-                                                .stroke(Color("AccentColor"), style: StrokeStyle(lineWidth: 2))).padding(.top,4).padding(.bottom,5)
-                                        .background(Capsule().fill(Color("AccentColor")))
-                                        .frame(width:300).padding(.horizontal)
-                                
-                                
+                                        Text("Nivel: \(lu!.usersL[index].lvl)")
+                                    }).font(.system(size:22, weight: .bold, design: .rounded)).foregroundColor(.white).padding(.horizontal,10)
+                                }
+                                .font(.title3)
+                                    .overlay(
+                                        Capsule(style: .continuous)
+                                            .stroke(Color("AccentColor"), style: StrokeStyle(lineWidth: 2))).padding(.top,4).padding(.bottom,5)
+                                    .background(Capsule().fill(Color("AccentColor")))
+                                    .frame(width:300).padding(.horizontal)
                             }.padding(.top, 10)
                         }
                         Spacer()
