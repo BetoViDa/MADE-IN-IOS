@@ -72,9 +72,11 @@ def create_user():
    print(username)
    # si encuentra un usuario con ese username manda error
    if mongo.db.users.find_one({'username': username}) != None:
+      app.logger.debug(f'El username {username} ya esta en uso')
       return {'msj': 'ya existe este username', 'ERROR': 'si'}
    # si encuentro un usuario con este email mando error
    if mongo.db.users.find_one({'email': email}) != None:
+      app.logger.debug(f'El mail {email} ya esta en uso')
       return {'msj': 'ya esta en uso este correo', 'ERROR': 'si'}
    
    if json['username'] and json['password'] and json['email'] and (json['username'] != "") and (json['password'] != "") and (json['email'] != ""):
@@ -108,8 +110,10 @@ def create_user():
       json['group'] = ''
       id = mongo.db.users.insert_one(json)
       json['_id'] = str(id.inserted_id)
+      app.logger.info(f"usuario nuevo guardado: {json['username']}")
       return {'msj': 'usuario guardado', 'ERROR': 'no'}  # mensaje de exito
    else:
+      app.logger.warning(f'Falto un campo de llenar')
       return {'msj': 'falta un campo', 'ERROR': 'si'}  # mensaje de error
 # ====================================================================================================
 
@@ -137,8 +141,10 @@ def login():
    
    if data == None:
       if "@" in json['username']:
+         app.logger.debug(f"Intnetaron inicias sesión con el correo: {json['username']}")
          return {'ERROR': "correo o contraseña incorrecta"}
       else:
+         app.logger.debug(f"Intnetaron inicias sesión con el username: {json['username']}")
          return {'ERROR': "nombre de usuario o contraseña incorrecta"}
    else:
       r = {
@@ -149,6 +155,7 @@ def login():
          'group': data['group'],
          'lvl': data['level']
       }
+      app.logger.info(f"{data['username']} inicio sesión")
       return r
    # regresa el siguiente json {"_id":string, "username": string, "email": string, "type": bool}
    # si el usuario tiene grupo regresa
@@ -157,13 +164,14 @@ def login():
 
 # -------------------------------Users group---------------------------------
 
-@app.route('/user/users/<group>', methods=['GET'])
+@app.route('/user/users/<group>', methods=['GET']) # regresa una lista de usuarios de un grupo
 def usersGroup(group):
    users = mongo.db.users.find({'group': group, 'type': 0}, {'username': 1, '_id':1, 'level':1})
    data = []
 
    for user in users:
       data.append({"username":user['username'], "_id":str(user["_id"]), "lvl": user["level"]})
+   app.logger.info(f"Se mando una lista de los usuarios de {group}")
    return {"usersL": data}
 
 #============================================================================
@@ -177,17 +185,22 @@ def joinGroup():
    json = request.json
    grupo = mongo.db.groups.find_one({'code': json['groupCode']})
    if grupo == None:
+      app.logger.error(f"Se intento unirse a un grupo con codigo invalido: {json['groupCode']}")
       return {"msj": "ERROR Codigo invalido", "group":"None"}
    id = json['_id']
    objId = ObjectId(id)
-   user = mongo.db.users.find_one({"_id": objId}, {"group": 1})
+   user = mongo.db.users.find_one({"_id": objId}, {"group": 1, "username": 1})
    if user["group"] != "":  # si ya estas en un grupo no te dejara unirte a otro
+      app.logger.error(f"El usuario ya pertence a un grupo")
       return {"msj": "ERROR ya estas en un grupo", "group":"None"}
    # si no estas en un grupo, te mete a el
    mongo.db.users.update_one(
       {"_id": objId},
       {"$set": {"group": grupo["name"]}},
       upsert=False)
+   x = grupo["name"]
+   name = user["username"]
+   app.logger.info(f"{name} Nuevo usuario en el grupo: {x}")
    return {"msj": "te uniste al grupo", "group":grupo["name"]}
 # =========================================================================
 
@@ -203,6 +216,7 @@ def leaveGroup():
       {"_id": objInstance},
       {"$unset": {"group": 1}}
    )
+   app.logger.info("Usuario menos en el grupo ")
    return {"msj": "te saliste del grupo"}
 # =========================================================================
 
@@ -217,7 +231,7 @@ def checkGrades(_id):
    for key in data["grades"]:
       r.append({"name":key, "grade":data["grades"][key]})
       
-
+   app.logger.info("se mostraron las calificaciones de un usuario")
    return {"grades": r}
 # ========================================================================
 
@@ -231,19 +245,25 @@ def setGrade():
    # para revizar si la nueva calificación es mayor o menor
    calActual = mongo.db.users.find_one(
       {"_id": objId}, {f'grades.{json["categorie"]}': 1, '_id': 0, 'level':1})
+   if calActual == None:
+      app.logger.error(f"se intento actualizar calificación de un usuario invalido: {id}")
+      return {"ERROR": "user id invalido"}
    if calActual["grades"][json["categorie"]] < json["grade"]:
       if (calActual["grades"][json["categorie"]] < 70) and (json["grade"] >= 70):
          mongo.db.users.update_one({"_id": objId},
                               {"$set":
                                     {f'grades.{json["categorie"]}': json["grade"], 'level':calActual['level']+1}
                               })
+         app.logger.info(f"usuario con id: {id} subio de nivel ")
          return {"msj": "Subes de nivel"}
       else:
          mongo.db.users.update_one({"_id": objId},
                                  {"$set":
                                     {f'grades.{json["categorie"]}': json["grade"]}
                                  })
-      return {"msj": f'Calificación de {json["categorie"]} actualizada a {json["grade"]:.2f}'}
+         app.logger.info(f"se actualizo la calificación del usuario id: {id}")
+         return {"msj": f'Calificación de {json["categorie"]} actualizada a {json["grade"]:.2f}'}
+   app.logger.info(f"la calificacion de mantuvo id: {id}")
    return {"msj": f'La calificación de {json["categorie"]} se mantuvo con {calActual["grades"][json["categorie"]]:.2f}'}
 
 # =======================================================================
@@ -362,7 +382,7 @@ def getUserId(username):
 if __name__ == "__main__":
    #app.run(debug=True)
    #app.run(host='0.0.0.0',debug=True,port='5003')
-   app.run(ssl_context = "adhoc" ,debug=True, port='443') # ssl para https
+   app.run(ssl_context = "adhoc" ,debug=True) # ssl para https
 
 
 '''
