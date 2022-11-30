@@ -48,7 +48,7 @@ struct SignUp: View {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}" // expresion regular
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if(!emailPred.evaluate(with: email)){ // mail invalido
-            msjErrorMail = "Email no valido"
+            msjErrorMail = "Email no válido"
         }
         else{// no hay error
             msjErrorMail = ""
@@ -59,7 +59,7 @@ struct SignUp: View {
         let userRegEx = "[A-Z0-9a-z_/]{3,16}"
         let userPred = NSPredicate(format:"SELF MATCHES %@", userRegEx)
         if(!userPred.evaluate(with: username)){ // username invalido
-            msjErrorNombre = "Tu nombre debe contener entre 3 y 16 caracteres y solo usar letras, numeros, _, /"
+            msjErrorNombre = "Tu nombre debe contener entre 3 y 16 caracteres y solo usar letras, números, _, /"
         }
         else{
             msjErrorNombre = ""
@@ -70,7 +70,7 @@ struct SignUp: View {
         //Minimum eight characters, at least one letter, one number and one special character:
         let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         if(!passwordPred.evaluate(with: password)){
-            msjErrorContra = "Minimo 8 caracteres, una letra, un numero, y un caracter especail Solo se aceptan (@$!%*#?&)"
+            msjErrorContra = "Mínimo 8 caracteres, una letra, un número, y un caracter especial. Solo se aceptan (@$!%*#?&)"
         }
         else{
             msjErrorContra = ""
@@ -86,7 +86,7 @@ struct SignUp: View {
         
         //--------si hay error no continuamos----------
         if(msjError != "" || msjErrorMail != "" || msjErrorContra != "" || msjErrorNombre != "" || msjErrorTyC != ""){ // si se encontro un error
-            print("error por credenciales invalidas") // mostramos un error en consola
+            print("Error por credenciales invalidas") // mostramos un error en consola
             return // no continuamos
         }
         //===============================================
