@@ -1,11 +1,11 @@
 # API Para la aplicación signa de lenguaje de señas
-'''
-pasos:
-    python3 -m venv venv                         creamos entorno virtual llamado "venv"
-    venv\Scripts\activate    en MacOS ejecutar:  source venv/bin/activate
-    pip install <lo que se deba instalar>       para linux y macos usar "pip3"
-    python3 src/api.py                           corremos la api estando en la carpeta API
-'''
+
+#pasos:
+    #python3 -m venv venv                         creamos entorno virtual llamado "venv"
+    #venv\Scripts\activate    en MacOS ejecutar:  source venv/bin/activate
+    #pip install <lo que se deba instalar>       para linux y macos usar "pip3"
+    #python3 src/api.py                           corremos la api estando en la carpeta API
+
 # <lo que se debe instalar>
 # pip install flask          Componente basico
 # pip install pymongo
@@ -387,8 +387,8 @@ def getUserId(username):
 
 if __name__ == "__main__":
    #app.run(debug=True)
-   #app.run(host='0.0.0.0',debug=True,port='5003')
-   app.run(ssl_context = "adhoc" ,debug=True) # ssl para https
+   app.run(host='0.0.0.0',debug=True,port='5003')
+   #app.run(ssl_context = "adhoc" ,debug=True, host='0.0.0.0', port='5003') # ssl para https
 
 
 '''

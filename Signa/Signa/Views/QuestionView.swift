@@ -33,7 +33,7 @@ struct QuestionView: View {
                     
                     if(triviaManager.trivia[triviaManager.index].fileType){ // true = image
                         // mostramos una imagen
-                        AsyncImage(url: URL(string: UrlDriveFiles + triviaManager.trivia[triviaManager.index].file)){ image in
+                        AsyncImage(url: URL(string: urlFiles + triviaManager.trivia[triviaManager.index].file + ".JPG")){ image in
                             image.resizable().frame(width: 300, height: 200)
                                 .padding(.horizontal,2)
                         } placeholder: {
@@ -42,7 +42,7 @@ struct QuestionView: View {
                         
                     } else {
                         // mostramos un video
-                        VideoPlayer(player: AVPlayer(url: URL(string: UrlDriveFiles + triviaManager.trivia[triviaManager.index].file)!))
+                        VideoPlayer(player: AVPlayer(url: URL(string: urlFiles + triviaManager.trivia[triviaManager.index].file + "_Web.m4v")!))
                             .frame(width: 300, height: 200)
                             .padding(.horizontal)
                     }

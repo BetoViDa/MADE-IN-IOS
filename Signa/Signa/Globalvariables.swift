@@ -25,7 +25,7 @@ public var logedUser = User(
     lvl : 0
 )
 
-public let UrlDriveFiles = "https://drive.google.com/uc?export=view&id="
-public let urlFiles = "http://10.22.152.212:8080/multimedia/"
-public let APIURL: String = "http://10.22.152.212:5003"
+//public let UrlDriveFiles = "https://drive.google.com/uc?export=view&id="
+public let urlFiles = "http://198.37.117.228:5434/multimedia/"
+public let APIURL: String = "http://198.37.117.228:5433"
 public var TriviaCategor: String = ""   //Variable para el Quiz
