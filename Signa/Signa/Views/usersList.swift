@@ -85,20 +85,28 @@ struct usersList: View {
                 if lu != nil{
                         ForEach((0...((lu?.usersL.count)!-1)), id: \.self){index in
                             Group{
-                                HStack{
-                                    Text("Nivel: \(lu!.usersL[index].lvl)").padding(.horizontal)
-                                    
-                                    Button("\(lu!.usersL[index].username)"){
-                                        infoUser(idUser: (lu?.usersL[index]._id)!)
-                                        self.userA = lu!.usersL[index].username
-                                        self.lvlUser = lu!.usersL[index].lvl
-                                        showUserInfo = true
-                                    }
-                                    
-                                    
-                                    
-                                    Spacer()
-                                }.font(.title3)
+                              
+                                    HStack(alignment: .center, spacing: 4){
+                                        
+                                        
+                                        Button("\(lu!.usersL[index].username)"){
+                                            infoUser(idUser: (lu?.usersL[index]._id)!)
+                                            self.userA = lu!.usersL[index].username
+                                            self.lvlUser = lu!.usersL[index].lvl
+                                            showUserInfo = true
+                                        }.font(.system(size:22, weight: .bold, design: .rounded)).foregroundColor(.white).padding(.horizontal,10)
+                                        Spacer()
+                                        Text("Nivel: \(lu!.usersL[index].lvl)").padding(.horizontal).font(.system(size:22, weight: .bold, design: .rounded)).foregroundColor(.white).padding(.horizontal,5)
+                                        
+                                       
+                                    }.font(.title3)
+                                        .overlay(
+                                            Capsule(style: .continuous)
+                                                .stroke(Color("AccentColor"), style: StrokeStyle(lineWidth: 2))).padding(.top,4).padding(.bottom,5)
+                                        .background(Capsule().fill(Color("AccentColor")))
+                                        .frame(width:300).padding(.horizontal)
+                                
+                                
                             }.padding(.top, 10)
                         }
                         Spacer()
@@ -119,6 +127,7 @@ struct usersList: View {
                                                 Circle().stroke(.white, lineWidth: 4)
                                             }
                                             .shadow(radius: 7)
+                                            .padding(.top)
                                     } else if (lvlUser >= 9) {
                                         Image("silvcup")
                                             .scaleEffect(0.2)
@@ -129,6 +138,7 @@ struct usersList: View {
                                                 Circle().stroke(.white, lineWidth: 4)
                                             }
                                             .shadow(radius: 7)
+                                            .padding(.top)
                                     }else if (lvlUser >= 4){
                                         Image("broncup")
                                             .scaleEffect(0.2)
@@ -139,9 +149,10 @@ struct usersList: View {
                                                 Circle().stroke(.white, lineWidth: 4)
                                             }
                                             .shadow(radius: 7)
+                                            .padding(.top)
                                     }else{
-                                        Image("earth3")
-                                            .scaleEffect(0.5)
+                                        Image("earth")
+                                            .scaleEffect(0.2)
                                             .frame(width:100, height: 100)
                                             .scaledToFit()
                                             .clipShape(Circle())
@@ -149,12 +160,13 @@ struct usersList: View {
                                                 Circle().stroke(.white, lineWidth: 4)
                                             }
                                             .shadow(radius: 7)
+                                            .padding(.top)
                                     }
                                     
                                     
                                     VStack{
                                         Text("\(userA)")
-                                            .font(.title2)
+                                            .font(.system(size:20, weight: .bold, design: .rounded))
                                             .padding()
                                         
                                         Divider()

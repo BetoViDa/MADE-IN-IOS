@@ -21,9 +21,8 @@ struct AprenderView: View {
                         }
                         HStack{
                             Text("ABC")
-                                .font(.title)
-                                .fontWeight(.bold)
                                 .multilineTextAlignment(.center).padding()
+                                .font(.system(size:30, weight: .bold, design: .rounded))
                             Spacer()
                         }           
                         HStack(alignment: .center){
@@ -49,8 +48,8 @@ struct AprenderView: View {
                                             .shadow(radius: 7)
                                     }
                                     Text(namestopicsfront[index])
-                                        .font(.title3)
-                                        .fontWeight(.semibold).padding()
+                                        .padding()
+                                        .font(.system(size:17, weight: .bold, design: .rounded)).foregroundColor(.gray)
                                 }
                                 Spacer()
                             }
@@ -90,8 +89,7 @@ struct AprenderView: View {
                                         .shadow(radius: 7)
                                 }
                                 Text(namestopicsfront[index])
-                                    .font(.system(size: 13))
-                                    .fontWeight(.semibold).padding()
+                                    .font(.system(size:13, weight: .bold, design: .rounded)).foregroundColor(.gray).padding()
                             }
                             Spacer()
                         }
@@ -130,8 +128,7 @@ struct AprenderView: View {
                                             .shadow(radius: 7)
                                     }
                                     Text(namestopicsfront[index])
-                                        .font(.system(size: 15))
-                                        .fontWeight(.semibold).padding()
+                                        .font(.system(size:15, weight: .bold, design: .rounded)).foregroundColor(.gray).padding()
                                 }
                                 Spacer()
                             }
@@ -172,8 +169,7 @@ struct AprenderView: View {
                                             .shadow(radius: 7)
                                     }
                                     Text(namestopicsfront[index])
-                                        .font(.system(size: 15.5))
-                                        .fontWeight(.semibold).padding()
+                                        .font(.system(size:15, weight: .bold, design: .rounded)).foregroundColor(.gray).padding()
                                 }
                                 Spacer()
                             }
