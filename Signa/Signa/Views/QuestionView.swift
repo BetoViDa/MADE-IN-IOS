@@ -30,22 +30,33 @@ struct QuestionView: View {
                 //Spacer()
                 ScrollView{
                 VStack(alignment: .center, spacing: 20){
-                    
-                    if(triviaManager.trivia[triviaManager.index].fileType){ // true = image
-                        // mostramos una imagen
-                        AsyncImage(url: URL(string: urlFiles + triviaManager.trivia[triviaManager.index].file + ".JPG")){ image in
-                            image.resizable().frame(width: 300, height: 200)
-                                .padding(.horizontal,2)
-                        } placeholder: {
-                            ProgressView()
+                    //if((triviaManager.trivia[triviaManager.index].answer) != nil) {
+                        if(triviaManager.trivia[triviaManager.index].fileType){ // true = image
+                            // mostramos una imagen
+                            AsyncImage(url: URL(string: urlFiles + triviaManager.trivia[triviaManager.index].answer.lowercased() + ".JPG")){ phase in
+                                switch phase {
+                                case .success(let image):
+                                    image.resizable().frame(width: 300, height: 200)
+                                        .padding(.horizontal,2)
+                                case .failure(let error):
+                                    let _ = print(error)
+                                    //Text("error: \(error.localizedDescription)")
+                                    Text("error al cargar la imagen")
+                                case .empty:
+                                    ProgressView()
+                                @unknown default:
+                                    fatalError()
+                                }
+                            }
+                            
+                        } else {
+                            // mostramos un video
+                            let strpalabra : String = triviaManager.trivia[triviaManager.index].answer.replacingOccurrences(of: " ", with: "%20")
+                            VideoPlayer(player: AVPlayer(url: URL(string: urlFiles + strpalabra + "_Web.m4v")!))
+                                .frame(width: 300, height: 200)
+                                .padding(.horizontal)
                         }
-                        
-                    } else {
-                        // mostramos un video
-                        VideoPlayer(player: AVPlayer(url: URL(string: urlFiles + triviaManager.trivia[triviaManager.index].file + "_Web.m4v")!))
-                            .frame(width: 300, height: 200)
-                            .padding(.horizontal)
-                    }
+                    //}
                     
                     ForEach(triviaManager.answerChoices, id: \.id){
                         answer in AnswerRow(answer:answer)

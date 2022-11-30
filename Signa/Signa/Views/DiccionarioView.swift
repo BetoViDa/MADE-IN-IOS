@@ -135,7 +135,7 @@ struct DiccionarioView: View {
                             if results != nil {
                                 WrappingHStack(results!.palabra, id:\.self, alignment: .center) { resultados in
                                     Button( action: {
-                                        loadArchivo(palabra: resultados)
+                                        loadArchivo(palabra: resultados.replacingOccurrences(of: " ", with: "%20"))
                                         self.presentPopup = true
                                     }){
                                         Text(resultados)
@@ -158,7 +158,7 @@ struct DiccionarioView: View {
         if presentPopup {
             //popup view
             VStack(spacing : 10){
-                Text("Palabra: " + self.palabraSelec)
+                Text("Palabra: " + self.palabraSelec.replacingOccurrences(of: "%20", with: " "))
                 
                 if((archivoID?.fileType) != nil){ // true = image
                     
@@ -181,6 +181,7 @@ struct DiccionarioView: View {
                         }
                         
                     } else if (((archivoID?.file) != nil) && archivoID?.fileType == false) {
+                        
                         VideoPlayer(player: AVPlayer(url: URL(string: urlFiles + self.palabraSelec + "_Web.m4v")!))
                             .frame(width: 300, height: 200)
                         /*
